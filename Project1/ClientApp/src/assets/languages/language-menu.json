@@ -1,0 +1,392 @@
+[
+  {
+    "id": "lnkCaution.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkRetenues.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkPenalitesRetard.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkApprovisionnement.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": false,
+    "menuMF": false,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkDecomposition.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": false,
+    "menuMF": false,
+    "menuMT": false,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkCircuitDepense.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkOS.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkOSPartiel.label",
+    "menu": "ordreServicePartiels",
+    "menuBC": "ordreServicePartiel",
+    "menuMS": "ordreCommande",
+    "menuMF": "ordreCommande",
+    "menuMT": "ordreServicePartiel",
+    "menuCC": "ordreServicePartiel",
+    "menuCDC": "ordreServicePartiel"
+  },
+  {
+    "id": "lnkLettreCommande.visible",
+    "menu": false,
+    "menuBC": false,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": false,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkDemandeArret.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkPlanification.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": false,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkAvance.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkReception.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkAvenant.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": true,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkReserves.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkRestitutionR.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkResiliation.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkDepassement.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkContratArch.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkAttestAssurance.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkAssuranceGD.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": false,
+    "menuMF": false,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkSituationFact.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkNotationFrs.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkEvenements.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkSignataire.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkRevisionPrix.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": false
+  },
+  {
+    "id": "lnkLivraison.label",
+    "menu": "livraisonsAttachements",
+    "menuBC": "preRecepetion",
+    "menuMS": "executions",
+    "menuMF": "livraisons",
+    "menuMT": "attachemenets",
+    "menuCC": null,
+    "menuCDC": "preRecepetion"
+  },
+  {
+    "id": "lnkFacturation.label",
+    "menu": "decomptes",
+    "menuBC": "decomptes",
+    "menuMS": "decomptes",
+    "menuMF": "decomptes",
+    "menuMT": "decomptes",
+    "menuCC": null,
+    "menuCDC": "decomptes"
+  },
+  {
+    "id": "lnkLivraison.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkFacturation.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": false,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkDepense.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": true,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkBordereauPrix.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": true,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkPJs.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": true,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkDocumentDep.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": true,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkEngagement.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": true,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkOrdonnancements.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": true,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkComplementEngagement.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": true,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkDiminution.visible",
+    "menu": true,
+    "menuBC": true,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": true,
+    "menuCDC": true
+  },
+  {
+    "id": "lnkEngagementAvenant.visible",
+    "menu": true,
+    "menuBC": false,
+    "menuMS": true,
+    "menuMF": true,
+    "menuMT": true,
+    "menuCC": true,
+    "menuCDC": false
+  }
+]

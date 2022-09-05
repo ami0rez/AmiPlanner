@@ -1,0 +1,53 @@
+<div class="project-bar">
+  <div class="project-bar-container">
+    <div *ngFor="let project of pageObject.data.openedProjects"
+      [ngClass]="{'project-bar-item': true, 'project-bar-item-selected' : pageObject.selectedProjectId == project.id}"
+      (click)="handleClick(project)">
+      <div class="project-bar-item-icon">
+        <span class="project-bar-item-icon-border" [style]="{backgroundColor: appColors.primary}">
+          <i class="pi pi-list" [style]="{'fontSize': '1em' , color: appColors.white}"></i>
+        </span>
+      </div>
+      <div class="project-bar-item-title" [pTooltip]="project?.name">{{project?.name}}</div>
+      <div class="project-bar-item-controls">
+        <i class="pi pi-times"
+          [style]="{'fontSize': '1em' , color: pageObject.selectedProjectId == project.id ? appColors.white : appColors.textBlack}"
+          (click)="handleOnClose(project)"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="project-content" *ngIf="pageObject.selectedProjectId">
+  <div class="project-content-container">
+    <app-project-task-header class="task-search" [(taskSearchFilter)]="pageObject.taskSearchFilter"
+      (next)="handleTaskFilter()" (search)="handleSearchChange($event)" (filter)="handleFilter($event)"
+      (addTask)="handleAddTask($event)" (sort)="handleSort($event)">
+    </app-project-task-header>
+    <div *ngIf="!pageObject.showTaskContent" class="project-content-items">
+      <div class="project-content-items-list">
+        <app-project-task-item *ngFor="let task of pageObject.data?.filteredTasks" [task]="task"
+          (itemDelete)="handleDelete(task)" (itemStateUpdate)="handleTaskStateUpdate($event)"
+          (itemDateUpdate)="handleDateTaskUpdate($event)" (itemRepeatUpdate)="handleRepeatTaskUpdate($event)"
+          (itemPriorityUpdate)="handlePriorityTaskUpdate($event)" (itemClick)="handleOpenTask(task)">
+        </app-project-task-item>
+      </div>
+    </div>
+    <p-splitter *ngIf="pageObject.showTaskContent" class="project-content-items" [panelSizes]="[40,60]">
+      <ng-template pTemplate>
+        <div class="project-content-items-list">
+          <app-project-task-item *ngFor="let task of pageObject.data?.filteredTasks" [task]="task"
+            (itemDelete)="handleDelete(task)" (itemStateUpdate)="handleTaskStateUpdate($event)"
+            (itemRepeatUpdate)="handleRepeatTaskUpdate($event)" (itemDateUpdate)="handleDateTaskUpdate($event)"
+            (itemPriorityUpdate)="handlePriorityTaskUpdate($event)" (itemClick)="handleOpenTask(task)">
+          </app-project-task-item>
+        </div>
+      </ng-template>
+      <ng-template pTemplate>
+        <div [ngClass]="{'project-content-items-description': true, 'opened': pageObject.showTaskContent}">
+          <app-project-task-description [task]="pageObject.data.selectedTask" (change)="handleTaskUpdate($event)"
+            (close)="handleTaskDescriptionClose()"></app-project-task-description>
+        </div>
+      </ng-template>
+    </p-splitter>
+  </div>
+</div>

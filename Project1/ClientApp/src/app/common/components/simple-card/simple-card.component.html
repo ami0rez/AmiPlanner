@@ -1,0 +1,13 @@
+<div class="goal-item" (click)="handleClick()" (mouseenter)="setShowDelete(true)" (mouseleave)="setShowDelete(false)">
+  <div class="goal-icon">
+    <!-- {goal?.type === 0 && <i class="pi pi-folder" style={{'fontSize': '3em' , 'color' : Colors.primary}}></i>}
+    {goal?.type === 1 && <i class="pi pi-align-justify" style={{'fontSize': '3em' , 'color' : Colors.orange}}></i>} -->
+    <i [class]="'pi ' + icon" [style]="{'fontSize': '3em' , 'color' : iconColor}"></i>
+  </div>
+  <!-- <Tooltip target=".goal-title" /> -->
+  <div class="goal-title" data-pr-tooltip={goal?.name}>{{title}}
+  </div>
+  <span *ngIf="showDelete" class="goal-delete-icon" (click)="handleDelete($event)">
+    <i class="pi pi-trash" [style]="{'fontSize': '0.8em' , 'color' : 'white'}"></i>
+  </span>
+</div>

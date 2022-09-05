@@ -1,0 +1,13 @@
+<!-- <ProjectSearch onSearch={handleSearchChange} onAdd={handleAdd} /> -->
+<app-project-list-header (addProject)="handleAddProject($event)" (search)="handleSearchProject($event)" class="project-search"></app-project-list-header>
+<div *ngIf="!pageObject.loading" class="project-items">
+  <!-- {filteredList?.map((proj) => (
+    <ProjectListItem key={proj} project={proj} onDelete={handleDelete} onClick={handleOpen} />
+    ))} -->
+  <app-simple-list-item *ngFor="let item of displayedItems ?? pageObject.data.projectItems" [item]="item" (itemClick)="handleOpenProject(item)"
+    (itemDelete)="handleDeleteProject(item)" (itemRenamed)="handleRenameProject(item, $event)">
+  </app-simple-list-item>
+</div>
+<div *ngIf="pageObject.loading" class="center">
+  <app-loading></app-loading>
+</div>

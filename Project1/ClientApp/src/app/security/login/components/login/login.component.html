@@ -1,0 +1,32 @@
+<div class="page-container-login">
+  <img [src]="'assets/img/login-bg.png'" class="background-center" />
+  <div class="login-form">
+    <div class="login-form-header">
+      <span i18n="@@login.appNname">Ami Planner</span>
+    </div>
+    <div class="login-form-content">
+      <div>
+        <div class="field-control daily-task-field-control">
+          <label> Login </label>
+          <input pInputText  [(ngModel)]="pageObject.data.userName" class="login-form-content-texte" id="txtUserName" name="txtUserName" label="password"
+            i18n-label="@@login.username" required="required" (keydown.enter)="login()" />
+        </div>
+        <div class="field-control daily-task-field-control">
+          <label> Password </label>
+          <input pInputText  [(ngModel)]="pageObject.data.password" class="login-form-content-texte" id="txtPassword" name="txtPassword" type="password"
+            label="password" i18n-label="@@login.password" type="password" required="required"
+            (keydown.enter)="login()" />
+        </div>
+
+
+        <div>
+          <button id="login-form-submit" [disabled]="loading" label="login"
+            class="btn btn-primary login-form-content-button" (click)="login()">
+            Login
+          </button>
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1 spinner-border-justify"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div [ngClass]="{'task-search-container': true,'selected' : mode == SearchMode}">
+  <span class="task-search-icon" (click)="setMode(SearchMode)"> <i class="pi pi-search" size="1.3em"></i>
+  </span>
+  <input *ngIf="mode == SearchMode" pInputText class="task-search-input" [(ngModel)]="taskSearchFilter.searchValue"
+    (input)="handleSearchChange()" />
+  <p-dropdown *ngIf="mode == SearchMode" optionLabel="label" [options]="taskStateSearchOptions"
+    (onChange)="handleSearchChange()" [(ngModel)]="taskSearchFilter.state" [appendTo]="'body'"></p-dropdown>
+  <p-dropdown *ngIf="mode == SearchMode" optionLabel="label" [options]="taskSortOptions"
+    (onChange)="handleSearchChange()" [(ngModel)]="taskSearchFilter.sortBy" [appendTo]="'body'"></p-dropdown>
+  <!-- <div class="task-search-sort-icon" *ngIf="mode == SearchMode">
+    <i class="pi pi-sort-alpha-up" *ngIf="!sortAscending" size="1.4em" (click)="handleSort(true)"></i>
+    <i class="pi pi-sort-alpha-down" *ngIf="sortAscending" size="1.4em" (click)="handleSort(false)"></i>
+  </div> -->
+</div>
+<div [ngClass]="{'task-add-container': true,'selected' : mode == CreateMode}">
+  <span class="task-add-icon" (click)="setMode(CreateMode)">
+    <i class="pi pi-plus" size="1.3em"></i>
+  </span>
+  <input *ngIf="mode == CreateMode" class="task-search-input" (keydown.enter)="handleTaskAdd($event)" />
+</div>

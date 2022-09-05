@@ -1,0 +1,34 @@
+<div class="daily-tasks-item-controls" (click)="handleTaskItemClick()">
+  <span class="daily-span-tag f-p-7-em c-pointer" (click)="handleGoToProject($event, task)">Go To Goal Project</span>
+  <span class="daily-span-tag f-p-7-em c-pointer" (click)="handleUpdateRepeat($event, !task.everyday)">{{task.everyday ? 'Once': 'EveryDay'}}</span>
+  <span class="daily-span-tag f-p-7-em c-pointer" (click)="handleOnDateUpdate($event)" >{{task.date ? 'Not Today': 'Today'}}</span>
+  <div class="task-control-item c-pointer" *ngIf="donneTransitionStates.includes(task.state)">
+    <i class="bi bi-check-circle" [style]="{'fontSize': '1em', color: '#00000099'}" (click)="handleOnUpdate($event, donneStateValue)"></i>
+  </div>
+  <div *ngIf="startTranstitionStates.includes(task.state)" class="task-control-item c-pointer">
+    <i class="bi bi-play-circle" [style]="{'fontSize': '1em', color: '#00000099'}" (click)="handleOnUpdate($event, startStateValue)"></i>
+  </div>
+  <div *ngIf="abandonTransitionStates.includes(task.state)" class="task-control-item c-pointer">
+    <i class="bi bi-stop-circle" [style]="{'fontSize': '1em', color: '#00000099'}" (click)="handleOnUpdate($event, abandonStateValue)"></i>
+  </div>
+  <div *ngIf="holdTransitiontate.includes(task.state)" class="task-control-item c-pointer">
+    <i class="bi bi-pause-circle" [style]="{'fontSize': '1em', color: '#00000099'}" (click)="handleOnUpdate($event, holdStateValue)"></i>
+  </div>
+</div>
+<div class="daily-tasks-item-content" (click)="handleTaskItemClick()">
+  <div class="daily-tasks-item-tag folder">
+    {{task?.folderName}}
+  </div>
+  <div class="daily-tasks-item-tag goal">
+    {{task?.goalName}}
+  </div>
+  <div class="daily-tasks-item-tag project">
+    {{task?.projectName}}
+  </div>
+  <div class="daily-tasks-item-tag priority">
+    {{task?.priority}}
+  </div>
+  <div class="daily-tasks-item-name">
+    {{task?.name}}
+  </div>
+</div>

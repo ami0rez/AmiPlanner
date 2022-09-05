@@ -1,0 +1,12 @@
+<div class="ami-breadcrumb">
+  <span *ngFor="let item of items let isFirst = first; let isLast = last">
+    <span
+      class="ami-breadcrumb-item"
+      (click)="handleItemClick(item, !isLast)"
+    >
+      <i *ngIf="isFirst" class="pi pi-home" style="font-size: 1.2em"></i>
+      {{item.label}}
+    </span>
+      <span *ngIf="!isLast" span class="ami-breadcrumb-next-icon">&#9654;</span>
+  </span>
+</div>

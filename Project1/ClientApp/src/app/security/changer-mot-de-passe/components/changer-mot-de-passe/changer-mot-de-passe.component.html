@@ -1,0 +1,91 @@
+<div class="content-section">
+  <form #passwordForm="ngForm">
+    <div class="form-content col-12 col-sm-12 col-md-8 col-lg-6 col-xl-4 ml-auto mr-auto content-justify">
+      <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+        <div class="title-section c-dividing">
+          <span i18n="@@changer-mot-de-passe.changePassword">Modify your password</span>
+        </div>
+        <div class="row content-implementation form-input">
+          <div class="col-12 col-sm-12">
+            <div class="row">
+              <i-input
+                class="input-width-large"
+                id="login"
+                name="login"
+                label="Login"
+                i18n-label="@@changer-mot-de-passe.login"
+                class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3"
+                [(ngModel)]="password.login"
+                [disabled]="true"
+              ></i-input>
+            </div>
+
+            <div class="row">
+              <i-input
+                class="input-width-large"
+                id="oldPassword"
+                name="oldPassword"
+                label="Old password"
+                i18n-label="@@changer-mot-de-passe.oldPassword"
+                type="password"
+                class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3"
+                required="required"
+                [(ngModel)]="password.oldPassword"
+              ></i-input>
+            </div>
+
+            <div class="row">
+              <i-input
+                class="input-width-large"
+                id="newPassword"
+                name="newPassword"
+                label="New password"
+                i18n-label="@@changer-mot-de-passe.newPassword"
+                type="password"
+                class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3"
+                required="required"
+                [(ngModel)]="password.newPassword"
+              ></i-input>
+            </div>
+
+            <div class="row">
+              <i-input
+                class="input-width-large"
+                id="newPasswordConfirmation"
+                name="newPasswordConfirmation"
+                label="Password confirmation"
+                i18n-label="@@changer-mot-de-passe.passwordConfirmation"
+                type="password"
+                class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3"
+                required="required"
+                [(ngModel)]="passwordConfirmation"
+              ></i-input>
+            </div>
+            <button
+              pButton
+              type="button"
+              label="Cancel"
+              i18n-label="@@global.actionCancel"
+              style="margin-right: 10px !important"
+              class="button-toolbar ui-button-white btn-outline-primary button-bottom"
+              (click)="cancelChangingPassword()"
+            ></button>
+            <button
+              *ngIf="password.login"
+              pButton
+              type="button"
+              label="Reset Password"
+              i18n-label="@@update-password.reInitPassword"
+              class="button-toolbar btn-outline-primary button-bottom"
+              (click)="changePassword()"
+            ></button>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class=""></div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4"></div>
+      </div>
+    </div>
+  </form>
+</div>

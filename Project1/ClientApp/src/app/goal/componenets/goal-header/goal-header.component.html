@@ -1,0 +1,25 @@
+<div class="goal">
+    <div [ngClass]="{'header-goal-container': true,'selected' :  mode == SearchMode}">
+        <span class=" header-goal-icon" (click)="setMode(SearchMode)">
+            <i class="pi pi-search" size="1.3em" ></i>
+        </span>
+        <input *ngIf="mode == SearchMode" class="header-goal-input" (change)="handleSearchChange($event)" />
+        <p-dropdown *ngIf="mode == SearchMode" optionLabel="label" [options]="taskSearchOptions" (onChange)="handleSelectChange($event)"></p-dropdown>
+        <div *ngIf="mode == SearchMode" class="header-goal-sort-icon">
+            <i class="pi pi-sort-alpha-up" *ngIf="!sortAscending" size="1.4em" (click)="handleSort(true)"></i>
+            <i class="pi pi-sort-alpha-down" *ngIf="sortAscending" size="1.4em" (click)="handleSort(false)"></i>
+        </div>
+    </div>
+    <div [ngClass]="{'header-goal-header-container': true,'selected' :  mode == CreateFolderMode}">
+        <span class="header-goal-header-icon" (click)="setMode(CreateFolderMode)">
+            <i class="pi pi-folder" size="1.3em" ></i>
+        </span>
+        <input *ngIf="mode == CreateFolderMode" class="header-goal-input" (change)="handleCreateFolder($event)"/>
+    </div>
+    <div [ngClass]="{'header-goal-header-container': true,'selected' :  mode == CreateGoalMode}">
+        <span class="header-goal-header-icon" (click)="setMode(CreateGoalMode)">
+            <i class="pi pi-box" size="1.3em" ></i>
+        </span>
+        <input *ngIf=" mode == CreateGoalMode" class="header-goal-input" (change)="handleCreateFile($event)"/>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="goal-editor">
+  <div class="goal-content">
+    <!-- <Toast ref={toast} /> -->
+    <div class="goal-content-container">
+      <!-- <AmiBreadcrumb
+              items={breadCrumb}
+              onItemClick={handleBreadcrumbItemClick}
+            /> -->
+      <app-bread-crumb [items]="pageObject.data.currentpath" (itemClick)="breadCrumbChange($event)"></app-bread-crumb>
+      <app-goal-header (search)="handleSearchChange($event)" (filter)="handleFilter($event)"
+        (addGoal)="handleAddGoal($event)" (addFolder)="handleAddFolder($event)" (sort)="handleSort($event)">
+      </app-goal-header>
+      <div class="goal-content-items">
+        <div *ngIf="pageObject.loading" class="goal-content-items-list">
+          <app-loading></app-loading>
+          <!-- <app-simple-card *ngFor="let item of this.pageObject.data.folderItems" key={goal?.id} goal={goal}
+            onDelete={handleDelete} onUpdate={handleTaskUpdate} onClick={handleOpenGoal}></app-simple-card> -->
+        </div>
+        <div class="goal-content-items" *ngIf="!pageObject.loading">
+          <app-simple-card *ngFor="let item of pageObject.data.folderItems" [title]="item.label"
+            [icon]="item.folder ? 'pi-folder': 'pi-align-justify'" [iconColor]="item.folder ? 'blue': 'orange'"
+            (itemClick)="onCardItemClick(item)"
+            (itemDelete)="onCardItemDelete(item)"
+            >
+          </app-simple-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+.page-container-login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.background-center {
+  position: absolute;
+  z-index: -10;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  padding: 5vh;
+  text-align: center;
+  object-fit: scale-down;
+}
+
+.login-form{
+  width: 24.5vw;
+  height: 24.5vw;
+}
+
+.login-form-header{
+  padding: 5px;
+  background-image: url("../../../../assets/img/login-header.png");
+  background-size: cover;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24.5vw;
+  height: 5vw;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.login-form-content{
+  background-image: url("../../../../assets/img/login-content.png");
+  background-size: contain;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  display: flex;
+  width: 24.5vw;
+  height: 17vw;
+  margin-bottom: 3vh;
+  font-size: 1.3em;
+  padding: 4vh 0.5vw;
+  position: relative;
+}
+
+.login-form-content .field-control{
+  background-color: transparent;
+  color: black;
+  font-size: 0.7em;
+  font-weight: bold;
+  margin-bottom: 2vh;
+}
+.login-form-content .field-control .login-form-content-texte{
+  background-color: #FFFFFFDD;
+  border: solid thin black;
+  width: 22.5vw;
+  color: black;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#login-form-submit{
+  position: absolute;
+  border: solid thin black;
+  height: 50px;
+  margin: 1vh 0.5vw;
+  font-weight: bolder;
+  font-size: 0.8em;
+  width: 22.5vw;
+  bottom: 2vh;
+  border-radius: 8px;
+  cursor: pointer;
+}

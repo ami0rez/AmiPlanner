@@ -1,0 +1,50 @@
+<div class="d-flex-column f-grow">
+  <div class="d-flex-row f-grow">
+    <div class="field-control daily-task-field-control">
+      <label> Folder </label>
+      <p-dropdown [options]="pageObject.taskFilterOptions.folders" [(ngModel)]="pageObject.taskSearchFilter.folderId"
+        (ngModelChange)="filterUpdated()"></p-dropdown>
+    </div>
+    <div class="field-control">
+      <label> Goal </label>
+      <p-dropdown [options]="pageObject.taskFilterOptions.goals" [(ngModel)]="pageObject.taskSearchFilter.goalId"
+        (ngModelChange)="filterUpdated()"></p-dropdown>
+    </div>
+    <div class="field-control">
+      <label> Project </label>
+      <p-dropdown [options]="pageObject.taskFilterOptions.projects" [(ngModel)]="pageObject.taskSearchFilter.projectId"
+        (ngModelChange)="filterUpdated()"></p-dropdown>
+    </div>
+    <div class="field-control">
+      <label> Priority </label>
+      <input class="w-50" type="number" pInputText [(ngModel)]="pageObject.taskSearchFilter.priority"
+        (ngModelChange)="filterUpdated()" (change)="filterUpdated()">
+    </div>
+    <div class="field-control f-grow">
+      <label> Task Name </label>
+      <input pInputText pInputText [(ngModel)]="pageObject.taskSearchFilter.taskName" (ngModelChange)="filterUpdated()">
+    </div>
+    <div class="field-control flex-j-c-end">
+      <i class="bi bi-filter c-pointer" [style]="{'fontSize': '1.4em', color: '#00000099'}"
+        (click)="showSubTaskFilters()"></i>
+    </div>
+  </div>
+  <div class="d-flex-row f-grow" *ngIf="pageObject?.showTaskSubfilters">
+    <div class="field-control daily-task-field-control">
+      <label> Status </label>
+      <p-multiSelect [options]="taskStateSearchOptions"
+        [(ngModel)]="pageObject.taskSearchFilter.stateList" display="chip" (ngModelChange)="filterUpdated()">
+      </p-multiSelect>
+    </div>
+    <div class="field-control">
+      <label> Today </label>
+      <p-triStateCheckbox [(ngModel)]="pageObject.taskSearchFilter.today" (ngModelChange)="filterUpdated()">
+      </p-triStateCheckbox>
+    </div>
+    <div class="field-control">
+      <label> EveryDay </label>
+      <p-triStateCheckbox [(ngModel)]="pageObject.taskSearchFilter.everyday" (ngModelChange)="filterUpdated()">
+      </p-triStateCheckbox>
+    </div>
+  </div>
+</div>

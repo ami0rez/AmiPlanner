@@ -1,0 +1,38 @@
+.container {
+  width: 500px;
+}
+
+section {
+  box-shadow: 4px 1px 3px 4px gainsboro;
+  /* width: 500px;
+  margin-left: -20px; */
+  background-color: white;
+}
+
+h2 {
+  text-align: center;
+  background-color: #d2cece;
+  height: 70px;
+  padding: 15px;
+  color: #06a006;
+  font-family: Insignia;
+}
+
+.container-fluid {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+a {
+  text-decoration: underline;
+}
+
+.mt-5,
+.my-5 {
+  margin-top: 10rem !important;
+}
+
+.externalsign {
+  width: 60px;
+  border: none;
+}

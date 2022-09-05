@@ -1,0 +1,12 @@
+<div [ngClass]="{'project-search-container': true,  'selected':  mode == SearchMode}">
+  <span class="project-search-icon" (click)="setMode(SearchMode)">
+    <i class="pi pi-search" size="1.3em"></i>
+  </span>
+  <input *ngIf="mode == SearchMode" class="project-search-input" (input)="handleSearchChange($event)" />
+</div>
+<div [ngClass]="{'project-add-container': true,  'selected': mode == CreateMode}">
+  <span class="project-add-icon" (click)="setMode(CreateMode)">
+    <i class="pi pi-plus" size="1.3em"></i>
+  </span>
+  <input *ngIf=" mode == CreateMode" class="project-search-input" (keydown.enter)="handleProjectAdd($event)" />
+</div>

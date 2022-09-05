@@ -1,0 +1,33 @@
+<div class="daily-tasks">
+  <div class="daily-tasks-title">My Dayli Tasks</div>
+  <div class="daily-tasks-content">
+    <app-daily-tasks-statistics [task]="pageObject.data.selectedTask" [todayStatistics]="pageObject.data.todayStatistics" class="daily-tasks-statistics"></app-daily-tasks-statistics>
+    <div class="daily-tasks-list">
+      <app-daily-tasks-filter class="daily-tasks-filter" [(pageObject)]="pageObject" (filter)="handleFilter()"></app-daily-tasks-filter>
+      <div class="daily-tasks-item-list" *ngIf="!pageObject.showTaskContent" >
+        <app-daily-tasks-item (itemDelete)="handleDelete(task)" (itemStateUpdate)="handleTaskStateUpdate($event)"
+          (itemDateUpdate)="handleDateTaskUpdate($event)" (itemRepeatUpdate)="handleRepeatTaskUpdate($event)"
+          (itemClick)="openDescription(task?.id)" *ngFor="let task of pageObject.data.tasks" [task]="task"
+          [class]="'daily-tasks-item state-' + getClassName(task)">
+        </app-daily-tasks-item>
+      </div>
+      <p-splitter class="f-grow" *ngIf="pageObject.showTaskContent" [panelSizes]="[40,60]">
+        <ng-template pTemplate>
+          <div class="daily-tasks-item-list">
+            <app-daily-tasks-item (itemDelete)="handleDelete(task)" (itemStateUpdate)="handleTaskStateUpdate($event)"
+              (itemDateUpdate)="handleDateTaskUpdate($event)" (itemRepeatUpdate)="handleRepeatTaskUpdate($event)"
+              (itemClick)="openDescription(task?.id)" *ngFor="let task of pageObject.data.tasks" [task]="task"
+              [class]="'daily-tasks-item state-' + getClassName(task)">
+            </app-daily-tasks-item>
+          </div>
+        </ng-template>
+        <ng-template pTemplate>
+          <div [ngClass]="{'project-content-items-description': true, 'opened': pageObject.showTaskContent}">
+            <app-project-task-description [task]="pageObject.data.selectedTask" (change)="handleTaskUpdate($event)"
+              (close)="handleTaskDescriptionClose()"></app-project-task-description>
+          </div>
+        </ng-template>
+      </p-splitter>
+    </div>
+  </div>
+</div>

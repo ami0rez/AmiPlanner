@@ -1,0 +1,233 @@
+<div class="content-section">
+  <!-- Research field for the filter -->
+  <i-research-field
+    [conditions]="pageObject.conditions"
+    (valueChange)="removeCondition($event)"
+    [filter]="filter"
+    [selectedFilters]="pageObject.selectedFilters"
+    *ngIf="!isFromPopup"
+  ></i-research-field>
+  <div class="row justify-buton-top">
+    <div class="d-flex bd-highlight">
+      <div class="mr-auto p-2 bd-highlight" id="listDomain">
+        <!-- Global table filter -->
+        <i-custom-table-filter
+          [columns]="pageObject.columns"
+          [initValues]="pageObject.data.listeUtilisateursFiltre"
+          [selectedFilters]="pageObject.selectedFilters"
+          [predefinedFilter]="pageObject.predefinedFilter"
+          (valueChange)="displayFilter($event)"
+          (filterChange)="applyFilter($event)"
+          (clearChange)="clearFilter()"
+          (selectedFiltersChange)="addConditionFilter($event)"
+          #filter
+        ></i-custom-table-filter>
+        <!-- Global table filter -->
+      </div>
+    </div>
+
+    <div class="ml-auto p-2 bd-highlight">
+      <button
+        pButton
+        id="btnNouveau"
+        type="button"
+        label="Créer"
+        i18n-label="@@global.actionCreate"
+        routerLink="app-contrat-charges-fixes"
+        class="button-toolbar btn-outline-primary"
+        (click)="createUser()"
+      >
+        <span class="material-icons"> add </span>
+      </button>
+    </div>
+  </div>
+
+  <div>
+    <div class="content-justify ui-widget">
+      <p-table
+        [responsive]="true"
+        class="header-table width-hundred"
+        #gridUsers
+        [value]="pageObject.data.listeUtilisateursFiltre"
+        dataKey="id"
+        editMode="row"
+        [resizableColumns]="false"
+        [scrollable]="false"
+        scrollHeight="100%"
+        [paginator]="true"
+        [rows]="rowsNumber"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="rowsPerPage"
+        pageLinks="4"
+        frozenWidth="250px"
+        [rowsPerPageOptions]="rowsPerPage"
+        pageLinks="4"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        i18n-currentPageReportTemplate="@@global.currentPageReportTemplate"
+        (onPage)="pageIndex = $event.first / $event.rows + 1"
+      >
+        <ng-template pTemplate="header" let-searchColumns>
+          <tr>
+            <th>
+              <p-header i18n="@@global.tableHeaderActions">Actions</p-header>
+            </th>
+            <th [pSortableColumn]="'nom'" class="width-fifteen">
+              <p-header i18n="@@user.nom">Nom</p-header>
+              <i-sort-icon [field]="'nom'"> </i-sort-icon>
+            </th>
+            <th [pSortableColumn]="'prenom'" class="width-fifteen">
+              <p-header i18n="@@user.prenom">Prenom</p-header>
+              <i-sort-icon [field]="'prenom'"> </i-sort-icon>
+            </th>
+            <th [pSortableColumn]="'login'" class="width-ten">
+              <p-header i18n="@@user.login">Login</p-header>
+              <i-sort-icon [field]="'login'"> </i-sort-icon>
+            </th>
+            <th [pSortableColumn]="'email'" class="width-twenty">
+              <p-header i18n="@@user.email">E-mail</p-header>
+              <i-sort-icon [field]="'email'"> </i-sort-icon>
+            </th>
+            <th [pSortableColumn]="'admin'" class="width-ten">
+              <p-header i18n="@@user.administrator">Administrateur</p-header>
+              <i-sort-icon [field]="'admin'"> </i-sort-icon>
+            </th>
+            <th [pSortableColumn]="'bloque'" class="width-twenty">
+              <p-header i18n="@@user.blocked">Bloque</p-header>
+              <i-sort-icon [field]="'bloque'"> </i-sort-icon>
+            </th>
+          </tr>
+          <tr class="filter-tr th-filter">
+            <th class="th-padding-backgroundcolor"></th>
+            <th class="th-padding-backgroundcolor">
+              <i-string-filter
+                [dt]="gridUsers"
+                fieldName="nom"
+              ></i-string-filter>
+            </th>
+            <th class="th-padding-backgroundcolor">
+              <i-string-filter
+                [dt]="gridUsers"
+                fieldName="prenom"
+              ></i-string-filter>
+            </th>
+            <th class="th-padding-backgroundcolor">
+              <i-string-filter
+                [dt]="gridUsers"
+                fieldName="login"
+              ></i-string-filter>
+            </th>
+            <th class="th-padding-backgroundcolor">
+              <i-string-filter
+                [dt]="gridUsers"
+                fieldName="email"
+              ></i-string-filter>
+            </th>
+            <th class="th-padding-backgroundcolor">
+              <i-boolean-filter
+                [dt]="gridUsers"
+                fieldName="'admin'"
+              ></i-boolean-filter>
+            </th>
+            <th class="th-padding-backgroundcolor">
+              <i-boolean-filter
+                [dt]="gridUsers"
+                fieldName="bloque"
+              ></i-boolean-filter>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template
+          pTemplate="body"
+          let-item
+          let-rowIndex="rowIndex"
+          let-editing="editing"
+        >
+          <tr [pEditableRow]="item" [class]="{ justifytd: editing }">
+            <td class="text-align-centre">
+              <i-icon-button
+                [checkAuthorizations]="false"
+                action="select"
+                (click)="selectUser(item)"
+              ></i-icon-button>
+              <i-icon-button
+                [checkAuthorizations]="false"
+                action="edit"
+                (click)="editUser(item)"
+              ></i-icon-button>
+              <i-icon-button
+                [checkAuthorizations]="false"
+                *ngIf="!item.hideDelete"
+                action="delete"
+                (click)="deleteUser(item)"
+              ></i-icon-button>
+            </td>
+            <td>
+              <span class="p-column-title th-responsive" i18n="@@user.lastName"
+                >Nom</span
+              >
+              <span>{{ item.nom }}</span>
+            </td>
+            <td>
+              <span class="p-column-title th-responsive" i18n="@@user.firstName"
+                >Prenom</span
+              >
+              <span>{{ item.prenom }}</span>
+            </td>
+            <td>
+              <span class="p-column-title th-responsive" i18n="@@user.login"
+                >Login</span
+              >
+              <span>{{ item.login }}</span>
+            </td>
+            <td>
+              <span class="p-column-title th-responsive" i18n="@@user.email"
+                >E-mail</span
+              >
+              <span>{{ item.email }}</span>
+            </td>
+            <td>
+              <span
+                class="p-column-title th-responsive"
+                i18n="@@user.administrator"
+                >Administrateur</span
+              >
+              <span
+                ><i-label-checkbox
+                  id="administrator{{ rowIndex }}"
+                  name="administrator"
+                  [showLabel]="false"
+                  class="checkbox align-checkbox"
+                  [(ngModel)]="item.admin"
+                  [disabled]="true"
+                ></i-label-checkbox
+              ></span>
+            </td>
+            <td class="text-align-centre">
+              <span class="p-column-title th-responsive" i18n="@@user.blocked"
+                >Bloque</span
+              >
+              <span>
+                <i-label-checkbox
+                  id="administrator{{ rowIndex }}"
+                  name="administrator"
+                  [showLabel]="false"
+                  class="checkbox align-checkbox"
+                  [(ngModel)]="item.bloque"
+                  [disabled]="true"
+                ></i-label-checkbox
+              ></span>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td [attr.colspan]="7" class="text-center">
+              <span i18n="@@global.noRecords">No Records</span>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

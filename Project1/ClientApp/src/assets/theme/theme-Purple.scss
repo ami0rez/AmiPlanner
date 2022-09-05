@@ -1,0 +1,94 @@
+.page-container-theme-Purple {
+  /* header*/
+  header {
+    background-color: #9c27b0;
+    align-items: center;
+    width: 100%;
+    overflow: visible;
+    padding: 0.5rem 1.2rem !important;
+    // height: 3.5em !important;
+    height: auto !important;
+  }
+  .nav-procurement {
+    border-top: 2px solid;
+    border-top-color: #26c6da !important;
+  }
+  .notification-button .p-button:hover {
+    background-color: #ba68c8 !important;
+    padding: 0.6rem 0.6rem !important;
+  }
+  .header .nav a:hover,
+  .header .nav a.active {
+    background-color: #ba68c8;
+    font-size: 12px !important;
+    padding-right: 0.7rem !important;
+    padding-left: 0.8rem !important;
+    margin-top: 4px !important;
+  }
+  div .shift .second-nav li:after {
+    padding: 5px 0px 5px 0px;
+    background-color: #ba68c8;
+  }
+  div .shift .second-nav li a:hover {
+    background-color: #ba68c8;
+  }
+  .second-nav .nav-link:hover {
+    background-color: #ba68c8 !important;
+  }
+  .header-link-a:hover {
+    padding: 14px 9px 14px 9px;
+    background-color: #ba68c8 !important;
+  }
+  .second-nav .nav-link:hover {
+    background: #ba68c8 !important;
+  }
+  /* Button primaire*/
+  .p-button {
+    color: #ffffff;
+    background: #9c27b0;
+    border: 1px solid #9c27b0;
+  }
+  /* Button secondaire*/
+  .ui-button-white,
+  .ui-button-white button {
+    background-color: #ffffff !important;
+    color: #9c27b0 !important;
+    border-color: #9c27b0 !important;
+  }
+  .btn-outline-primary:hover,
+  .p-button:enabled:hover {
+    color: #ffffff;
+    background: #ba68c8;
+    border: 1px solid #ba68c8;
+  }
+  /* Button */
+  .button-plus {
+    color: #ffffff !important;
+    box-shadow: 0 2px 4px -1px #00000033, 0 4px 5px 0 #03a9f426, 0 1px 10px 0 #03a9f440;
+    background: #9c27b0 !important;
+    border: 1px solid #9c27b0 !important;
+    width: 29px !important;
+  }
+  /* tabview*/
+  .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background: #9c27b0;
+    border-color: #9c27b0;
+    color: #ffffff;
+  }
+  /* Title section*/
+  .title-section {
+    font-size: 16px;
+    color: #9c27b0;
+    font-family: SFCompactText-Semibold;
+  }
+  /* Table paginator*/
+  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: #9c27b0;
+    border-color: #9c27b0;
+    color: #ffffff;
+  }
+  /* Inputswitch*/
+  .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+    background: #9c27b0 !important;
+  }
+}

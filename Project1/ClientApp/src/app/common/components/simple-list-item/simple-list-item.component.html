@@ -1,0 +1,25 @@
+<div class="project-list-item" (click)="handleClick($event)" (mouseenter)="setShowControls(true)"
+  (mouseleave)="setShowControls(false)">
+  <div class="project-list-item-icon">
+    <span class="project-list-item-icon-border" [style]="{backgroundColor: appColors.primary50}">
+      <i class="pi pi-list" [style]="{'fontSize': '1em', color: appColors.white}"></i>
+    </span>
+  </div>
+  <div class="project-list-item-content" [style]="{color: appColors.textBlack}">
+    <div *ngIf="!editing" class="project-list-item-title" (click)="renameProject($event)">
+      {{item?.label}}
+    </div>
+    <div *ngIf="editing" class="project-list-item-title">
+      <input class="project-search-input" [defaultValue]="item?.label" (click)="stopPropagation($event)" (keydown.enter)="handleProjectRename($event)" (focusout)="cancelRenameProject()"/>
+    </div>
+    <div class="project-list-item-description" [style]="{color: appColors.textBlack9}">
+      <!-- {project.tasks?.filter((task) => task.state == 2)?.length ?? 0} done from {
+      project.tasks?.length ?? 0
+      } tasks -->
+      {{item?.description}}
+    </div>
+  </div>
+  <div *ngIf="showControls" class="project-list-item-controls">
+    <i class="pi pi-trash" [style]="{'fontSize': '1.2em', color: appColors.redPink}" (click)="handleOnDelete($event)"></i>
+  </div>
+</div>

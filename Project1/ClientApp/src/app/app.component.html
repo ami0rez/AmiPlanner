@@ -1,0 +1,31 @@
+<p-confirmDialog appendTo="body" #confirmDialog header="@@global.confirmation" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      label="Yes"
+      i18n-label="@@global.confirmYes"
+      (click)="confirmDialog.accept()"
+      class="dialog-button-confirm"
+    ></button>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      label="No"
+      i18n-label="@@global.confirmNo"
+      (click)="confirmDialog.reject()"
+      class="dialog-button-reject"
+    ></button>
+  </p-footer>
+</p-confirmDialog>
+  <ngx-loading-bar
+    style="z-index: 55555"
+    [includeSpinner]="false"
+    height="4.2px"
+    color="linear-gradient(to right bottom, #219726, rgb(27 255 0))	"
+  ></ngx-loading-bar>
+  <p-toast></p-toast>
+<app-left-menu class="left-menu"></app-left-menu>
+<router-outlet></router-outlet>

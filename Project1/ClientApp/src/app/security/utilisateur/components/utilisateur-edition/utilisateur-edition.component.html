@@ -1,0 +1,178 @@
+<div class="content-section">
+  <div class="row justify-buton-top">
+    <div class="d-flex bd-highlight"></div>
+
+    <div class="ml-auto p-2 bd-highlight">
+      <p-splitButton
+      label="Action"
+      id="actions"
+      class="splitButton-justify-small ml-2 ui-button-white"
+      [model]="pageObject.splitButtonActions"
+      icon="fa fa-magic"
+      *ngIf="pageObject.showActions"
+    >
+    </p-splitButton>
+      <button
+        pButton
+        id="cmdNouveau"
+        type="button"
+        label="Cancel"
+        i18n-label="@@global.actionCancel"
+        class="ui-button-white button-toolbar btn-outline-primary"
+        (click)="cancelEditing()"
+        *ngIf="pageObject.editMode"
+      >
+        <span class="material-icons mr-1"> cancel </span>
+      </button>
+      <button
+        pButton
+        id="cmdEnregistrer"
+        type="button"
+        icon="pi pi-save"
+        label="Save"
+        i18n-label="@@global-edition.save"
+        class="button-toolbar btn-outline-primary"
+        (click)="saveUser()"
+        *ngIf="pageObject.editMode"
+      ></button>
+
+      <button
+        id="create"
+        pButton
+        type="button"
+        label="Create"
+        i18n-label="@@global.create"
+        class="ui-button-white button-toolbar btn-outline-primary"
+        *ngIf="!pageObject.editMode"
+        (click)="createUser()"
+      >
+        <span class="material-icons mr-1"> playlist_add </span>
+      </button>
+
+      <button
+        id="edit"
+        class="button-toolbar"
+        pButton
+        type="button"
+        icon="pi pi-pencil"
+        label="edit"
+        i18n-label="@@global.edit"
+        *ngIf="!pageObject.editMode"
+        (click)="enableEditMode()"
+      ></button>
+    </div>
+  </div>
+  <div class="form-content content-justify ui-widget">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+      <div class="mx-2 my-2 row">
+        <div class="col-12">
+          <div class="title-section c-dividing">
+            <span i18n="@@user.identification">Identification</span>
+          </div>
+        </div>
+      </div>
+      <div class="mx-2 row content-section-row">
+        <i-input
+          class="input-width-large"
+          id="lastName"
+          name="lastName"
+          i18n-label="@@user.lastName"
+          class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4"
+          label="Last Name"
+          required="required"
+          [(ngModel)]="pageObject.data.utilisateur.nom"
+          [disabled]="!pageObject.editMode"
+        ></i-input>
+        <i-input
+          class="input-width-large"
+          id="firstName"
+          name="firstName"
+          i18n-label="@@user.firstName"
+          class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4"
+          label="First Name"
+          required="required"
+          [(ngModel)]="pageObject.data.utilisateur.prenom"
+          [disabled]="!pageObject.editMode"
+        ></i-input>
+        <i-input
+          class="input-width-large"
+          id="loginEdit"
+          name="loginEdit"
+          i18n-label="@@user.login"
+          class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4"
+          label="Login"
+          required="required"
+          autocomplete="off"
+          [(ngModel)]="pageObject.data.utilisateur.login"
+          [disabled]="!pageObject.editMode || !pageObject.login.enabled"
+        ></i-input>
+        <i-input
+          class="input-width-large"
+          id="emailEdit"
+          name="emailEdit"
+          type="email"
+          class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4"
+          i18n-label="@@user.email"
+          label="Email"
+          i18n-errorMessage="@@user.invalidemail"
+          errorMessage="Invalid Email"
+          required="required"
+          [pattern]="emailPattern"
+          [(ngModel)]="pageObject.data.utilisateur.email"
+          [disabled]="!pageObject.editMode"
+        ></i-input>
+
+        <i-input
+          class="input-width-large"
+          id="passwordEdit"
+          name="passwordEdit"
+          type="password"
+          class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4"
+          i18n-label="@@user.password"
+          label="Password"
+          i18n-errorMessage="@@user.passwordInvalid"
+          errorMessage="Invalid password"
+          required="required"
+          autocomplete="off"
+          [(ngModel)]="pageObject.data.utilisateur.motDePasse"
+          [disabled]="!pageObject.editMode"
+        ></i-input>
+
+        <i-input
+          class="input-width-large"
+          id="passwordConfirmationEdit"
+          name="passwordConfirmationEdit"
+          type="password"
+          class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4"
+          i18n-label="@@user.passwordConfirmation"
+          label="Password Confirmation"
+          i18n-errorMessage="@@user.passwordConfirmationInvalid"
+          errorMessage="Invalid Password"
+          required="required"
+          autocomplete="off"
+          [(ngModel)]="pageObject.data.utilisateur.confirmationMotDePasse"
+          [disabled]="!pageObject.editMode"
+        ></i-input>
+        <i-label-checkbox
+          id="userBlock"
+          [useSwitch]="true"
+          i18n-label="@@user.blocked"
+          label="Bloquer"
+          class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4"
+          [(ngModel)]="pageObject.data.utilisateur.bloque"
+          [disabled]="!pageObject.editMode || !pageObject.bloque.enabled"
+        ></i-label-checkbox>
+
+        <i-label-checkbox
+          id="admin"
+          [useSwitch]="true"
+          i18n-label="@@user.administrator"
+          label="Administrateur"
+          class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4"
+          [(ngModel)]="pageObject.data.utilisateur.admin"
+          [disabled]="!pageObject.editMode || !pageObject.admin.enabled"
+        ></i-label-checkbox>
+      </div>
+    </div>
+  </div>
+</div>

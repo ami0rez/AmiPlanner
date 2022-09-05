@@ -1,0 +1,24 @@
+<div
+  [class]="'task-item state-' + getClassName()"
+  (mouseover)="setShowControls(true)" (mouseleave)="setShowControls(false)" (click)="handleOnClick($event)">
+  <input class="task-item-priority" pInputText [(ngModel)]="task.priority" (click)="stopPtopagation($event)"(change)="handleUpdatePriority($event)"/>
+  <div class="task-item-title">{{task.name}}</div>
+  <div class="task-list-item-controls">
+    <span *ngIf="showControls || task.everyday" class="span-tag" (click)="handleUpdateRepeat($event, !task.everyday)" >{{task.everyday ? 'Once': 'EveryDay'}}</span>
+    <span *ngIf="showControls|| task.date" class="span-tag" (click)="handleOnDateUpdate($event)" >{{task.date ? 'Not Today': 'Today'}}</span>
+    <div *ngIf="donneTransitionStates.includes(task.state)" class="task-control-item">
+      <i *ngIf="showControls" class="bi bi-check-circle" [style]="{'fontSize': '1.3em', color: '#00000099'}"(click)="handleOnUpdate($event, donneStateValue)"></i>
+    </div>
+    <div *ngIf="startTranstitionStates.includes(task.state)" class="task-control-item">
+      <i *ngIf="showControls" class="bi bi-play-circle" [style]="{'fontSize': '1.3em', color: '#00000099'}"(click)="handleOnUpdate($event, startStateValue)"></i>
+    </div>
+    <div *ngIf="abandonTransitionStates.includes(task.state)" class="task-control-item">
+      <i *ngIf="showControls" class="bi bi-stop-circle" [style]="{'fontSize': '1.3em', color: '#00000099'}"(click)="handleOnUpdate($event, abandonStateValue)"></i>
+    </div>
+    <div *ngIf="holdTransitiontate.includes(task.state)" class="task-control-item">
+      <i *ngIf="showControls" class="bi bi-pause-circle" [style]="{'fontSize': '1.3em', color: '#00000099'}"(click)="handleOnUpdate($event, holdStateValue)"></i>
+    </div>
+    <i *ngIf="showControls" class="bi bi-trash" [style]="{'fontSize': '1.2em', color: appColors.redPink}"
+      (click)="handleOnDelete($event)"></i>
+  </div>
+</div>

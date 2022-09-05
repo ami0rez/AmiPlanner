@@ -1,0 +1,25 @@
+<div [class]="'task-description state-' + getClassName()">
+  <div class="task-header">
+    <input [disabled]="editDisabled || task.everyday"  class="task-header-title" type="text" pInputText [(ngModel)]="selectedTask.name" (change)="handleTaskUpdate()" />
+    <span class="task-header-icons">
+      <!-- <AiOutlineClose size="1.3em" color="#00000099" onClick={} /> -->
+      <i class="bi bi-x size-1-8" (click)="handleOnClose()"></i>
+    </span>
+  </div>
+  <div class="task-body">
+    <div class="d-flex-row f-grow">
+      <div *ngIf="task?.historyVersions.length || task?.everyday" class="task-history">
+        <div class="task-history">
+          <div class="task-history-item" (click)="setDefaultSeelectedTask()">Today</div>
+          <div class="task-history-item" *ngFor="let historyTask of task?.historyVersions" (click)="setSelectedTask(historyTask)">{{historyTask.date | date}}</div>
+        </div>
+      </div>
+      <p-editor [readonly]="editDisabled" [(ngModel)]="selectedTask.description" class="task-body-description  f-grow" (onTextChange)="handleTaskUpdate()"></p-editor>
+    </div>
+    <!-- <div class="task-body-details">
+      <p-inputNumber min="0" placeholder="Estimated" [(ngModel)]="task.estimated"></p-inputNumber>
+      <p-inputNumber min="0" placeholder="Completed" [(ngModel)]="task.completed"></p-inputNumber>
+      <p-inputNumber min="0" placeholder="Rest" [(ngModel)]="task.rest"></p-inputNumber>
+    </div> -->
+  </div>
+</div>
