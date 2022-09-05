@@ -5,8 +5,8 @@ import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserProfile } from './models/user-profile';
 import { AuthenticationSettings } from './models/authentication-settings';
-import { AuthenticationResponse } from 'src/security/login/models/authentication-response';
-import { RefreshTokenResponse } from 'src/security/common/models/refresh-token-response';
+import { AuthenticationResponse } from 'src/app/security/login/models/authentication-response';
+import { RefreshTokenResponse } from 'src/app/security/common/models/refresh-token-response';
 
 
 @Injectable({

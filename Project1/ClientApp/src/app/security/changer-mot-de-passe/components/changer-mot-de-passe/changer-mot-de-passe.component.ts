@@ -1,4 +1,3 @@
-import { UrlConstants } from './../../../../common/services/models/url-constants';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -7,6 +6,7 @@ import { CommonNotificationService } from 'involys-common/common';
 import { ChangerMotDePasseService } from '../../services/changer-mot-de-passe.service';
 import { BreadcrumbService } from 'involys-library';
 import { AuthenticationService } from 'src/common/services/authentication.service';
+import { UrlConstants } from 'src/common/services/models/url-constants';
 
 @Component({
   selector: 'app-changer-mot-de-passe',

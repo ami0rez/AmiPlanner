@@ -6,8 +6,8 @@ import { CommonConstants } from 'involys-common/common';
 import { UtilisateurPage } from '../../models/utilisateur-page';
 import { SecurityActionConstants } from 'involys-common/security';
 import { UtilisateurResponse } from '../../models/utilisateur-response';
-import { BreadCrumbRoutesConstants } from 'src/app/common/breadcrumb-routes-constants';
 import { UserManagerService } from '../../services/user-manager.service';
+import { BreadCrumbRoutesConstants } from 'src/app/common/constants/breadcrumb-routes-constants';
 
 @Component({
   selector: 'app-utilisateur-edition',

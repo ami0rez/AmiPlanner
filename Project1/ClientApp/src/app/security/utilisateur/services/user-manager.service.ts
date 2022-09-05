@@ -12,7 +12,7 @@ import { UpdateUtilisateurQuery } from '../models/update-utilisateur-query';
 import { CreateUtilisateurQuery } from '../models/create-utilisateur-query';
 import { Constants } from 'src/app/common/global-constants';
 import { UtilisateurListItemResponse } from '../models/utilisateur-list-item-response';
-import { BreadCrumbRoutesConstants } from 'src/app/common/breadcrumb-routes-constants';
+import { BreadCrumbRoutesConstants } from 'src/app/common/constants/breadcrumb-routes-constants';
 
 @Injectable({
   providedIn: 'root',

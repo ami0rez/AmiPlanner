@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {
@@ -11,10 +11,10 @@ import {
 import { BreadcrumbService } from 'involys-library';
 import { CommonConstants } from 'involys-common/common';
 import { UtilisateurPage } from '../../models/utilisateur-page';
-import { BreadCrumbRoutesConstants } from 'src/app/common/breadcrumb-routes-constants';
 import { UserManagerService } from '../../services/user-manager.service';
 import { UtilisateurListItemResponse } from '../../models/utilisateur-list-item-response';
 import { DatePipe } from '@angular/common';
+import { BreadCrumbRoutesConstants } from 'src/app/common/constants/breadcrumb-routes-constants';
 
 @Component({
   selector: 'app-utilisateur-liste',

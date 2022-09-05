@@ -14,7 +14,7 @@ namespace Project1
 {
     public class Startup
     {
-        bool UseSpaStaticFiles = true;
+        bool UseSpaStaticFiles = false;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
