@@ -1,2 +1,2 @@
 # AmiPlanner
-pln your tasks
+plan your tasks
