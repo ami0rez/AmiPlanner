@@ -830,7 +830,8 @@ input:focus {
   display: flex;
   flex-direction: column;
 }
-.task-body .task-history .task-history-item{
+
+.task-body .task-history .task-history-item {
   border: solid thin #00000055;
   display: flex;
   align-items: center;
@@ -890,6 +891,7 @@ p-splitter div.p-splitter {
   padding: 3px;
   margin: 0 3px;
 }
+
 /*field-control*/
 .flex-j-c-end {
   justify-content: end;
@@ -1099,6 +1101,47 @@ p-splitter div.p-splitter {
 .p-scrollpanel.custombar1 .p-scrollpanel-bar:hover {
   background-color: #159aff4b;
 }
-p-editor .p-editor-container{
+
+p-editor .p-editor-container {
   height: 90%;
+}
+
+.nav-bar-style-1 {
+  height: 50px;
+  border-bottom: solid thin #00000033;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.nav-path {
+  flex-grow: 1;
+}
+.nav-menu-icon{
+  padding: 0 7px;
+  height: 80%;
+  cursor: pointer;
+}
+
+.p-breadcrumb {
+  border: none;
+  padding: 0;
+}
+
+.left-menu-style-1{
+  width: 200px;
+  border-right: solid thin #00000033;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding-top: 10px;
+  cursor: pointer;
+}
+.left-menu-style-1 .left-menu-item{
+  height: 50px;
+  border-bottom: solid thin #00000022;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  width: 100%;
 }

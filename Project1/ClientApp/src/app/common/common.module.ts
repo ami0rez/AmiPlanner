@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { SidebarModule } from 'primeng/sidebar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 import { SimpleCardComponent } from './components/simple-card/simple-card.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
 import { SimpleListItemComponent } from './components/simple-list-item/simple-list-item.component';
 import { LeftMenuComponent } from './pages/left-menu/components/left-menu/left-menu.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 
 
@@ -19,20 +21,23 @@ import { LeftMenuComponent } from './pages/left-menu/components/left-menu/left-m
     LoadingComponent,
     BreadCrumbComponent,
     SimpleListItemComponent,
-    LeftMenuComponent
+    LeftMenuComponent,
+    NavBarComponent
   ],
   imports: [
     CommonModule,
     SidebarModule,
     BrowserAnimationsModule,
-    ButtonModule
+    ButtonModule,
+    BreadcrumbModule
   ],
   exports:[
     SimpleCardComponent,
     LoadingComponent,
     BreadCrumbComponent,
     SimpleListItemComponent,
-    LeftMenuComponent
+    LeftMenuComponent,
+    NavBarComponent
   ]
 })
 export class SharedModule { }

@@ -1,6 +1,14 @@
-<p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
-  <h1 class="c-pointer" style="font-weight:normal" (click)="goto(pages.homeUrl)">Home</h1>
-  <h1 class="c-pointer" style="font-weight:normal" (click)="goto(pages.goaolUrl)">Goals</h1>
-  <h1 class="c-pointer" style="font-weight:normal" (click)="logout()">Logout</h1>
-</p-sidebar>
-<p-button class="float-button" type="button" (click)="visibleSidebar1 = true" icon="bi bi-justify"></p-button>
+<nav class="left-menu-style-1" (click)="goto(pages.homeUrl)">
+  <div class="left-menu-item">
+    <img class="nav-menu-icon" src="../../../../assets/icons/dashboard.png" />
+    <p>Dashboard</p>
+  </div>
+  <div class="left-menu-item" (click)="goto(pages.homeUrl)">
+    <img class="nav-menu-icon" src="../../../../assets/icons/icon.png" />
+    <p>Goals</p>
+  </div>
+  <div class="left-menu-item" (click)="goto(pages.goaolUrl)">
+    <img class="nav-menu-icon" src="../../../../assets/icons/tasks.png" />
+    <p>Tasks</p>
+  </div>
+</nav>

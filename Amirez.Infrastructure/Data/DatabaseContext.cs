@@ -64,7 +64,8 @@ namespace Amirez.Infrastructure.Data
 
             modelBuilder.Entity<TaskDataModel>()
                 .HasMany(task => task.HistoryVersions)
-                .WithOne(h => h.Parent);
+                .WithOne(h => h.Parent)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
