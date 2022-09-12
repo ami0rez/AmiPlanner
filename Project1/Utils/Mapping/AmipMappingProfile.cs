@@ -4,7 +4,9 @@ using Amirez.AmipBackend.Controllers.Goal.Model;
 using Amirez.AmipBackend.Controllers.Project.Model;
 using Amirez.AmipBackend.Controllers.TaskElement.Model;
 using Amirez.AmiPlanner.Common.Models;
+using Amirez.AmiPlanner.Controllers.Authentication.Account.Models;
 using Amirez.Infrastructure.Data;
+using Amirez.Infrastructure.Data.Model.Authentication;
 using Amirez.Infrastructure.Data.Model.Common;
 using Amirez.Infrastructure.Data.Model.Enumerations;
 using AutoMapper;
@@ -76,10 +78,12 @@ namespace Amirez.AmipBackend.Utils.Mapping
                 .ForMember(dest => dest.AbandonnedTasks, opt => opt.MapFrom(src => src.Project.Tasks.Count(t => t.State == TaskStateEnum.Abandoned)))
                 .ForMember(dest => dest.OnHoldTasks, opt => opt.MapFrom(src => src.Project.Tasks.Count(t => t.State == TaskStateEnum.Hold)))
                 .ForMember(dest => dest.DoneTasks, opt => opt.MapFrom(src => src.Project.Tasks.Count(t => t.State == TaskStateEnum.Done)));
+            #endregion
 
-
-
-
+            #region Authentication
+            CreateMap<UtilisateurDataModel, UserProfileResponse>()
+                .ForMember(dest => dest.Login, opt => opt.MapFrom(src => src.UserName))
+                .ForMember(dest => dest.Admin, opt => opt.MapFrom(src => src.Role.RoleType == Roles.Administrateur));
             #endregion
         }
     }

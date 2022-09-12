@@ -68,7 +68,7 @@ namespace Amirez.AmiPlanner.Utils.Authentication
         /// </summary>
         /// <param name="services"></param>
         /// <param name="jwtSettings"></param>
-        public static void ConfigureInvolysSecurity(this IServiceCollection services, JwtSettings jwtSettings)
+        public static void ConfigureAmirezSecurity(this IServiceCollection services, JwtSettings jwtSettings)
         {
             services.AddAuthentication(opt =>
             {

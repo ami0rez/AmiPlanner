@@ -85,6 +85,7 @@ export class ProjectReaderComponent implements OnInit {
     }
   }
   handleDelete(task): void {
+    this.taskManagerService.deleteTask(this.pageObject, task.id);
   }
   handleTaskDescriptionClose(): void {
     this.taskManagerService.closeOpnedTask(this.pageObject);

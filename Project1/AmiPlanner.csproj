@@ -38,14 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\Shared\Common\Common.csproj" />
     <ProjectReference Include="..\Amirez.Infrastructure\Amirez.Infrastructure.csproj" />
     <ProjectReference Include="..\Common\Amiplanner.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Common">
-      <HintPath>..\..\..\Framework\Shared\Common\bin\Release\net5.0\Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -46,6 +46,13 @@ export class TaskManagerService {
     this.filterAndSortTasksByPriority(pageObject);
     pageObject.loadingTask = false;
   }
+  async deleteTask(pageObject: ProjectPage, id: string) {
+    pageObject.loadingTask = true;
+    await lastValueFrom(this.taskService.deleteTask(id));
+    pageObject.data.selectedProject.tasks = pageObject.data.selectedProject.tasks.filter(task => task.id != id);
+    this.filterAndSortTasksByPriority(pageObject);
+    pageObject.loadingTask = false;
+  }
 
   async updateTaskState(pageObject: ProjectPage | DailyTasksPage, id: string, state: TaskStateEnum) {
     pageObject.loadingTask = true;

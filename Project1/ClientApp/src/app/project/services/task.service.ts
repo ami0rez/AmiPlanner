@@ -49,7 +49,7 @@ export class TaskService {
   createTask(query: TaskCreateQuery): Observable<TaskItemResponse> {
     return this.http.post<TaskItemResponse>(`${this.TaskUrl}`, query);
   }
-  // deleteTask(id): Observable<void> {
-  //   return this.http.delete<void>(`${this.TaskUrl}/${id}`);
-  // }
+  deleteTask(id): Observable<void> {
+    return this.http.delete<void>(`${this.TaskUrl}/${id}`);
+  }
 }

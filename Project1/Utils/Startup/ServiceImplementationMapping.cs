@@ -2,7 +2,12 @@
 using Amirez.AmipBackend.Services.Goal;
 using Amirez.AmipBackend.Services.Project;
 using Amirez.AmipBackend.Services.TaskElement;
+using Amirez.AmiPlanner.Services.Authentication.Accounts;
+using Amirez.AmiPlanner.Services.Authentication.Configuration;
+using Amirez.AmiPlanner.Services.Authentication.Token;
 using Amirez.AmiPlanner.Services.TaskExpolrer;
+using Amirez.Infrastructure.Repositories.Authentication.Token;
+using Amirez.Infrastructure.Repositories.Authentication.Utilisateur;
 using Amirez.Infrastructure.Repositories.Folder;
 using Amirez.Infrastructure.Repositories.Goal;
 using Amirez.Infrastructure.Repositories.Project;
@@ -33,6 +38,15 @@ namespace Amirez.AmipBackend.Utils.Startup
 
             //Project
             services.AddTransient<ITaskExplorerService, TaskExplorerService>();
+
+            //Project
+            services.AddTransient<IAccountService, AccountService>();
+
+            services.AddTransient<ITokenService, TokenService>();
+            services.AddTransient<ITokenRepository, TokenRepository>();
+
+            services.AddTransient<IConfigurationService, ConfigurationService>();
+            services.AddTransient<IUtilisateurRepository, UtilisateurRepository>();
         }
     }
 }

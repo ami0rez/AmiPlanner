@@ -23,5 +23,19 @@ namespace Amirez.AmiPlanner.Utils.Configuration
             services.AddSingleton<ILoggerManager, LoggerManager>();
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
         }
+
+        public static void AddDefaultCors(this IServiceCollection services, IConfiguration configuration, string defaultCorsKey)
+        {
+            //Cors Configuration
+            services.AddCors(options =>
+            {
+                options.AddPolicy(defaultCorsKey, policy =>
+                {
+                    policy.WithOrigins(configuration["AppSettings:ClientUrls"].Split(",", StringSplitOptions.RemoveEmptyEntries).ToArray())
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
+        }
     }
 }

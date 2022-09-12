@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AppConfigService } from 'src/app/common/services/app-config-service';
 import { Observable } from 'rxjs';
 import { AuthenticationQuery } from '../models/authentication-query';
 import { AuthenticationResponse } from '../models/authentication-response';
@@ -9,12 +8,10 @@ import { AuthenticationResponse } from '../models/authentication-response';
   providedIn: 'root',
 })
 export class LoginService {
-  readonly accountUrl =
-    this.appConfigService.appConfig.apiUrl + 'api/v1/Account';
+  readonly accountUrl ='http://localhost:5000/api/v1/Account';
 
   constructor(
-    private http: HttpClient,
-    private appConfigService: AppConfigService
+    private http: HttpClient
   ) {}
 
   public login(query: AuthenticationQuery): Observable<AuthenticationResponse> {

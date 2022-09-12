@@ -14,6 +14,7 @@ namespace Project1
 {
     public class Startup
     {
+        private const string DefaultCorsPolicy = "default";
         bool UseSpaStaticFiles = false;
         public Startup(IConfiguration configuration)
         {
@@ -27,9 +28,10 @@ namespace Project1
         {
             var appSettings = services.ConfigureAppsettings(Configuration, "AppSettings");
             services.ConfigureLogger();
-            services.ConfigureInvolysSecurity(appSettings.JwtSettings);
+            services.ConfigureAmirezSecurity(appSettings.JwtSettings);
             services.ConfigureDatabase("amip2.sqlite");
             services.AddAutoMapper(typeof(AmipMappingProfile));
+            services.AddDefaultCors(Configuration, DefaultCorsPolicy);
             services.MapServicesToImplementations();
             services.AddControllersWithViews();
             if (UseSpaStaticFiles)
@@ -68,7 +70,7 @@ namespace Project1
                     app.UseSpaStaticFiles();
                 }
             }
-
+            app.UseCors(DefaultCorsPolicy);
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
