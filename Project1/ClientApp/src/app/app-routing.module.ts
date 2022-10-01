@@ -7,8 +7,11 @@ import { AuthGuard } from './security/common/auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: DailyTasksComponent, canActivate: [AuthGuard] },
+  { path: 'tasks', pathMatch: 'full', component: DailyTasksComponent, canActivate: [AuthGuard] },
   { path: 'goals', pathMatch: 'full', component: GoalEditorComponent, canActivate: [AuthGuard] },
-  { path: 'project/:id', pathMatch: 'full', component: ProjectEditorComponent, canActivate: [AuthGuard] },
+  { path: 'project/:gaolId', pathMatch: 'full', component: ProjectEditorComponent, canActivate: [AuthGuard] },
+  { path: 'project/:gaolId/:projectId', pathMatch: 'full', component: ProjectEditorComponent, canActivate: [AuthGuard] },
+  { path: 'project/:gaolId/:projectId/:id', pathMatch: 'full', component: ProjectEditorComponent, canActivate: [AuthGuard] },
   {
     path: 'security',
     loadChildren: () =>

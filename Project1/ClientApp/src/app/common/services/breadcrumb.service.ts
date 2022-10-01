@@ -28,7 +28,7 @@ export class BreadCrumbService {
   *  @description load breadcrmb state if existes if not get default
   */
   loadBreadCumb() {
-    if(this.items){
+    if (this.items) {
       return;
     }
     var stateItems = this.appStateService.readItem(this.breadCrmbStateKey);
@@ -54,7 +54,14 @@ export class BreadCrumbService {
   *  @description Initializes Breadcrumb
   */
   initBreadCrumb() {
-    this.setBreadCrumbItems([this.homeItem]);
+    this.setBreadCrumbItems(this.getDefaultBreadCrumb());
+  }
+
+  /*
+  *  @description Initializes Breadcrumb
+  */
+  getDefaultBreadCrumb() {
+    return [this.homeItem];
   }
 
   /*
@@ -93,6 +100,15 @@ export class BreadCrumbService {
     } else {
       this.items.push(item);
     }
+    this.setBreadCrumbItems([...this.items]);
+  }
+
+  /*
+  *  @description reitini breadcrumb and add menu Item
+  */
+  setBreadcumbItem(item: MenuItem) {
+    this.items = this.getDefaultBreadCrumb();
+    this.items.push(item);
     this.setBreadCrumbItems([...this.items]);
   }
 

@@ -1,8 +1,6 @@
-<div>
-  <!-- <ProjectHeader title={goalName}/> -->
-  <div class="project-editor">
-    <app-project-list class="project-list" [(pageObject)]="pageObject" (addProject)="addProject($event)"
-      (deleteProject)="deleteProject($event)" (renameProject)="renameProject($event)" (openProject)="openProject($event)"></app-project-list>
-    <app-project-reader [pageObject]="pageObject" class="project-displayer"></app-project-reader>
-  </div>
+<div class="project-editor">
+  <app-project-list class="project-list" [(pageObject)]="pageObject" (addProject)="addProject($event)"
+    (deleteProject)="deleteProject($event)" (renameProject)="renameProject($event)" (openProject)="openProject($event)">
+  </app-project-list>
+  <app-project-reader [pageObject]="pageObject" class="project-displayer"></app-project-reader>
 </div>

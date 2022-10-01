@@ -5,6 +5,7 @@ import { GoalPage } from './../../models/goal-page';
 import { Component, OnInit } from '@angular/core';
 import { GoalManagerService } from '../../services/goal-manager.service';
 import { Router } from '@angular/router';
+import { BreadCrumbService } from 'src/app/common/services/breadcrumb.service';
 
 @Component({
   selector: 'app-goal-editor',
@@ -13,9 +14,15 @@ import { Router } from '@angular/router';
 })
 export class GoalEditorComponent implements OnInit {
   pageObject = new GoalPage();
-  constructor(private goalManagerService: GoalManagerService, private router: Router) { }
-
+  constructor(private goalManagerService: GoalManagerService,
+    private breadCrumbService: BreadCrumbService,
+    private router: Router
+  ) { }
   async ngOnInit() {
+    this.breadCrumbService.setBreadcumbItem({
+      label: 'Goals',
+      url: PageConstants.goaolUrl
+    })
     await this.goalManagerService.loadFolder(this.pageObject, null);
     this.goalManagerService.addCurrentToPath(this.pageObject);
   }

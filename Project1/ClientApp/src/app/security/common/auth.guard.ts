@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authenticationService.accessTokenValid()) {
       if(route.routeConfig.data?.requireAdmin && !this.authenticationService.userProfile?.admin){
-        return false;
+        return true;
       }
       return true;
     }

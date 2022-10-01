@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { AvatarModule } from 'primeng/avatar';
 import {TieredMenuModule} from 'primeng/tieredmenu';
+import {TooltipModule} from 'primeng/tooltip';
 
 
 import { SimpleCardComponent } from './components/simple-card/simple-card.component';
@@ -34,7 +35,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     ButtonModule,
     BreadcrumbModule,
     AvatarModule,
-    TieredMenuModule
+    TieredMenuModule,
+    TooltipModule
   ],
   exports:[
     SimpleCardComponent,

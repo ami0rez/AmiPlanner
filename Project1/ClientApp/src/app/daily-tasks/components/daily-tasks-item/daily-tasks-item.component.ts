@@ -81,7 +81,7 @@ export class DailyTasksItemComponent implements OnChanges {
     event.stopPropagation();
   }
   handleGoToProject(event, task){
-    this.router.navigate([PageConstants.projectUrl, task.goalId])
+    this.router.navigate([PageConstants.projectUrl, task.goalId, task.projectId, task.id])
     event.stopPropagation();
   }
   handleUpdatePriority(event): void {

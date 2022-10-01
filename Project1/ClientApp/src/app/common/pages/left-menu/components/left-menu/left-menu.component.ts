@@ -13,18 +13,26 @@ export class LeftMenuComponent implements OnInit {
   visibleSidebar;
   pages = PageConstants;
   constructor(private router: Router, private authenticationService: AuthenticationService) { }
+
+  get activeRouter(): string {
+    if (this.router.url?.length > 1) {
+      var index = this.router.url?.indexOf('/') + 1;
+      return this.router.url?.substring(index > 0 ? index : 0)
+    } else {
+      return this.router.url;
+    }
+
+  }
   ngOnInit() {
   }
-  goto(page){
+  goto(event, page) {
     this.router.navigate([page])
+    event.stopPropagation();
   }
-  gotoGoals(){
-    this.router.navigate(["goals"])
-  }
-  logout(){
+  logout() {
     this.authenticationService.logout();
   }
-  toggleMenu(){
+  toggleMenu() {
     this.visibleSidebar = !this.visibleSidebar;
   }
 
