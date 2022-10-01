@@ -1,4 +1,4 @@
-<nav class="left-menu-style-1" (click)="goto(pages.homeUrl)">
+<nav class="left-menu-style-1 {{visibleSidebar ? '' : 'collapse'}}" (click)="goto(pages.homeUrl)">
   <div class="left-menu-item">
     <img class="nav-menu-icon" src="../../../../assets/icons/dashboard.png" />
     <p>Dashboard</p>
@@ -7,8 +7,9 @@
     <img class="nav-menu-icon" src="../../../../assets/icons/icon.png" />
     <p>Goals</p>
   </div>
-  <div class="left-menu-item" (click)="goto(pages.goaolUrl)">
+  <div class="left-menu-item" (click)="gotoGoals()">
     <img class="nav-menu-icon" src="../../../../assets/icons/tasks.png" />
     <p>Tasks</p>
   </div>
+  <i class="bi {{visibleSidebar ? 'bi-skip-backward' : 'bi-skip-forward'}} button-collapse" [style]="{'fontSize': '1em', color: '#00000099'}" (click)="toggleMenu()"></i>
 </nav>

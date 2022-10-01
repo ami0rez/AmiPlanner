@@ -1,3 +1,4 @@
+import { BreadCrumbService } from './../../../common/services/breadcrumb.service';
 import { TaskUpdateQuery } from './../../../project/models/task/task-update-query';
 import { TaskItemResponse } from './../../../project/models/task/task-item-response';
 import { DailyTasksPage } from './../../models/daily-tasks-page';
@@ -16,11 +17,18 @@ export class DailyTasksComponent implements OnInit {
 
   pageObject = new DailyTasksPage();
 
-  constructor(private readonly taskManagerService: TaskManagerService, private taskExplorerManagerService: TaskExplorerManagerService) { }
+  constructor(
+    private readonly taskManagerService: TaskManagerService,
+     private taskExplorerManagerService: TaskExplorerManagerService,
+     private breadCrumbService: BreadCrumbService,
+     ) { }
 
   async ngOnInit() {
     await this.taskExplorerManagerService.getTaskExplorer(this.pageObject);
     await this.taskManagerService.filterTasks(this.pageObject, {})
+    this.breadCrumbService.addBreadcumbItem({
+      label: 'Daily Tasks',
+    })
   }
   getClassName = TaskUtils.getClassName;
 

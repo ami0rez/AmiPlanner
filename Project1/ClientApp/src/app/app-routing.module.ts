@@ -14,6 +14,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./security/security.module').then((mod) => mod.SecurityModule),
   },
+  {
+    path: 'budget',
+    loadChildren: () =>
+      import('./budget/budget.module').then((mod) => mod.BudgetModule),
+  },
 ];
 
 @NgModule({

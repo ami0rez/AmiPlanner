@@ -1,4 +1,8 @@
 <nav class="nav-bar-style-1">
   <img class="nav-menu-icon" src="../../../../assets/icons/icon.png" (click)="toggleMenu()"/>
-  <p-breadcrumb class="nav-path" [model]="items"></p-breadcrumb>
+  <p-breadcrumb class="nav-path" [model]="breadcrmbItems"></p-breadcrumb>
+  <div class="right-items">
+    <p-avatar icon="bi bi-person-fill c-pointer" shape="circle" (click)="menu.toggle($event)"></p-avatar>
+    <p-tieredMenu #menu [model]="items" [popup]="true"></p-tieredMenu>
+  </div>
 </nav>

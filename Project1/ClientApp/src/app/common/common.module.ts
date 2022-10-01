@@ -5,6 +5,9 @@ import { SidebarModule } from 'primeng/sidebar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { AvatarModule } from 'primeng/avatar';
+import {TieredMenuModule} from 'primeng/tieredmenu';
+
 
 import { SimpleCardComponent } from './components/simple-card/simple-card.component';
 import { LoadingComponent } from './components/loading/loading.component';
@@ -29,7 +32,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     SidebarModule,
     BrowserAnimationsModule,
     ButtonModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    AvatarModule,
+    TieredMenuModule
   ],
   exports:[
     SimpleCardComponent,

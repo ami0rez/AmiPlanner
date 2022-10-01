@@ -137,7 +137,7 @@ export class AuthenticationService {
     this.user = null;
     this.authSettings = null;
     this.sendAuthenticatedNotification(null);
-    this.router.navigate([UrlConstants.logoutUrl]);
+    this.router.navigate([UrlConstants.loginUrl]);
   }
 
   /**

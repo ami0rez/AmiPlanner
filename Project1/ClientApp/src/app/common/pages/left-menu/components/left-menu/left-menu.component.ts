@@ -10,17 +10,22 @@ import { AuthenticationService } from 'src/common/services/authentication.servic
   styleUrls: ['./left-menu.component.css']
 })
 export class LeftMenuComponent implements OnInit {
-  visibleSidebar1;
+  visibleSidebar;
   pages = PageConstants;
   constructor(private router: Router, private authenticationService: AuthenticationService) { }
   ngOnInit() {
   }
   goto(page){
     this.router.navigate([page])
-    this.visibleSidebar1 = false;
+  }
+  gotoGoals(){
+    this.router.navigate(["goals"])
   }
   logout(){
     this.authenticationService.logout();
+  }
+  toggleMenu(){
+    this.visibleSidebar = !this.visibleSidebar;
   }
 
 }

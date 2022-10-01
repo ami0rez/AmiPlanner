@@ -20,7 +20,12 @@ body {
     transform: rotate(360deg);
   }
 }
-
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
 *,
 *::before,
 *::after {
@@ -902,8 +907,8 @@ p-splitter div.p-splitter {
   display: flex;
   flex-flow: column;
   background-color: #ffffff;
-  height: 100vh;
   padding: 3px;
+  height: 100%;
 }
 
 .daily-tasks-title {
@@ -1112,6 +1117,7 @@ p-editor .p-editor-container {
   display: flex;
   flex-flow: row;
   align-items: center;
+  padding-right: 10px;
 }
 
 .nav-path {
@@ -1130,12 +1136,14 @@ p-editor .p-editor-container {
 
 .left-menu-style-1{
   width: 200px;
+  height: 100%;
   border-right: solid thin #00000033;
   display: flex;
   flex-flow: column;
   align-items: center;
   padding-top: 10px;
   cursor: pointer;
+  position: relative;
 }
 .left-menu-style-1 .left-menu-item{
   height: 50px;
@@ -1144,4 +1152,35 @@ p-editor .p-editor-container {
   flex-flow: row;
   align-items: center;
   width: 100%;
+}
+
+.left-menu-style-1.collapse{
+  width: 50px;
+}
+.left-menu-style-1 .left-menu-item .nav-menu-icon{
+  height: 60%;
+}
+.left-menu-style-1.collapse p{
+  display: none;
+}
+.left-menu-style-1 .button-collapse{
+  position: absolute;
+  bottom: 50px;
+  right: 10px;
+}
+app-root {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+app-daily-tasks{
+  width: 100%;
+}
+app-daily-tasks-statistics{
+  height: 80vh;
 }
