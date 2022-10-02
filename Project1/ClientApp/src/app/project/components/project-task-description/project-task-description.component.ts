@@ -19,8 +19,11 @@ export class ProjectTaskDescriptionComponent implements OnChanges {
   unknownState = "unknown";
   selectedTask : TaskItemResponse;
   editDisabled: boolean;
+
   constructor() { }
 
+  ngOnInit(): void {
+  }
   ngOnChanges(): void {
     if(this.task){
       this.selectedTask = this.task;

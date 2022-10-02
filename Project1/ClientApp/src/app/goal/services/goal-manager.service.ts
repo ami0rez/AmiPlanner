@@ -1,16 +1,21 @@
+import { BreadCrumbService } from 'src/app/common/services/breadcrumb.service';
 import { GoalCreateQuery } from './../models/goal-create-query';
 import { GoalPage } from './../models/goal-page';
 import { Injectable } from '@angular/core';
 import { GoalServiceService } from './goal-service.service';
 import { lastValueFrom } from 'rxjs';
 import { FolderCreateQuery } from '../models/folder/folder-create-query';
+import { PageConstants } from 'src/app/common/constants/pages';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GoalManagerService {
 
-  constructor(private readonly goalService: GoalServiceService) { }
+  constructor(
+    private readonly goalService: GoalServiceService,
+    private readonly breadCrumbService: BreadCrumbService
+    ) { }
 
   async loadFolder(pageObject: GoalPage, id: string) {
     pageObject.loading = true;
@@ -59,8 +64,14 @@ export class GoalManagerService {
 
   addCurrentToPath(pageObject: GoalPage) {
     const { currenfFolder } = pageObject.data;
-    const current = { label: currenfFolder.name, value: currenfFolder.id, folder: true }
-    pageObject.data.currentpath?.push(current)
+    // const current = { label: currenfFolder.name, value: currenfFolder.id, folder: true }
+    if(currenfFolder.name){
+      this.breadCrumbService.addBreadcumbItem({
+        label: currenfFolder.name,
+        url: `${PageConstants.goaolUrl}${currenfFolder.id}`,
+        icon: "bi bi-folder-fill"
+      })
+    }
   }
 
   // Remove from path until you reach id

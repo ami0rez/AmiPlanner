@@ -1,11 +1,6 @@
 <div class="goal-editor">
   <div class="goal-content">
-    <!-- <Toast ref={toast} /> -->
     <div class="goal-content-container">
-      <!-- <AmiBreadcrumb
-              items={breadCrumb}
-              onItemClick={handleBreadcrumbItemClick}
-            /> -->
       <app-bread-crumb [items]="pageObject.data.currentpath" (itemClick)="breadCrumbChange($event)"></app-bread-crumb>
       <app-goal-header (search)="handleSearchChange($event)" (filter)="handleFilter($event)"
         (addGoal)="handleAddGoal($event)" (addFolder)="handleAddFolder($event)" (sort)="handleSort($event)">

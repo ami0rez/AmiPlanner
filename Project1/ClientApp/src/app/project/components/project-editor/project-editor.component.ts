@@ -2,7 +2,7 @@ import { BreadCrumbService } from './../../../common/services/breadcrumb.service
 import { ProjectManagerService } from './../../services/project-manager.service';
 import { ProjectPage } from './../../models/project-page';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaskManagerService } from '../../services/task-manager.service';
 
 @Component({
@@ -17,16 +17,20 @@ export class ProjectEditorComponent implements OnInit {
     private projectManagerService: ProjectManagerService,
     private taskManagerService: TaskManagerService,
     private breadCrumbService: BreadCrumbService,
+    private router: Router,
     private route: ActivatedRoute) { }
 
   async ngOnInit() {
-    this.breadCrumbService.addBreadcumbItem({
-      label: 'Project',
-    })
+   
     const goalId = this.route.snapshot.paramMap.get('gaolId');
     const projetctId = this.route.snapshot.paramMap.get('projectId');
     const taskId = this.route.snapshot.paramMap.get('id');
     await this.projectManagerService.loadGoal(this.pageObject, goalId)
+    this.breadCrumbService.addBreadcumbItem({
+      label: this.pageObject.data.currentGoal.name,
+      url: this.router.url,
+      icon: "bi bi-list"   
+    })
     if (projetctId) {
       await this.projectManagerService.loadProject(this.pageObject, projetctId)
     }

@@ -62,6 +62,26 @@ namespace Amirez.Infrastructure.Data
                     })
             );
 
+            modelBuilder.Entity<FolderDataModel>()
+                .HasMany(task => task.Goals)
+                .WithOne(h => h.Folder)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<FolderDataModel>()
+               .HasMany(task => task.Folders)
+               .WithOne(h => h.Folder)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<GoalDataModel>()
+               .HasMany(task => task.Projects)
+               .WithOne(h => h.Goal)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ProjectDataModel>()
+               .HasMany(task => task.Tasks)
+               .WithOne(h => h.Project)
+               .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<TaskDataModel>()
                 .HasMany(task => task.HistoryVersions)
                 .WithOne(h => h.Parent)

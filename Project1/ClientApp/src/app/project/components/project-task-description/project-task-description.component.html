@@ -14,7 +14,11 @@
           <div class="task-history-item" *ngFor="let historyTask of task?.historyVersions" (click)="setSelectedTask(historyTask)">{{historyTask.date | date}}</div>
         </div>
       </div>
-      <p-editor [readonly]="editDisabled" [(ngModel)]="selectedTask.description" class="task-body-description  f-grow" (onTextChange)="handleTaskUpdate()"></p-editor>
+      <p-editor 
+      [readonly]="editDisabled" 
+      class="task-body-description  f-grow" 
+      (onTextChange)="handleTaskUpdate()"
+      ></p-editor>
     </div>
     <!-- <div class="task-body-details">
       <p-inputNumber min="0" placeholder="Estimated" [(ngModel)]="task.estimated"></p-inputNumber>
