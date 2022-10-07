@@ -1,0 +1,53 @@
+<div class="budget-tracker">
+  <div class="budget-tracker-header">
+    <p-calendar view="month" dateFormat="mm/yy"></p-calendar>
+  </div>
+  <div class="budget-tracker-body">
+    <div class="budget-incom column">
+      <div class="budget-header">
+        Incom (16 000 DH)
+      </div>
+      <app-budget-track-item subject="Salary" [amount]="16500"></app-budget-track-item>
+      <app-budget-track-item [editable]="true"></app-budget-track-item>
+    </div>
+
+    <div class="budget-spent  column">
+      <div class="budget-header">
+        <span class="budget-tag">80 %</span>
+        Spent (12 800 DH)
+        <span class="budget-available">Available: 7 600 DH</span>
+      </div>
+      <div class="budget-spent-body">
+        <div class="budget-needs column">
+          <div class="budget-header">
+            <span class="budget-tag">50 %</span>
+            Needs (8 000 DH)
+            <span class="budget-available">Available: 2 800 DH</span>
+          </div>
+          <app-budget-track-item subject="Debt" [amount]="2850"></app-budget-track-item>
+          <app-budget-track-item subject="Rent" [amount]="2400"></app-budget-track-item>
+          <app-budget-track-item [editable]="true"></app-budget-track-item>
+        </div>
+        <div class="budget-wants column">
+          <div class="budget-header">
+            <span class="budget-tag">30 %</span>
+            Wants (4 800 DH)
+            <span class="budget-available">Available: 4 800 DH</span>
+          </div>
+          <app-budget-track-item subject="Refrigirator" [amount]="2500"></app-budget-track-item>
+          <app-budget-track-item [editable]="true"></app-budget-track-item>
+        </div>
+      </div>
+    </div>
+
+    <div class="budget-savings  column">
+      <div class="budget-header">
+        <span class="budget-tag">20 %</span>
+        Savings(3 200 DH)
+      </div>
+      <app-budget-track-item subject="Savings" [amount]="3200"></app-budget-track-item>
+      <app-budget-track-item [editable]="true"></app-budget-track-item>
+    </div>
+  </div>
+    
+</div>

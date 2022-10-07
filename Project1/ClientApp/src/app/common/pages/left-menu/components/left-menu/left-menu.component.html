@@ -14,6 +14,11 @@
     <img class="nav-menu-icon" src="../../../../assets/icons/tasks.png" />
     <p>Tasks</p>
   </div>
+  <div class="left-menu-item {{activeRouter === pages.budgetUrl ? 'active' : ''}}" (click)="goto($event, pages.budgetUrl)"
+    pTooltip="Budget" [tooltipStyleClass]='visibleSidebar ? "hide": ""'>
+    <img class="nav-menu-icon" src="../../../../assets/icons/budget.png" />
+    <p>Budget</p>
+  </div>
   <i 
   class="pi {{visibleSidebar ?'pi-angle-double-left open' : 'pi-angle-double-right'}} button-collapse"
   [style]="{'fontSize': '1.2em', color: '#00000099'}" 

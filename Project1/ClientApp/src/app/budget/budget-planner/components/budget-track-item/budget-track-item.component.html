@@ -1,0 +1,17 @@
+<div class="budget-track-item">
+  <div class="budget-track-controls">
+    <i *ngIf="!editable" class="bi bi-pen budget-track-controls-icons" (click)="edit()"></i>
+    <i *ngIf="editable" class="bi bi-sd-card budget-track-controls-icons blue" (click)="save()"></i>
+    <i *ngIf="editable" class="bi bi-x budget-track-controls-icons red" (click)="cancel()"></i>
+  </div>
+  <div class="budget-track-header">
+    <p-inputNumber class="budget-title" *ngIf="editable" suffix="DH"></p-inputNumber>
+    <span *ngIf="!editable" class="budget-title">{{subject}}</span>
+    <p-dropdown *ngIf="editable" optionLabel="name"></p-dropdown>
+    <span *ngIf="!editable">{{type}}</span>
+  </div>
+  <div class="budget-track-body">
+    <p-inputNumber *ngIf="editable" suffix="DH"></p-inputNumber>
+    <span *ngIf="!editable">{{amount}} DH</span>
+  </div>
+</div>

@@ -2,7 +2,6 @@ D:\Projects\Amirez\Planner\AmiPlanner\Common\bin\Debug\net5.0\Amiplanner.Common.
 D:\Projects\Amirez\Planner\AmiPlanner\Common\bin\Debug\net5.0\Amiplanner.Common.dll
 D:\Projects\Amirez\Planner\AmiPlanner\Common\bin\Debug\net5.0\ref\Amiplanner.Common.dll
 D:\Projects\Amirez\Planner\AmiPlanner\Common\bin\Debug\net5.0\Amiplanner.Common.pdb
-D:\Projects\Amirez\Planner\AmiPlanner\Common\obj\Debug\net5.0\Amiplanner.Common.csprojAssemblyReference.cache
 D:\Projects\Amirez\Planner\AmiPlanner\Common\obj\Debug\net5.0\Amiplanner.Common.GeneratedMSBuildEditorConfig.editorconfig
 D:\Projects\Amirez\Planner\AmiPlanner\Common\obj\Debug\net5.0\Amiplanner.Common.AssemblyInfoInputs.cache
 D:\Projects\Amirez\Planner\AmiPlanner\Common\obj\Debug\net5.0\Amiplanner.Common.AssemblyInfo.cs

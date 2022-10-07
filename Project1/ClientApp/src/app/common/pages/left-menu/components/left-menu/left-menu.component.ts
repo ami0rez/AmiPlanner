@@ -17,7 +17,7 @@ export class LeftMenuComponent implements OnInit {
   get activeRouter(): string {
     if (this.router.url?.length > 1) {
       var index = this.router.url?.indexOf('/') + 1;
-      return this.router.url?.substring(index > 0 ? index : 0)
+      return this.router.url?.substring(index > 0 ? index : 0) + "/"
     } else {
       return this.router.url;
     }

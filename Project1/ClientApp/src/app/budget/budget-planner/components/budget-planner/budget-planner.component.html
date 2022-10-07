@@ -1,4 +1,29 @@
-<h2><span>Satatistics</span></h2>
-<p>this is some content other</p>
-<h2><span>2022</span></h2>
-<p>this is some content other</p>
+<div class="budget-module">
+  <div class="budget-module-dashboard" *ngIf="false">
+    <div class="budget-module-dashboard-filter">
+      <p-calendar view="month" dateFormat="mm/yy"></p-calendar>
+    </div>
+    <div class="budget-module-dashboard-cards">
+      <div class="budget-card">
+      </div>
+      <div class="budget-card">
+      </div>
+      <div class="budget-card">
+      </div>
+      <div class="budget-card">
+      </div>
+      <div class="budget-card">
+      </div>
+    </div>
+  </div>
+  <div class="budget-module-tracker">
+    <p-tabView class="budget-tabs">
+      <p-tabPanel header="Plans">
+         Content 1
+      </p-tabPanel>
+      <p-tabPanel header="Budget" [selected]="true">
+          <app-budget-tracker></app-budget-tracker>
+      </p-tabPanel>
+  </p-tabView>
+  </div>
+</div>
