@@ -27,3 +27,4 @@ D:\Projects\Amirez\Planner\AmiPlanner\Amirez.Infrastructure\obj\Debug\net5.0\Ami
 D:\Projects\Amirez\Planner\AmiPlanner\Amirez.Infrastructure\obj\Debug\net5.0\ref\Amirez.Infrastructure.dll
 D:\Projects\Amirez\Planner\AmiPlanner\Amirez.Infrastructure\obj\Debug\net5.0\Amirez.Infrastructure.pdb
 D:\Projects\Amirez\Planner\AmiPlanner\Amirez.Infrastructure\obj\Debug\net5.0\Amirez.Infrastructure.genruntimeconfig.cache
+D:\Projects\Amirez\Planner\AmiPlanner\Amirez.Infrastructure\obj\Debug\net5.0\Amirez.Infrastructure.csprojAssemblyReference.cache

@@ -90,29 +90,29 @@ namespace Amirez.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1a6fa4fc-7667-4164-abe9-4612c907430d"),
-                            ConcurrencyStamp = "ee81f48b-9f40-4345-82d5-8babea98d004",
+                            Id = new Guid("20c19850-249b-46b3-905d-fce679872d24"),
+                            ConcurrencyStamp = "12639d75-b88e-45ed-a7e3-511ec2af3c7e",
                             Name = "Administrateur",
                             RoleType = 1
                         },
                         new
                         {
-                            Id = new Guid("c0c29a61-7ed3-48c5-bfe4-3ff88f594da5"),
-                            ConcurrencyStamp = "d5a69876-ddae-4521-8b77-9e7990a6070e",
+                            Id = new Guid("3dbdf2c4-dd43-439b-a92c-eecf33e6e05d"),
+                            ConcurrencyStamp = "e046aa4f-7614-404d-852d-6d1413d84d17",
                             Name = "Cb",
                             RoleType = 2
                         },
                         new
                         {
-                            Id = new Guid("8a8df9a6-afde-4b0f-be4a-c1bf3f79d911"),
-                            ConcurrencyStamp = "3db34325-bd67-4194-ab6a-fcd47fed211a",
+                            Id = new Guid("6b71f421-490c-4a31-8111-733a87d138ec"),
+                            ConcurrencyStamp = "9c56b161-42b7-4c4e-82bb-343c0a8f7b55",
                             Name = "Ruo",
                             RoleType = 3
                         },
                         new
                         {
-                            Id = new Guid("86fb37ec-5269-4052-b8b9-712a50ee1476"),
-                            ConcurrencyStamp = "4675199c-c86c-4c70-aa7b-c48f14f32cb4",
+                            Id = new Guid("2d691414-3524-4909-9935-5275c0888624"),
+                            ConcurrencyStamp = "387f2977-195b-41c4-b703-6874e2caa1a9",
                             Name = "Superviseur",
                             RoleType = 4
                         });
@@ -218,6 +218,103 @@ namespace Amirez.Infrastructure.Migrations
                         .HasDatabaseName("ix_utilisateur_role_id");
 
                     b.ToTable("utilisateur");
+                });
+
+            modelBuilder.Entity("Amirez.Infrastructure.Data.Model.Budget.BudgetCategoryDataModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_budget_category");
+
+                    b.ToTable("budget_category");
+                });
+
+            modelBuilder.Entity("Amirez.Infrastructure.Data.Model.Budget.BudgetPlanDataModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("id");
+
+                    b.Property<double>("Ammount")
+                        .HasColumnType("REAL")
+                        .HasColumnName("ammount");
+
+                    b.Property<Guid?>("CategoryId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("category_id");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date");
+
+                    b.Property<bool>("Repeat")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("repeat");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("subject");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("type");
+
+                    b.HasKey("Id")
+                        .HasName("pk_budget_plan");
+
+                    b.HasIndex("CategoryId")
+                        .HasDatabaseName("ix_budget_plan_category_id");
+
+                    b.ToTable("budget_plan");
+                });
+
+            modelBuilder.Entity("Amirez.Infrastructure.Data.Model.Budget.BudgetTrackDataModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("id");
+
+                    b.Property<double>("Ammount")
+                        .HasColumnType("REAL")
+                        .HasColumnName("ammount");
+
+                    b.Property<Guid?>("CategoryId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("category_id");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date");
+
+                    b.Property<bool>("Repeat")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("repeat");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("subject");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("type");
+
+                    b.HasKey("Id")
+                        .HasName("pk_budget_track");
+
+                    b.HasIndex("CategoryId")
+                        .HasDatabaseName("ix_budget_track_category_id");
+
+                    b.ToTable("budget_track");
                 });
 
             modelBuilder.Entity("Amirez.Infrastructure.Data.Model.Common.FolderDataModel", b =>
@@ -506,12 +603,33 @@ namespace Amirez.Infrastructure.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("Amirez.Infrastructure.Data.Model.Budget.BudgetPlanDataModel", b =>
+                {
+                    b.HasOne("Amirez.Infrastructure.Data.Model.Budget.BudgetCategoryDataModel", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .HasConstraintName("fk_budget_plan_budget_category_category_id");
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Amirez.Infrastructure.Data.Model.Budget.BudgetTrackDataModel", b =>
+                {
+                    b.HasOne("Amirez.Infrastructure.Data.Model.Budget.BudgetCategoryDataModel", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .HasConstraintName("fk_budget_track_budget_category_category_id");
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("Amirez.Infrastructure.Data.Model.Common.FolderDataModel", b =>
                 {
                     b.HasOne("Amirez.Infrastructure.Data.Model.Common.FolderDataModel", "Folder")
                         .WithMany("Folders")
                         .HasForeignKey("FolderId")
-                        .HasConstraintName("fk_folder_folder_folder_id");
+                        .HasConstraintName("fk_folder_folder_folder_id")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Folder");
                 });
@@ -521,7 +639,8 @@ namespace Amirez.Infrastructure.Migrations
                     b.HasOne("Amirez.Infrastructure.Data.Model.Common.FolderDataModel", "Folder")
                         .WithMany("Goals")
                         .HasForeignKey("FolderId")
-                        .HasConstraintName("fk_goal_folder_folder_id");
+                        .HasConstraintName("fk_goal_folder_folder_id")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Folder");
                 });

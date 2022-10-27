@@ -18,10 +18,10 @@
   </div>
   <div class="budget-module-tracker">
     <p-tabView class="budget-tabs">
-      <p-tabPanel header="Plans">
-         Content 1
+      <p-tabPanel header="Plans" [selected]="true">
+        <app-budget-plans></app-budget-plans>
       </p-tabPanel>
-      <p-tabPanel header="Budget" [selected]="true">
+      <p-tabPanel header="Budget">
           <app-budget-tracker></app-budget-tracker>
       </p-tabPanel>
   </p-tabView>

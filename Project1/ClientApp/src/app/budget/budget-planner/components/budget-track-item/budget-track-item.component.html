@@ -1,17 +1,25 @@
-<div class="budget-track-item">
+<div class="budget-track-item {{creator ? 'soft-display': ''}}">
   <div class="budget-track-controls">
-    <i *ngIf="!editable" class="bi bi-pen budget-track-controls-icons" (click)="edit()"></i>
-    <i *ngIf="editable" class="bi bi-sd-card budget-track-controls-icons blue" (click)="save()"></i>
-    <i *ngIf="editable" class="bi bi-x budget-track-controls-icons red" (click)="cancel()"></i>
+    <i *ngIf="!editable && !creator" class="bi bi-pen budget-track-controls-icons" (click)="edit()"></i>
+    <i *ngIf="!editable && !creator" class="bi bi-trash budget-track-controls-icons red" (click)="remove()"></i>
+    <i *ngIf="editable || creator" class="bi bi-sd-card budget-track-controls-icons blue" (click)="save()"></i>
+    <i *ngIf="editable && !creator" class="bi bi-x budget-track-controls-icons red" (click)="cancel()"></i>
   </div>
   <div class="budget-track-header">
-    <p-inputNumber class="budget-title" *ngIf="editable" suffix="DH"></p-inputNumber>
-    <span *ngIf="!editable" class="budget-title">{{subject}}</span>
-    <p-dropdown *ngIf="editable" optionLabel="name"></p-dropdown>
-    <span *ngIf="!editable">{{type}}</span>
+    <input pInputText class="budget-title" [(ngModel)]="item.subject" *ngIf="editable || creator" suffix="DH" />
+    <span *ngIf="!editable && !creator" class="budget-title">{{item?.subject}}</span>
+    <p-dropdown *ngIf="useCategory && (editable || creator)" [(ngModel)]="item.categoryId" [options]="options"
+      (onChange)="typeChanged()"></p-dropdown>
+    <span *ngIf="useCategory && (!editable && !creator)">{{item?.categoryLabel}}</span>
   </div>
   <div class="budget-track-body">
-    <p-inputNumber *ngIf="editable" suffix="DH"></p-inputNumber>
-    <span *ngIf="!editable">{{amount}} DH</span>
+    <div class="d-flex-row w-100-prcnt">
+      <div class="f-grow">
+        <p-dropdown *ngIf="planner" [(ngModel)]="item.type" [options]="typeOptions"></p-dropdown>
+        <p-checkbox *ngIf="planner" [binary]="true" label="Repeat every month" [(ngModel)]="item.repeat" [disabled]="!editable && !creator"></p-checkbox>
+      </div>
+      <span *ngIf="!editable && !creator">{{item?.ammount}} DH</span>
+    </div>
+    <p-inputNumber *ngIf="editable || creator" [(ngModel)]="item.ammount" suffix="DH"></p-inputNumber>
   </div>
 </div>

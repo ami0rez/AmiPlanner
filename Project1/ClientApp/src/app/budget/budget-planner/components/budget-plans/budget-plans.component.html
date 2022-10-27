@@ -1,0 +1,6 @@
+<app-budget-track-item (onSave)="savePlan($event)" (onDelete)="deletePlan($event)"
+  *ngFor="let item of pageObject.data?.budgetTracker?.plans?? []" [options]="pageObject.categoryOptions" [item]="item"
+  [planner]="true" [typeOptions]="pageObject.typeOptions"></app-budget-track-item>
+<app-budget-track-item (onSave)="savePlan($event)" (onDelete)="deletePlan($event)"
+  [options]="pageObject.categoryOptions" [creator]="true" [planner]="true" [typeOptions]="pageObject.typeOptions">
+</app-budget-track-item>

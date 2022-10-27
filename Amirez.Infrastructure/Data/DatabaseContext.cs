@@ -1,4 +1,5 @@
 ﻿using Amirez.Infrastructure.Data.Model.Authentication;
+using Amirez.Infrastructure.Data.Model.Budget;
 using Amirez.Infrastructure.Data.Model.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -24,6 +25,9 @@ namespace Amirez.Infrastructure.Data
         public DbSet<TaskDataModel> Tasks { get; set; }
         public DbSet<UtilisateurDataModel> Utilisateurs { get; set; }
         public DbSet<HistoryDataModel<TaskDataModel>> TaskHistory { get; set; }
+        public DbSet<BudgetTrackDataModel> BudgetTracks { get; set; }
+        public DbSet<BudgetPlanDataModel> BudgetPlans { get; set; }
+        public DbSet<BudgetCategoryDataModel> BudgetCategories { get; set; }
 
         public DatabaseContext(DbContextOptions options) : base(options)
         {

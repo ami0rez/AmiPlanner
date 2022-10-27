@@ -28,5 +28,9 @@
         public const string MinDate1901 = "01/01/1901";
         public const string MinDate = "01/01/0001";
         #endregion
+
+        #region Budget
+        public const string DefaultSavings = "Default Savings";
+        #endregion
     }
 }

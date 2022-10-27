@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ListItem } from './../../../../common/models/list-item';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { BudgetTrackItem } from '../../models/budget-track-item';
 
 @Component({
   selector: 'app-budget-track-item',
@@ -8,35 +10,74 @@ import { Component, Input, OnInit } from '@angular/core';
 export class BudgetTrackItemComponent implements OnInit {
 
   @Input()
-  subject: string;
+  item: BudgetTrackItem = new BudgetTrackItem();
+
+  clonedItem: BudgetTrackItem = new BudgetTrackItem();
+
+
+  @Input()
+  options: ListItem[];
+
   
   @Input()
-  type: string;
-  
-  @Input()
-  amount: string;
+  typeOptions: ListItem[];
 
   @Input()
   editable = false;
+
+  @Input()
+  creator = false;
+
+  @Input()
+  useCategory = true;
+
+  @Input()
+  planner = false;
+
+  @Output()
+  onSave: EventEmitter<BudgetTrackItem> = new EventEmitter<BudgetTrackItem>();
+  @Output()
+  onCancel: EventEmitter<BudgetTrackItem> = new EventEmitter<BudgetTrackItem>();
+  @Output()
+  onEdit: EventEmitter<BudgetTrackItem> = new EventEmitter<BudgetTrackItem>();
+  @Output()
+  onDelete: EventEmitter<BudgetTrackItem> = new EventEmitter<BudgetTrackItem>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
 
-  edit(){
+  edit() {
     this.setEditableMode(true);
+    this.clonedItem = { ...this.item }
+    this.onEdit.emit(this.item);
   }
 
-  save(){
-    this.setEditableMode(false);
+  save() {
+    this.onSave.emit({ ... this.item });
+    console.log('save');
+    
+    this.item = new BudgetTrackItem();
   }
-  
-  cancel(){
+
+  cancel() {
     this.setEditableMode(false);
+    this.item = { ...this.clonedItem }
+    this.onCancel.emit({ ... this.item });
+  }
+
+  remove() {
+    this.setEditableMode(false);
+    this.onDelete.emit({ ... this.item });
   }
   setEditableMode(value) {
     this.editable = value;
+  }
+
+  typeChanged() {
+    this.item.categoryLabel = this.options.find(opt => opt.value === this.item.categoryId)?.label;
   }
 
 }

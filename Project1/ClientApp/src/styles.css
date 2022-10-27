@@ -20,12 +20,15 @@ body {
     transform: rotate(360deg);
   }
 }
+
 html {
   height: 100%;
 }
+
 body {
   min-height: 100%;
 }
+
 *,
 *::before,
 *::after {
@@ -70,6 +73,10 @@ body {
   width: 100px;
 }
 
+.w-100-prcnt {
+  width: 100%;
+}
+
 .h-150 {
   height: 150px !important;
 }
@@ -77,8 +84,17 @@ body {
 .f-p-7-em {
   font-size: 0.7em;
 }
-.hide{
+
+.hide {
   visibility: hidden;
+}
+
+.soft-display {
+  opacity: 0.4;
+}
+
+.soft-display:hover {
+  opacity: 1;
 }
 
 
@@ -1129,7 +1145,8 @@ p-editor .p-editor-container {
 .nav-path {
   flex-grow: 1;
 }
-.nav-menu-icon{
+
+.nav-menu-icon {
   padding: 0 7px;
   height: 80%;
   cursor: pointer;
@@ -1140,7 +1157,7 @@ p-editor .p-editor-container {
   padding: 0;
 }
 
-.left-menu-style-1{
+.left-menu-style-1 {
   width: 200px;
   height: 100%;
   border-right: solid thin #00000033;
@@ -1151,30 +1168,36 @@ p-editor .p-editor-container {
   cursor: pointer;
   position: relative;
 }
-.left-menu-style-1 .left-menu-item{
+
+.left-menu-style-1 .left-menu-item {
   max-height: 50px;
   display: flex;
   flex-flow: row;
   align-items: center;
   width: 100%;
 }
-.left-menu-style-1 .left-menu-item:hover{
+
+.left-menu-style-1 .left-menu-item:hover {
   background-color: #0000000B;
 }
-.left-menu-style-1 .left-menu-item.active{
+
+.left-menu-style-1 .left-menu-item.active {
   background-color: #00000015;
 }
 
-.left-menu-style-1.collapse{
+.left-menu-style-1.collapse {
   width: 50px;
 }
-.left-menu-style-1 .left-menu-item .nav-menu-icon{
+
+.left-menu-style-1 .left-menu-item .nav-menu-icon {
   height: 60%;
 }
-.left-menu-style-1.collapse p{
+
+.left-menu-style-1.collapse p {
   display: none;
 }
-.left-menu-style-1 .button-collapse{
+
+.left-menu-style-1 .button-collapse {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -1184,7 +1207,8 @@ p-editor .p-editor-container {
   align-items: center;
   justify-content: center;
 }
-.left-menu-style-1 .button-collapse.open{
+
+.left-menu-style-1 .button-collapse.open {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -1194,6 +1218,7 @@ p-editor .p-editor-container {
   align-items: center;
   justify-content: center;
 }
+
 app-root {
   position: absolute;
   top: 0;
@@ -1204,53 +1229,60 @@ app-root {
   flex-direction: column;
 }
 
-app-daily-tasks{
+app-daily-tasks {
   width: 100%;
 }
-app-daily-tasks-statistics{
+
+app-daily-tasks-statistics {
   height: 80vh;
 }
-app-goal-editor{
+
+app-goal-editor {
   width: 100%;
 }
-app-project-editor{
+
+app-project-editor {
   width: 100%;
 }
 
 /*  ------------- */
-app-budget-planner{
+app-budget-planner {
   width: 100%;
 }
-.budget-module{
+
+.budget-module {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   padding: 5px;
 }
-.budget-module-dashboard{
+
+.budget-module-dashboard {
   width: 100%;
   height: 200px;
   display: flex;
   flex-direction: column;
   padding: 10px 0;
   transition: 0.3s ease-in-out;
-  font-size: 16px;background: #fff;
+  font-size: 16px;
+  background: #fff;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-.budget-module-dashboard-filter{
+.budget-module-dashboard-filter {
   padding: 0 0 5px 10px;
 }
-.budget-module-dashboard-cards{
+
+.budget-module-dashboard-cards {
   width: 100%;
   height: 150px;
   display: flex;
   flex-direction: row;
 }
 
-.budget-module-dashboard-cards .budget-card{
+.budget-module-dashboard-cards .budget-card {
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   width: 20%;
@@ -1260,7 +1292,7 @@ app-budget-planner{
   margin: 0 10px;
 }
 
-.budget-module-tracker{
+.budget-module-tracker {
   flex-grow: 1;
   width: 100%;
   height: 200px;
@@ -1268,39 +1300,46 @@ app-budget-planner{
   flex-direction: column;
   padding: 10px 0;
 }
-.budget-module-tracker .budget-tabs{
-  height: 100%;
-}
-.p-tabview-panels{
-  height: 100%;
-}
-p-tabview .p-tabview.p-component{
-  height: 93%;
-}
-p-tabpanel{
+
+.budget-module-tracker .budget-tabs {
   height: 100%;
 }
 
-p-tabpanel div.p-tabview-panel{
+.p-tabview-panels {
   height: 100%;
 }
+
+p-tabview .p-tabview.p-component {
+  height: 93%;
+}
+
+p-tabpanel {
+  height: 100%;
+}
+
+p-tabpanel div.p-tabview-panel {
+  height: 100%;
+}
+
 /*  ------------- */
-.budget-tracker{
+.budget-tracker {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-.budget-tracker-header{
+
+.budget-tracker-header {
   margin-bottom: 10px;
 }
-.budget-tracker-body{
+
+.budget-tracker-body {
   height: 100%;
   display: flex;
   flex-direction: row;
   padding: 0 5px;
 }
 
-.budget-tracker-body .column{
+.budget-tracker-body .column {
   margin: 0 5px;
   height: 100%;
   display: flex;
@@ -1308,7 +1347,7 @@ p-tabpanel div.p-tabview-panel{
   border-radius: 6px;
 }
 
-.budget-tracker-body .budget-header{
+.budget-tracker-body .budget-header {
   font-size: large;
   font-weight: bolder;
   color: #00000099;
@@ -1323,7 +1362,7 @@ p-tabpanel div.p-tabview-panel{
   margin-bottom: 5px;
 }
 
-.budget-tracker-body .budget-header .budget-tag{
+.budget-tracker-body .budget-header .budget-tag {
   position: absolute;
   font-weight: light;
   right: 0;
@@ -1333,10 +1372,10 @@ p-tabpanel div.p-tabview-panel{
   color: #ffffff;
   padding-left: 10px;
   padding-bottom: 3px;
-  border-radius: 100% 0% 33% 67% / 0% 100% 0% 100% ;
+  border-radius: 100% 0% 33% 67% / 0% 100% 0% 100%;
 }
 
-.budget-tracker-body .budget-header .budget-available{
+.budget-tracker-body .budget-header .budget-available {
   position: absolute;
   font-weight: light;
   right: 0;
@@ -1346,37 +1385,38 @@ p-tabpanel div.p-tabview-panel{
   color: #ffffff;
   padding-left: 10px;
   padding-bottom: 3px;
-  border-radius: 100% 0% 100% 0% / 31% 100% 0% 69% ;
+  border-radius: 100% 0% 100% 0% / 31% 100% 0% 69%;
 }
-.budget-tracker-body .budget-incom{
+
+.budget-tracker-body .budget-incom {
   flex-grow: 1;
 }
 
-.budget-tracker-body .budget-savings{
+.budget-tracker-body .budget-savings {
   flex-grow: 1;
 }
 
-.budget-tracker-body .budget-spent{
+.budget-tracker-body .budget-spent {
   flex-grow: 2;
 }
 
-.budget-spent-body{
+.budget-spent-body {
   height: 100%;
   display: flex;
   flex-direction: row;
   padding: 10px 5px;
 }
 
-.budget-spent-body .budget-needs{
+.budget-spent-body .budget-needs {
   flex-grow: 1;
 }
 
-.budget-spent-body .budget-wants{
+.budget-spent-body .budget-wants {
   flex-grow: 1;
 }
 
 /*  ------------- */
-.budget-track-item{
+.budget-track-item {
   height: 80px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   margin: 5px 0;
@@ -1386,11 +1426,13 @@ p-tabpanel div.p-tabview-panel{
   flex-direction: column;
   position: relative;
 }
-.budget-track-item .budget-track-header{
+
+.budget-track-item .budget-track-header {
   display: flex;
   flex-direction: row;
 }
-.budget-track-item .budget-title{
+
+.budget-track-item .budget-title {
   font-size: large;
   font-weight: bolder;
   color: #00000099;
@@ -1400,14 +1442,14 @@ p-tabpanel div.p-tabview-panel{
   margin: 0 5px;
   flex-grow: 1;
 }
-.budget-track-item .budget-track-body{
+
+.budget-track-item .budget-track-body {
   flex-grow: 1;
   display: flex;
   align-items: center;
-  justify-content: end;
 }
 
-.budget-track-controls-icons{
+.budget-track-controls-icons {
   background-color: #f7cc7e;
   display: block;
   width: 20px;
@@ -1420,18 +1462,18 @@ p-tabpanel div.p-tabview-panel{
   z-index: 1000;
 }
 
-.budget-track-controls-icons.blue{
+.budget-track-controls-icons.blue {
   background-color: #00369966;
   color: #ffffff;
 }
 
 
-.budget-track-controls-icons.red{
+.budget-track-controls-icons.red {
   background-color: #581545ee;
   color: #ffffff;
 }
 
-.budget-track-item .budget-track-controls{
+.budget-track-item .budget-track-controls {
   position: absolute;
   font-size: 12px;
   top: -10px;
@@ -1441,6 +1483,34 @@ p-tabpanel div.p-tabview-panel{
   flex-direction: row;
 }
 
-.budget-track-item:hover .budget-track-controls{
+.budget-track-item:hover .budget-track-controls {
   visibility: visible;
+}
+
+.budget-tracker .p-inputtext {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem;
+  color: #495057;
+  background: #ffffff;
+  padding: 3px 2px;
+  border: 1px solid #ced4da;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 3px;
+}
+
+.budget-track-item input {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem;
+  color: #495057;
+  background: #ffffff;
+  padding: 3px 2px;
+  border: 1px solid #ced4da;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 3px;
 }

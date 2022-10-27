@@ -1,53 +1,68 @@
 <div class="budget-tracker">
   <div class="budget-tracker-header">
-    <p-calendar view="month" dateFormat="mm/yy"></p-calendar>
+    <p-calendar view="month" dateFormat="mm/yy" [(ngModel)]="pageObject.data.budgetTrackingDate"
+      (ngModelChange)="budgetTrackingDateChange()"></p-calendar>
   </div>
   <div class="budget-tracker-body">
     <div class="budget-incom column">
       <div class="budget-header">
-        Incom (16 000 DH)
+        <span class="budget-tag">100 %({{pageObject.data?.budgetTracker?.percentIncom}} DH)</span>
+        Incom ({{pageObject.data?.budgetTracker?.percentIncom}} DH)
+        <span class="budget-available">Available: {{pageObject.data?.budgetTracker?.availableIncom}} DH</span>
       </div>
-      <app-budget-track-item subject="Salary" [amount]="16500"></app-budget-track-item>
-      <app-budget-track-item [editable]="true"></app-budget-track-item>
+      <app-budget-track-item *ngFor="let item of pageObject.data?.budgetTracker?.incom ?? []" (onSave)="saveIncom($event)"
+        (onDelete)="deleteBudgetItem($event)" [options]="pageObject.categoryOptions" [item]="item"
+        [useCategory]="false"></app-budget-track-item>
+      <app-budget-track-item (onSave)="saveIncom($event)" [options]="pageObject.categoryOptions" [creator]="true"
+        [useCategory]="false">
+      </app-budget-track-item>
     </div>
 
     <div class="budget-spent  column">
       <div class="budget-header">
-        <span class="budget-tag">80 %</span>
-        Spent (12 800 DH)
-        <span class="budget-available">Available: 7 600 DH</span>
+        <span class="budget-tag">80 %({{pageObject.data?.budgetTracker?.percentSpent}} DH)</span>
+        Spent ({{pageObject.data?.budgetTracker?.totalSpent}} DH)
       </div>
       <div class="budget-spent-body">
         <div class="budget-needs column">
           <div class="budget-header">
-            <span class="budget-tag">50 %</span>
-            Needs (8 000 DH)
-            <span class="budget-available">Available: 2 800 DH</span>
+            <span class="budget-tag">50 %({{pageObject.data?.budgetTracker?.percentSpentNeeds}} DH)</span>
+            Needs ({{pageObject.data?.budgetTracker?.totalSpentNeeds}} DH)
+            <span class="budget-available">Available: {{pageObject.data?.budgetTracker?.availableSpentNeeds}} DH</span>
           </div>
-          <app-budget-track-item subject="Debt" [amount]="2850"></app-budget-track-item>
-          <app-budget-track-item subject="Rent" [amount]="2400"></app-budget-track-item>
-          <app-budget-track-item [editable]="true"></app-budget-track-item>
+          <app-budget-track-item (onSave)="saveSpentNeed($event)" (onDelete)="deleteBudgetItem($event)"
+            *ngFor="let item of pageObject.data?.budgetTracker?.spentNeeds?? []" [options]="pageObject.categoryOptions"
+            [item]="item"></app-budget-track-item>
+          <app-budget-track-item (onSave)="saveSpentNeed($event)" [options]="pageObject.categoryOptions"
+            [creator]="true"></app-budget-track-item>
         </div>
         <div class="budget-wants column">
           <div class="budget-header">
-            <span class="budget-tag">30 %</span>
-            Wants (4 800 DH)
-            <span class="budget-available">Available: 4 800 DH</span>
+            <span class="budget-tag">30 %({{pageObject.data?.budgetTracker?.percentSpentWants}} DH)</span>
+            Wants ({{pageObject.data?.budgetTracker?.totalSpentWants}} DH)
+            <span class="budget-available">Available: {{pageObject.data?.budgetTracker?.availableSpentWants}} DH</span>
           </div>
-          <app-budget-track-item subject="Refrigirator" [amount]="2500"></app-budget-track-item>
-          <app-budget-track-item [editable]="true"></app-budget-track-item>
+          <app-budget-track-item (onSave)="saveSpentWant($event)" (onDelete)="deleteBudgetItem($event)"
+            *ngFor="let item of pageObject.data?.budgetTracker?.spentWants?? []" [options]="pageObject.categoryOptions"
+            [item]="item"></app-budget-track-item>
+          <app-budget-track-item (onSave)="saveSpentWant($event)" [options]="pageObject.categoryOptions"
+            [creator]="true"></app-budget-track-item>
         </div>
       </div>
     </div>
 
     <div class="budget-savings  column">
       <div class="budget-header">
-        <span class="budget-tag">20 %</span>
-        Savings(3 200 DH)
+        <span class="budget-tag">20 %({{pageObject.data?.budgetTracker?.percentSavings}} DH)</span>
+        Savings({{pageObject.data?.budgetTracker?.totalSavings}} DH)
       </div>
-      <app-budget-track-item subject="Savings" [amount]="3200"></app-budget-track-item>
-      <app-budget-track-item [editable]="true"></app-budget-track-item>
+      <app-budget-track-item (onSave)="saveSavings($event)" (onDelete)="deleteBudgetItem($event)"
+        *ngFor="let item of pageObject.data?.budgetTracker?.savings?? []" [item]="item" [options]="pageObject.categoryOptions"
+        [useCategory]="false"></app-budget-track-item>
+      <app-budget-track-item (onSave)="saveSavings($event)" [options]="pageObject.categoryOptions" [creator]="true"
+        [useCategory]="false">
+      </app-budget-track-item>
     </div>
   </div>
-    
+
 </div>

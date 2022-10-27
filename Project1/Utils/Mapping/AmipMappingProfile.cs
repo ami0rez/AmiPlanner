@@ -1,4 +1,6 @@
-﻿using Amirez.AmipBackend.Controllers.Common.Models;
+﻿using Amirez.AmipBackend.Controllers.Budget.BudgetPlan.Models;
+using Amirez.AmipBackend.Controllers.Budget.BudgetTrack.Models;
+using Amirez.AmipBackend.Controllers.Common.Models;
 using Amirez.AmipBackend.Controllers.Folder.Model;
 using Amirez.AmipBackend.Controllers.Goal.Model;
 using Amirez.AmipBackend.Controllers.Project.Model;
@@ -7,9 +9,11 @@ using Amirez.AmiPlanner.Common.Models;
 using Amirez.AmiPlanner.Controllers.Authentication.Account.Models;
 using Amirez.Infrastructure.Data;
 using Amirez.Infrastructure.Data.Model.Authentication;
+using Amirez.Infrastructure.Data.Model.Budget;
 using Amirez.Infrastructure.Data.Model.Common;
 using Amirez.Infrastructure.Data.Model.Enumerations;
 using AutoMapper;
+using System;
 using System.Linq;
 
 namespace Amirez.AmipBackend.Utils.Mapping
@@ -84,6 +88,25 @@ namespace Amirez.AmipBackend.Utils.Mapping
             CreateMap<UtilisateurDataModel, UserProfileResponse>()
                 .ForMember(dest => dest.Login, opt => opt.MapFrom(src => src.UserName))
                 .ForMember(dest => dest.Admin, opt => opt.MapFrom(src => src.Role.RoleType == Roles.Administrateur));
+            #endregion
+
+            #region Budget
+            //Budget Category
+            CreateMap<BudgetCategoryDataModel, ListItem>()
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Label, opt => opt.MapFrom(src => src.Name));
+
+            //Budget Track
+            CreateMap<BudgetTrackDataModel, BudgetTrackListItemResponse>();
+            CreateMap<BudgetTrackCreateQuery, BudgetTrackDataModel>();
+            CreateMap<BudgetTrackUpdateQuery, BudgetTrackDataModel>();
+            CreateMap<BudgetPlanDataModel, BudgetTrackDataModel>();
+
+            //Budget Plan
+            CreateMap<BudgetPlanDataModel, BudgetPlanListItemResponse>();
+            CreateMap<BudgetPlanCreateQuery, BudgetPlanDataModel>();
+            CreateMap<BudgetPlanUpdateQuery, BudgetPlanDataModel>();
+
             #endregion
         }
     }
