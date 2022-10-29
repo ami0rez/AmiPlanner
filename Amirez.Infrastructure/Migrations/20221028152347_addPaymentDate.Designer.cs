@@ -3,14 +3,16 @@ using System;
 using Amirez.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Amirez.Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221028152347_addPaymentDate")]
+    partial class addPaymentDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,29 +92,29 @@ namespace Amirez.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b4ad3f50-3545-426f-bd1f-4afb3534d51b"),
-                            ConcurrencyStamp = "7283e8ec-e671-4816-8094-1422e7cc7b4d",
+                            Id = new Guid("63da6adc-ad11-4710-9be0-845e685c3d81"),
+                            ConcurrencyStamp = "ff890225-0bd1-4377-a852-51725811d017",
                             Name = "Administrateur",
                             RoleType = 1
                         },
                         new
                         {
-                            Id = new Guid("1a5668cf-dffb-41e7-b4bb-814c24b462af"),
-                            ConcurrencyStamp = "3f90a46b-d43c-4563-8c0f-01b53f6751b6",
+                            Id = new Guid("423773e2-ee1f-44d3-8df0-b7dcbbba8025"),
+                            ConcurrencyStamp = "03c9d97e-64b7-48f0-8ab3-4f311b9620cd",
                             Name = "Cb",
                             RoleType = 2
                         },
                         new
                         {
-                            Id = new Guid("2098ea56-437f-4855-bbd0-cdcee38fe47d"),
-                            ConcurrencyStamp = "21f6004a-0d61-4729-a159-c7f9bbc06711",
+                            Id = new Guid("13568c39-7795-47d1-a5b7-4e5e6f6c79ec"),
+                            ConcurrencyStamp = "e314fbd8-9560-4f7f-92b4-8f63f06a5a27",
                             Name = "Ruo",
                             RoleType = 3
                         },
                         new
                         {
-                            Id = new Guid("e1561260-7ac3-49f7-a5f1-08ad91bd51a4"),
-                            ConcurrencyStamp = "7bd3bcb2-28f9-48f7-9d66-614132133bfc",
+                            Id = new Guid("2e621ce1-4cee-47cb-932e-10327e7e7a94"),
+                            ConcurrencyStamp = "b76bd725-f18a-4ed8-bf3c-3f816047c9a8",
                             Name = "Superviseur",
                             RoleType = 4
                         });
@@ -327,31 +329,6 @@ namespace Amirez.Infrastructure.Migrations
                         .HasDatabaseName("ix_budget_track_category_id");
 
                     b.ToTable("budget_track");
-                });
-
-            modelBuilder.Entity("Amirez.Infrastructure.Data.Model.Budget.PeriodDataModel", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("id");
-
-                    b.Property<bool>("Closed")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("closed");
-
-                    b.Property<DateTime?>("ClosedDate")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("closed_date");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("date");
-
-                    b.HasKey("Id")
-                        .HasName("pk_budget_period");
-
-                    b.ToTable("budget_period");
                 });
 
             modelBuilder.Entity("Amirez.Infrastructure.Data.Model.Common.FolderDataModel", b =>

@@ -50,5 +50,17 @@ namespace Amirez.AmipBackend.Controllers.Budget.BudgetTrack
         {
             return Ok(await _service.Update(entity.Id, entity));
         }
+
+        [HttpGet("Pay/{id}")]
+        public virtual async Task<ActionResult> Pay(Guid id)
+        {
+            return Ok(await _service.Pay(id));
+        }
+
+        [HttpGet("Refund/{id}")]
+        public virtual async Task<ActionResult> Refund(Guid id)
+        {
+            return Ok(await _service.Refund(id));
+        }
     }
 }

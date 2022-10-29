@@ -100,7 +100,9 @@ namespace Amirez.AmipBackend.Utils.Mapping
             CreateMap<BudgetTrackDataModel, BudgetTrackListItemResponse>();
             CreateMap<BudgetTrackCreateQuery, BudgetTrackDataModel>();
             CreateMap<BudgetTrackUpdateQuery, BudgetTrackDataModel>();
-            CreateMap<BudgetPlanDataModel, BudgetTrackDataModel>();
+            CreateMap<BudgetPlanDataModel, BudgetTrackDataModel>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Category, opt => opt.Ignore());
 
             //Budget Plan
             CreateMap<BudgetPlanDataModel, BudgetPlanListItemResponse>();

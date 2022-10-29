@@ -2,6 +2,7 @@
 using Amirez.Infrastructure.Data.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -37,6 +38,18 @@ namespace Amirez.Infrastructure.Repositories.Generic
         {
             var entity = await FindById(id);
             _context.Set<TEntity>().Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// Delete Range Of Entities.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public virtual async Task DeleteRange(IEnumerable<Guid> ids)
+        {
+            var entities = await FindAll(item => ids != null && ids.Contains(item.Id)).ToListAsync();
+            _context.Set<TEntity>().RemoveRange(entities);
             await _context.SaveChangesAsync();
         }
 
@@ -83,6 +96,18 @@ namespace Amirez.Infrastructure.Repositories.Generic
             {
                 return query.AsNoTracking();
             }
+        }
+
+
+        /// <summary>
+        /// Checks if item is unique by a filter
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public virtual async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> filter)
+        {
+            IQueryable<TEntity> query = _context.Set<TEntity>();
+            return await query.AnyAsync(filter);
         }
 
         /// <summary>

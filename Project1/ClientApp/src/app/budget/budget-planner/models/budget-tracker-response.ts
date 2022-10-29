@@ -20,4 +20,5 @@ export class BudgetTrackerResponse{
   availableSpentWants: Number;
   availableSpentNeeds: Number;
   availableSavings: Number;
+  periodClosed: boolean;
 }

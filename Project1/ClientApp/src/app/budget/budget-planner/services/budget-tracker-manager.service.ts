@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { BudgetTrackService } from './budget-tracker.service';
 import { BudgetTrackerResponse } from '../models/budget-tracker-response';
+import { toUtcDate } from 'involys-common/common';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class BudgetTrackManagerService {
     pageObject.categoryOptions.unshift({ label: "Select", value: null })
   }
   async getTrackingItems(pageObject: BudgetPage) {
-    const result = await lastValueFrom(this.budgetTrack.getTrackingItems(pageObject.data.budgetTrackingDate));
+    const result = await lastValueFrom(this.budgetTrack.getTrackingItems(toUtcDate(pageObject.data.budgetTrackingDate)));
     this.updateData(pageObject, result);
   }
   async getPlanningItems(pageObject: BudgetPage) {
@@ -33,7 +34,17 @@ export class BudgetTrackManagerService {
     }
     this.updateData(pageObject, result);
   }
-  
+
+  async payBudgetItem(pageObject: BudgetPage, item: BudgetTrackItem) {
+    const result = await lastValueFrom(this.budgetTrack.payBudgetItem(item.id));
+    this.updateData(pageObject, result);
+  }
+
+  async refundBudgetItem(pageObject: BudgetPage, item: BudgetTrackItem) {
+    const result = await lastValueFrom(this.budgetTrack.refundBudgetItem(item.id));
+    this.updateData(pageObject, result);
+  }
+
   async deleteBudgetItem(pageObject: BudgetPage, item: BudgetTrackItem) {
     let result;
     if (item.id) {
@@ -41,15 +52,15 @@ export class BudgetTrackManagerService {
     }
     this.updateData(pageObject, result);
   }
-  
+
   async updateData(pageObject: BudgetPage, data: BudgetTrackerResponse) {
     data.spentWants?.forEach(item => item.categoryLabel = pageObject.categoryOptions.find(opt => opt.value === item.categoryId)?.label);
     data.spentNeeds?.forEach(item => item.categoryLabel = pageObject.categoryOptions.find(opt => opt.value === item.categoryId)?.label);
     pageObject.data.budgetTracker = data;
   }
-  
-  
-  async updatePlansData(pageObject: BudgetPage, data: BudgetTrackItem[] ) {
+
+
+  async updatePlansData(pageObject: BudgetPage, data: BudgetTrackItem[]) {
     data?.forEach(item => item.categoryLabel = pageObject.categoryOptions.find(opt => opt.value === item.categoryId)?.label);
     pageObject.data.budgetTracker.plans = data;
   }

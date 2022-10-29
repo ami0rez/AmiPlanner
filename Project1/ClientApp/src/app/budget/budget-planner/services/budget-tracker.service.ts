@@ -30,6 +30,12 @@ export class BudgetTrackService {
   updateBudgetItem(item: BudgetTrackItem) {
     return this.http.put<BudgetTrackerResponse>(`${this.budgetTrackingUrl}/${item.id}`, item);
   }
+  payBudgetItem(id: string) {
+    return this.http.get<BudgetTrackerResponse>(`${this.budgetTrackingUrl}/Pay/${id}`);
+  }
+  refundBudgetItem(id: string) {
+    return this.http.get<BudgetTrackerResponse>(`${this.budgetTrackingUrl}/Refund/${id}`);
+  }
   deleteBudgetItem(itemId: string) {
     return this.http.delete<BudgetTrackerResponse>(`${this.budgetTrackingUrl}/${itemId}`);
   }

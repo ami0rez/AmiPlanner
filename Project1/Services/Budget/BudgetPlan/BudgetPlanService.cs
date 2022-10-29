@@ -1,8 +1,11 @@
-﻿using Amirez.AmipBackend.Controllers.Budget.BudgetPlan.Models;
+﻿using Amirez.AmipBackend.Common.Constants;
+using Amirez.AmipBackend.Controllers.Budget.BudgetPlan.Models;
 using Amirez.Infrastructure.Data.Model.Budget;
+using Amirez.Infrastructure.Repositories.Budget.Period;
 using Amirez.Infrastructure.Repositories.BudgetPlan;
 using Amirez.Infrastructure.Repositories.BudgetTrack;
 using AutoMapper;
+using Involys.Common.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,11 +16,18 @@ namespace Amirez.AmipBackend.Services.BudgetPlan
     {
         protected readonly IBudgetPlanRepository _context;
         protected readonly IBudgetTrackRepository _trackContext;
+        protected readonly IPeriodRepository _periodRepository;
         protected readonly IMapper _mapper;
 
-        public BudgetPlanService(IBudgetPlanRepository dbContext, IMapper mapper)
+        public BudgetPlanService(
+            IBudgetPlanRepository dbContext,
+            IBudgetTrackRepository trackContext,
+            IPeriodRepository periodRepository,
+            IMapper mapper)
         {
             _context = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _trackContext = trackContext ?? throw new ArgumentNullException(nameof(trackContext));
+            _periodRepository = periodRepository ?? throw new ArgumentNullException(nameof(periodRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
@@ -72,7 +82,7 @@ namespace Amirez.AmipBackend.Services.BudgetPlan
         /// <returns></returns>
         public async Task<IEnumerable<BudgetPlanListItemResponse>> FindPlans()
         {
-            var dbList = _context.FindAll();
+            var dbList = _context.FindAll(plan => !plan.Paid);
             var mappedItems = _mapper.ProjectTo<BudgetPlanListItemResponse>(dbList);
             return mappedItems;
 
@@ -91,14 +101,77 @@ namespace Amirez.AmipBackend.Services.BudgetPlan
             return await FindPlans();
         }
 
-        public Task ValidateCreate(BudgetPlanCreateQuery entity)
+        /// <summary>
+        /// Validate creation
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        protected async Task ValidateCreate(BudgetPlanCreateQuery entity)
         {
-            return Task.CompletedTask;
+            if (string.IsNullOrEmpty(entity.Subject?.Trim()))
+            {
+                throw new ResponseException(ErrorConstants.InvalidSubject);
+            }
+            if (entity.Ammount <= 0)
+            {
+                throw new ResponseException(ErrorConstants.InvalidAmout);
+            }
+            if (!entity.Repeat && (entity.Date < DateTime.Today || entity.Date.Month <= DateTime.Today.Month))
+            {
+                throw new ResponseException(ErrorConstants.PlanDateMustBeFutureMonths);
+            }
+
+            var subjectFound = await _context.AnyAsync(plan => plan.Subject == entity.Subject);
+            if (subjectFound)
+            {
+                throw new ResponseException(ErrorConstants.SubjectAlreadyUsed);
+            }
+
+            var periodClosed = await _periodRepository.IsClosed(entity.Date);
+            if (subjectFound)
+            {
+                throw new ResponseException(ErrorConstants.PeriodClosed);
+            }
         }
 
-        public Task ValidateUpdate(Guid id, BudgetPlanUpdateQuery entity)
+        /// <summary>
+        /// Validate update
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+
+        public async Task ValidateUpdate(Guid id, BudgetPlanUpdateQuery entity)
         {
-            return Task.CompletedTask;
+            if (string.IsNullOrEmpty(entity.Subject?.Trim()))
+            {
+                throw new ResponseException(ErrorConstants.InvalidSubject);
+            }
+            if (entity.Ammount <= 0)
+            {
+                throw new ResponseException(ErrorConstants.InvalidAmout);
+            }
+
+            var oldEntity = await _context.FindById(id);
+            if (oldEntity == null)
+            {
+                throw new ResponseException(ErrorConstants.InvalidPlan);
+            }
+            if (!entity.Repeat && entity.Date != oldEntity.Date && (entity.Date < DateTime.Today || entity.Date.Month <= DateTime.Today.Month))
+            {
+                throw new ResponseException(ErrorConstants.PlanDateMustBeFutureMonths);
+            }
+
+            var subjectFound = await _context.AnyAsync(plan => plan.Subject == entity.Subject && plan.Id != id);
+            if (subjectFound)
+            {
+                throw new ResponseException(ErrorConstants.SubjectAlreadyUsed);
+            }
+
+            var periodClosed = await _periodRepository.IsClosed(entity.Date);
+            if (subjectFound)
+            {
+                throw new ResponseException(ErrorConstants.PeriodClosed);
+            }
         }
     }
 }

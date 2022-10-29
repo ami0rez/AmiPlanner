@@ -39,8 +39,46 @@ namespace Amirez.Infrastructure.Repositories.BudgetPlan
         public async Task<List<BudgetPlanDataModel>> FindByDate(DateTime date)
         {
             return await _context.Set<BudgetPlanDataModel>()
-                .Include(f => f.Category)
-               .Where(e => e.Date.Month == date.Month && e.Date.Year == date.Year)
+               .Include(f => f.Category)
+               .Where(e => !e.Repeat && e.Date.Month == date.Month && e.Date.Year == date.Year)
+               .ToListAsync();
+        }
+
+        /// <summary>
+        /// Find Budget Planing Items by repeated
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<List<BudgetPlanDataModel>> FindRepeated(bool repeated)
+        {
+            return await _context.Set<BudgetPlanDataModel>()
+               .Include(f => f.Category)
+               .Where(e => e.Repeat == repeated)
+               .ToListAsync();
+        }
+
+        /// <summary>
+        /// Find Budget Planing Items by Date
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<List<BudgetPlanDataModel>> FindByDateNoIncludes(DateTime date)
+        {
+            return await _context.Set<BudgetPlanDataModel>()
+               .Where(e => !e.Repeat && e.Date.Month == date.Month && e.Date.Year == date.Year)
+               .AsNoTracking()
+               .ToListAsync();
+        }
+
+        /// <summary>
+        /// Find Budget Planing Items by repeated
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<List<BudgetPlanDataModel>> FindRepeatedNoIncludes(bool repeated)
+        {
+            return await _context.Set<BudgetPlanDataModel>()
+               .Where(e => e.Repeat == repeated)
                .AsNoTracking()
                .ToListAsync();
         }

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { BudgetPlannerService } from './budget-planner.service';
 import { BudgetTypes } from '../models/enums/budget-type';
+import { toUtcDateFromString } from 'involys-common/common';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,6 @@ export class BudgetPlannerManagerService {
     pageObject.typeOptions = Object.values(BudgetTypes)
       .filter(value => typeof value !== 'number')
       .map((item, index) => ({ label: item.toString(), value: index }));
-    pageObject.typeOptions.unshift({ label: "Select", value: null })
   }
 
   async deleteBudgetPlan(pageObject: BudgetPage, item: BudgetTrackItem) {
@@ -43,7 +43,10 @@ export class BudgetPlannerManagerService {
   }
 
   async updatePlansData(pageObject: BudgetPage, data: BudgetTrackItem[]) {
-    data?.forEach(item => item.categoryLabel = pageObject.categoryOptions.find(opt => opt.value === item.categoryId)?.label);
+    data?.forEach(item => {
+      item.categoryLabel = pageObject.categoryOptions.find(opt => opt.value === item.categoryId)?.label;
+      item.date = toUtcDateFromString(item.date);
+    });
     pageObject.data.budgetTracker.plans = data;
   }
 }

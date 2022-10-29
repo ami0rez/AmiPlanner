@@ -3,14 +3,16 @@ using System;
 using Amirez.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Amirez.Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221028142718_addBudgetPlaning")]
+    partial class addBudgetPlaning
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,29 +92,29 @@ namespace Amirez.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b4ad3f50-3545-426f-bd1f-4afb3534d51b"),
-                            ConcurrencyStamp = "7283e8ec-e671-4816-8094-1422e7cc7b4d",
+                            Id = new Guid("846f81eb-810f-4f88-9b46-3bb38b51a106"),
+                            ConcurrencyStamp = "b98a0d7b-505f-46e3-89a4-b13423c4dbae",
                             Name = "Administrateur",
                             RoleType = 1
                         },
                         new
                         {
-                            Id = new Guid("1a5668cf-dffb-41e7-b4bb-814c24b462af"),
-                            ConcurrencyStamp = "3f90a46b-d43c-4563-8c0f-01b53f6751b6",
+                            Id = new Guid("a1b52537-51e8-4ed4-ac8c-7a7d14166956"),
+                            ConcurrencyStamp = "2f8f2aff-8e45-444e-95ad-3105ed30b4c7",
                             Name = "Cb",
                             RoleType = 2
                         },
                         new
                         {
-                            Id = new Guid("2098ea56-437f-4855-bbd0-cdcee38fe47d"),
-                            ConcurrencyStamp = "21f6004a-0d61-4729-a159-c7f9bbc06711",
+                            Id = new Guid("39b10f54-d761-45f0-9d61-b82519392c61"),
+                            ConcurrencyStamp = "aca5f1bf-f05e-43d0-aec2-3aeb60573bf4",
                             Name = "Ruo",
                             RoleType = 3
                         },
                         new
                         {
-                            Id = new Guid("e1561260-7ac3-49f7-a5f1-08ad91bd51a4"),
-                            ConcurrencyStamp = "7bd3bcb2-28f9-48f7-9d66-614132133bfc",
+                            Id = new Guid("ccf9ab92-6dbb-431c-b99f-e7769a99d727"),
+                            ConcurrencyStamp = "e7f3739c-924f-48be-b104-115a8084eb3f",
                             Name = "Superviseur",
                             RoleType = 4
                         });
@@ -304,10 +306,6 @@ namespace Amirez.Infrastructure.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("paid");
 
-                    b.Property<DateTime?>("PaymentDate")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("payment_date");
-
                     b.Property<bool>("Repeat")
                         .HasColumnType("INTEGER")
                         .HasColumnName("repeat");
@@ -327,31 +325,6 @@ namespace Amirez.Infrastructure.Migrations
                         .HasDatabaseName("ix_budget_track_category_id");
 
                     b.ToTable("budget_track");
-                });
-
-            modelBuilder.Entity("Amirez.Infrastructure.Data.Model.Budget.PeriodDataModel", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("id");
-
-                    b.Property<bool>("Closed")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("closed");
-
-                    b.Property<DateTime?>("ClosedDate")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("closed_date");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("date");
-
-                    b.HasKey("Id")
-                        .HasName("pk_budget_period");
-
-                    b.ToTable("budget_period");
                 });
 
             modelBuilder.Entity("Amirez.Infrastructure.Data.Model.Common.FolderDataModel", b =>

@@ -3,14 +3,16 @@ using System;
 using Amirez.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Amirez.Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221028160620_addPeriods")]
+    partial class addPeriods
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,29 +92,29 @@ namespace Amirez.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b4ad3f50-3545-426f-bd1f-4afb3534d51b"),
-                            ConcurrencyStamp = "7283e8ec-e671-4816-8094-1422e7cc7b4d",
+                            Id = new Guid("fb8071a3-d9e9-4840-a238-dd555df5cdcc"),
+                            ConcurrencyStamp = "d5e73d7c-4709-4e16-9819-c7151fe66a48",
                             Name = "Administrateur",
                             RoleType = 1
                         },
                         new
                         {
-                            Id = new Guid("1a5668cf-dffb-41e7-b4bb-814c24b462af"),
-                            ConcurrencyStamp = "3f90a46b-d43c-4563-8c0f-01b53f6751b6",
+                            Id = new Guid("437ec833-24aa-4cef-aabb-ffa6ab8a8b74"),
+                            ConcurrencyStamp = "7d9ef546-8e1a-40f1-92d6-365083b452d5",
                             Name = "Cb",
                             RoleType = 2
                         },
                         new
                         {
-                            Id = new Guid("2098ea56-437f-4855-bbd0-cdcee38fe47d"),
-                            ConcurrencyStamp = "21f6004a-0d61-4729-a159-c7f9bbc06711",
+                            Id = new Guid("5f205bde-f1a9-4fab-aece-b7626e45b4d5"),
+                            ConcurrencyStamp = "93c5518d-3d5e-4cd3-864e-162223ca1302",
                             Name = "Ruo",
                             RoleType = 3
                         },
                         new
                         {
-                            Id = new Guid("e1561260-7ac3-49f7-a5f1-08ad91bd51a4"),
-                            ConcurrencyStamp = "7bd3bcb2-28f9-48f7-9d66-614132133bfc",
+                            Id = new Guid("4cb6d4c2-e5c4-4f45-874f-5e8495ac689d"),
+                            ConcurrencyStamp = "51b17d2f-0d34-41ab-81aa-294d102ed31b",
                             Name = "Superviseur",
                             RoleType = 4
                         });
@@ -340,7 +342,7 @@ namespace Amirez.Infrastructure.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("closed");
 
-                    b.Property<DateTime?>("ClosedDate")
+                    b.Property<DateTime>("ClosedDate")
                         .HasColumnType("TEXT")
                         .HasColumnName("closed_date");
 

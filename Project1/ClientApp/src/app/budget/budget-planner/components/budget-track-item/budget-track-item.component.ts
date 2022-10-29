@@ -1,6 +1,7 @@
 import { ListItem } from './../../../../common/models/list-item';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { BudgetTrackItem } from '../../models/budget-track-item';
+import { toUtcDate } from 'involys-common/common';
 
 @Component({
   selector: 'app-budget-track-item',
@@ -12,13 +13,9 @@ export class BudgetTrackItemComponent implements OnInit {
   @Input()
   item: BudgetTrackItem = new BudgetTrackItem();
 
-  clonedItem: BudgetTrackItem = new BudgetTrackItem();
-
-
   @Input()
   options: ListItem[];
 
-  
   @Input()
   typeOptions: ListItem[];
 
@@ -34,6 +31,13 @@ export class BudgetTrackItemComponent implements OnInit {
   @Input()
   planner = false;
 
+  @Input()
+  canPay = false;
+
+  @Output()
+  onPay: EventEmitter<BudgetTrackItem> = new EventEmitter<BudgetTrackItem>();
+  @Output()
+  onRefund: EventEmitter<BudgetTrackItem> = new EventEmitter<BudgetTrackItem>();
   @Output()
   onSave: EventEmitter<BudgetTrackItem> = new EventEmitter<BudgetTrackItem>();
   @Output()
@@ -43,6 +47,7 @@ export class BudgetTrackItemComponent implements OnInit {
   @Output()
   onDelete: EventEmitter<BudgetTrackItem> = new EventEmitter<BudgetTrackItem>();
 
+  clonedItem: BudgetTrackItem = new BudgetTrackItem();
   constructor() { }
 
   ngOnInit(): void {
@@ -52,13 +57,21 @@ export class BudgetTrackItemComponent implements OnInit {
   edit() {
     this.setEditableMode(true);
     this.clonedItem = { ...this.item }
+    this.item.date = toUtcDate(this.item.date);
     this.onEdit.emit(this.item);
   }
 
+  pay() {
+    this.onPay.emit(this.item);
+  }
+
+  refund() {
+    this.onRefund.emit(this.item);
+  }
+
   save() {
+    this.item.date = toUtcDate(this.item.date);
     this.onSave.emit({ ... this.item });
-    console.log('save');
-    
     this.item = new BudgetTrackItem();
   }
 
@@ -72,6 +85,7 @@ export class BudgetTrackItemComponent implements OnInit {
     this.setEditableMode(false);
     this.onDelete.emit({ ... this.item });
   }
+
   setEditableMode(value) {
     this.editable = value;
   }

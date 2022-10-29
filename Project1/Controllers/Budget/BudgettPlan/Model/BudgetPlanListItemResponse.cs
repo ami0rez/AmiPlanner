@@ -11,6 +11,8 @@ namespace Amirez.AmipBackend.Controllers.Budget.BudgetPlan.Models
 
         public bool Repeat { get; set; }
 
+        public bool Paid { get; set; }
+
         public double Ammount { get; set; }
 
         public DateTime Date { get; set; }

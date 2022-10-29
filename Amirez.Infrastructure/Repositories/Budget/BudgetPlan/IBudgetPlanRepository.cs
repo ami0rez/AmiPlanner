@@ -17,6 +17,26 @@ namespace Amirez.Infrastructure.Repositories.BudgetPlan
         Task<List<BudgetPlanDataModel>> FindByDate(DateTime date);
 
         /// <summary>
+        /// Find Budget Planing Items by repeated
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        Task<List<BudgetPlanDataModel>> FindRepeated(bool repeated);
+        /// <summary>
+        /// Find Budget Planing Items by Date No Includes
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        Task<List<BudgetPlanDataModel>> FindByDateNoIncludes(DateTime date);
+
+        /// <summary>
+        /// Find Budget Planing Items by repeated No Includes
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        Task<List<BudgetPlanDataModel>> FindRepeatedNoIncludes(bool repeated);
+
+        /// <summary>
         /// Find Budget Plan Items by Date
         /// </summary>
         /// <param name="startingFrom"></param>

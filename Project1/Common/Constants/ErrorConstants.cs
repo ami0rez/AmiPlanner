@@ -59,5 +59,23 @@
         public const string UserRuoIsRequired = "UserRuoIsRequired";
         public const string UserRuoNotFound = "UserRuoNotFound";
         #endregion
+
+
+        #region Budget Period
+        public const string PeriodClosed = "This period is closed";
+        public const string PeriodAlreadyClosed = "This period is already closed";
+        public const string PeriodAlreadyOpen = "This period is already closed";
+        #endregion
+
+        #region Budget
+        public const string SubjectAlreadyUsed = "This subject is already used";
+        public const string InvalidAmout = "Amount must be greater ther 0";
+        public const string InvalidSubject = "Invalid Subject";
+        #endregion
+
+        #region Budget
+        public const string InvalidPlan = "Plan Card not found";
+        public const string PlanDateMustBeFutureMonths = "The date must be in future months";
+        #endregion
     }
 }

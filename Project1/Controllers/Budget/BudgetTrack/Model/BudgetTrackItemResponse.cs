@@ -26,6 +26,6 @@ namespace Amirez.AmipBackend.Controllers.Budget.BudgetTrack.Models
         public double AvailableSpentWants { get; set; }
         public double AvailableSpentNeeds { get; set; }
         public double AvailableSavings { get; set; }
-
+        public bool PeriodClosed { get; set; }
     }
 }

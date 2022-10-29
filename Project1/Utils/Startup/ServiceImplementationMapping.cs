@@ -7,9 +7,11 @@ using Amirez.AmipBackend.Services.TaskElement;
 using Amirez.AmiPlanner.Services.Authentication.Accounts;
 using Amirez.AmiPlanner.Services.Authentication.Configuration;
 using Amirez.AmiPlanner.Services.Authentication.Token;
+using Amirez.AmiPlanner.Services.Budget.Period;
 using Amirez.AmiPlanner.Services.TaskExpolrer;
 using Amirez.Infrastructure.Repositories.Authentication.Token;
 using Amirez.Infrastructure.Repositories.Authentication.Utilisateur;
+using Amirez.Infrastructure.Repositories.Budget.Period;
 using Amirez.Infrastructure.Repositories.BudgetPlan;
 using Amirez.Infrastructure.Repositories.BudgetTrack;
 using Amirez.Infrastructure.Repositories.Folder;
@@ -61,6 +63,10 @@ namespace Amirez.AmipBackend.Utils.Startup
             //BudgetPlan
             services.AddTransient<IBudgetPlanService, BudgetPlanService>();
             services.AddTransient<IBudgetPlanRepository, BudgetPlanRepository>();
+
+            //Period
+            services.AddTransient<IPeriodRepository, PeriodRepository>();
+            services.AddTransient<IPeriodService, PeriodService>();
         }
     }
 }

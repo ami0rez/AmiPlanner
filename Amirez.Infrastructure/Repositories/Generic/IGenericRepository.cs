@@ -1,5 +1,6 @@
 ﻿using Amirez.Infrastructure.Data.Model;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -13,6 +14,14 @@ namespace Amirez.Infrastructure.Repositories.Generic
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");
 
+
+        /// <summary>
+        /// Checks if item is unique by a filter
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        Task<bool> AnyAsync(Expression<Func<TEntity, bool>> filter);
+
         Task<TEntity> FindById(Guid? id);
 
         Task Create(TEntity entity);
@@ -24,6 +33,14 @@ namespace Amirez.Infrastructure.Repositories.Generic
         Task Update(Guid id, TEntity entity);
 
         Task Delete(Guid id);
+
+
+        /// <summary>
+        /// Delete Range Of Entities.
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        Task DeleteRange(IEnumerable<Guid> ids);
 
         Task SaveChangesAsync();
     }

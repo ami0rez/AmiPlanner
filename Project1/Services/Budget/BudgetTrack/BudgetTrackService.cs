@@ -3,6 +3,7 @@ using Amirez.AmiPlanner.Common.Constants;
 using Amirez.AmiPlanner.Common.Models;
 using Amirez.Infrastructure.Data.Model.Budget;
 using Amirez.Infrastructure.Data.Model.Budget.Enumeration;
+using Amirez.Infrastructure.Repositories.Budget.Period;
 using Amirez.Infrastructure.Repositories.BudgetPlan;
 using Amirez.Infrastructure.Repositories.BudgetTrack;
 using AutoMapper;
@@ -17,12 +18,18 @@ namespace Amirez.AmipBackend.Services.BudgetTrack
     {
         protected readonly IBudgetTrackRepository _context;
         protected readonly IBudgetPlanRepository _planContext;
+        protected readonly IPeriodRepository _periodRepository;
         protected readonly IMapper _mapper;
 
-        public BudgetTrackService(IBudgetTrackRepository dbContext, IBudgetPlanRepository planContext, IMapper mapper)
+        public BudgetTrackService(
+            IBudgetTrackRepository dbContext,
+            IBudgetPlanRepository planContext,
+             IPeriodRepository periodRepository,
+            IMapper mapper)
         {
             _context = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             _planContext = planContext ?? throw new ArgumentNullException(nameof(planContext));
+            _periodRepository = periodRepository ?? throw new ArgumentNullException(nameof(periodRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
@@ -36,45 +43,11 @@ namespace Amirez.AmipBackend.Services.BudgetTrack
             await ValidateCreate(entity);
             var mappedEntity = _mapper.Map<BudgetTrackDataModel>(entity);
             await _context.Create(mappedEntity);
-            if (entity.Type == BudgetTypes.Incom)
-            {
-                await ManageIncomUpdate(mappedEntity);
-            }
+            //if (entity.Type == BudgetTypes.Incom)
+            //{
+            //    await ManageIncomUpdate(mappedEntity);
+            //}
             return await FindByDate(mappedEntity.Date);
-        }
-
-
-
-        /// <summary>
-        /// Create new plan entity.
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public virtual async Task<BudgetTrackItemResponse> CreatePlan(BudgetTrackCreateQuery entity)
-        {
-            await ValidateCreate(entity);
-            var mappedEntity = _mapper.Map<BudgetPlanDataModel>(entity);
-            await _planContext.Create(mappedEntity);
-            await ManagePlannedItems(mappedEntity);
-            return await FindByDate(mappedEntity.Date);
-        }
-
-        /// <summary>
-        /// Manage Planned Items Properties.
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public virtual async Task ManagePlannedItems(BudgetPlanDataModel entity)
-        {
-            if (entity.Repeat)
-            {
-                var item = await _context.FindBySubject(DateTime.Today, entity.Subject);
-                if (item == null)
-                {
-                    var card = _mapper.Map<BudgetTrackDataModel>(entity);
-                    await _context.Create(card);
-                }
-            }
         }
 
         /// <summary>
@@ -162,6 +135,7 @@ namespace Amirez.AmipBackend.Services.BudgetTrack
                 SpentWants = mappedItems.Where(item => item.Type == BudgetTypes.Want),
                 Savings = mappedItems.Where(item => item.Type == BudgetTypes.Saving),
             };
+            budgetTracking.PeriodClosed = await _periodRepository.IsClosed(month.HasValue ? month.Value : DateTime.Today);
             await CalculateAmmounts(budgetTracking);
             return budgetTracking;
 
@@ -233,6 +207,53 @@ namespace Amirez.AmipBackend.Services.BudgetTrack
         public Task ValidateUpdate(Guid id, BudgetTrackUpdateQuery entity)
         {
             return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// Pay a budget item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public virtual async Task<BudgetTrackItemResponse> Pay(Guid id)
+        {
+            var item = await _context.FindById(id);
+            if(item != null)
+            {
+                item.Paid = true;
+                item.PaymentDate = DateTime.Now;
+                await _context.Update(item.Id, item);
+            }
+            var planeItem = await _planContext.FindBySubject(item.Date, item.Subject);
+            if(planeItem != null && !planeItem.Repeat)
+            {
+                planeItem.Paid = true;
+                await _planContext.Update(planeItem.Id, planeItem);
+            }
+            return await FindByDate(item.Date);
+        }
+
+
+        /// <summary>
+        /// Refund a budget item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public virtual async Task<BudgetTrackItemResponse> Refund(Guid id)
+        {
+            var item = await _context.FindById(id);
+            if (item != null)
+            {
+                item.Paid = false;
+                item.PaymentDate = null;
+                await _context.Update(item.Id, item);
+            }
+            var planeItem = await _planContext.FindBySubject(item.Date, item.Subject);
+            if (planeItem != null && !planeItem.Repeat)
+            {
+                planeItem.Paid = false;
+                await _planContext.Update(planeItem.Id, planeItem);
+            }
+            return await FindByDate(item.Date);
         }
     }
 }

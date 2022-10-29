@@ -2,7 +2,9 @@ using Amirez.AmipBackend.Utils.Mapping;
 using Amirez.AmipBackend.Utils.Startup;
 using Amirez.AmiPlanner.Utils.Authentication;
 using Amirez.AmiPlanner.Utils.Configuration;
+using Amirez.AmiPlanner.Utils.Startup;
 using Amirez.Infrastructure.Utils;
+using Involys.Common.Utils.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -33,7 +35,10 @@ namespace Project1
             services.AddAutoMapper(typeof(AmipMappingProfile));
             services.AddDefaultCors(Configuration, DefaultCorsPolicy);
             services.MapServicesToImplementations();
-            services.AddControllersWithViews();
+            services.AddControllers(options =>
+            {
+                options.AddFilters();
+            });
             if (UseSpaStaticFiles)
             {
                 // In production, the Angular files will be served from this directory

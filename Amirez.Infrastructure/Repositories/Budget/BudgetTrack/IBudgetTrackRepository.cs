@@ -17,6 +17,13 @@ namespace Amirez.Infrastructure.Repositories.BudgetTrack
         Task<List<BudgetTrackDataModel>> FindByDate(DateTime date);
 
         /// <summary>
+        /// Find Budget Tracking Ids by Date No Includes
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        Task<List<Guid>> FindIdsByDate(DateTime date);
+
+        /// <summary>
         /// Find card by subject
         /// </summary>
         /// <param name="date"></param>

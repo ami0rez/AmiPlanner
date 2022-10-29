@@ -1,8 +1,10 @@
+import { toUtcDate } from 'involys-common/common';
 import { BudgetTrackItem } from './../../models/budget-track-item';
 import { BudgetTrackManagerService } from './../../services/budget-tracker-manager.service';
 import { Component, OnInit } from '@angular/core';
 import { BudgetPage } from '../../models/budget-page';
 import { BudgetTypes } from '../../models/enums/budget-type';
+import { periodManagerService } from '../../services/period-manager.service';
 
 @Component({
   selector: 'app-budget-tracker',
@@ -12,7 +14,8 @@ import { BudgetTypes } from '../../models/enums/budget-type';
 export class BudgetTrackerComponent implements OnInit {
 
   pageObject: BudgetPage = new BudgetPage();
-  constructor(private readonly budgetTrackManagerService: BudgetTrackManagerService) { }
+  constructor(private readonly budgetTrackManagerService: BudgetTrackManagerService,
+    private readonly periodManagerService: periodManagerService) { }
 
   async ngOnInit() {
     await this.budgetTrackManagerService.loadOptions(this.pageObject);
@@ -58,8 +61,36 @@ export class BudgetTrackerComponent implements OnInit {
   */
   verifyDate(item: BudgetTrackItem) {
     if (!item.id) {
-      item.date = this.pageObject.data.budgetTrackingDate ?? new Date();
+      item.date = toUtcDate(this.pageObject.data.budgetTrackingDate) ?? new Date();
     }
+  }
+
+  async payBudgetItem(item) {
+    await this.budgetTrackManagerService.payBudgetItem(this.pageObject, item);
+  }
+
+  async refundBudgetItem(item) {
+    await this.budgetTrackManagerService.refundBudgetItem(this.pageObject, item);
+  }
+
+  async initPeriod() {
+    await this.periodManagerService.initPeriod(toUtcDate(this.pageObject.data.budgetTrackingDate));
+    await this.budgetTrackManagerService.getTrackingItems(this.pageObject);
+  }
+
+  async clearPeriod() {
+    await this.periodManagerService.clearPeriod(toUtcDate(this.pageObject.data.budgetTrackingDate));
+    await this.budgetTrackManagerService.getTrackingItems(this.pageObject);
+  }
+
+  async closePeriod() {
+    await this.periodManagerService.closePeriod(toUtcDate(this.pageObject.data.budgetTrackingDate));
+    await this.budgetTrackManagerService.getTrackingItems(this.pageObject);
+  }
+
+  async openPeriod() {
+    await this.periodManagerService.openPeriod(toUtcDate(this.pageObject.data.budgetTrackingDate));
+    await this.budgetTrackManagerService.getTrackingItems(this.pageObject);
   }
 
 }

@@ -9,6 +9,8 @@ namespace Amirez.Infrastructure.Data.Model.Budget
     {
         public DateTime Date { get; set; }
         public bool Repeat { get; set; }
+        public bool Paid { get; set; }
+        public DateTime? PaymentDate { get; set; }
         public string Subject { get; set; }
         public double Ammount { get; set; }
         public Guid? CategoryId { get; set; }

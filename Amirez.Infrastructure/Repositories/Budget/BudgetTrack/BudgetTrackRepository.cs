@@ -46,6 +46,20 @@ namespace Amirez.Infrastructure.Repositories.BudgetTrack
         }
 
         /// <summary>
+        /// Find Budget Tracking Ids by Date No Includes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<List<Guid>> FindIdsByDate(DateTime date)
+        {
+            return await _context.Set<BudgetTrackDataModel>()
+               .Where(e => e.Date.Month == date.Month && e.Date.Year == date.Year)
+               .AsNoTracking()
+               .Select(card => card.Id)
+               .ToListAsync();
+        }
+
+        /// <summary>
         /// Find card by subject
         /// </summary>
         /// <param name="date"></param>
@@ -58,6 +72,7 @@ namespace Amirez.Infrastructure.Repositories.BudgetTrack
                        && e.Date.Year == date.Year
                        && e.Subject == name
                        )
+               .AsNoTracking()
                .FirstOrDefaultAsync();
         }
 
@@ -74,6 +89,7 @@ namespace Amirez.Infrastructure.Repositories.BudgetTrack
                        && e.Type == BudgetTypes.Saving
                        && e.Subject == Constants.DefaultSavings
                        )
+               .AsNoTracking()
                .FirstOrDefaultAsync();
         }
 

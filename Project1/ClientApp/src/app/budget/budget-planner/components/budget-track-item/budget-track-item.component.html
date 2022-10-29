@@ -1,23 +1,43 @@
-<div class="budget-track-item {{creator ? 'soft-display': ''}}">
+<div
+  class="budget-track-item  {{!planner && item.repeat ? 'only-display': ''}} {{creator ? 'soft-display': ''}} {{item.paid ? 'state-done': ''}}">
   <div class="budget-track-controls">
+    <i *ngIf="!planner && !editable && !creator && canPay && !item.paid"
+      class="bi bi-credit-card-fill budget-track-controls-icons" (click)="pay()"></i>
+    <i *ngIf="!planner && !editable && !creator && canPay && item.paid"
+      class="bi bi-wallet2 budget-track-controls-icons" (click)="refund()"></i>
     <i *ngIf="!editable && !creator" class="bi bi-pen budget-track-controls-icons" (click)="edit()"></i>
     <i *ngIf="!editable && !creator" class="bi bi-trash budget-track-controls-icons red" (click)="remove()"></i>
     <i *ngIf="editable || creator" class="bi bi-sd-card budget-track-controls-icons blue" (click)="save()"></i>
     <i *ngIf="editable && !creator" class="bi bi-x budget-track-controls-icons red" (click)="cancel()"></i>
   </div>
   <div class="budget-track-header">
+    <!-- Item Title -->
     <input pInputText class="budget-title" [(ngModel)]="item.subject" *ngIf="editable || creator" suffix="DH" />
     <span *ngIf="!editable && !creator" class="budget-title">{{item?.subject}}</span>
+    <!-- Item Type -->
+    <p-selectButton class="budget-type" [options]="typeOptions" [(ngModel)]="item.type" optionLabel="label"
+      optionValue="value" [disabled]="!editable && !creator"></p-selectButton>
+
+    <!-- Item Category -->
     <p-dropdown *ngIf="useCategory && (editable || creator)" [(ngModel)]="item.categoryId" [options]="options"
       (onChange)="typeChanged()"></p-dropdown>
-    <span *ngIf="useCategory && (!editable && !creator)">{{item?.categoryLabel}}</span>
+    <div class="budget-category-title" *ngIf="useCategory && (!editable && !creator)">{{item?.categoryLabel + " " +
+      (item.paid | json)}}</div>
   </div>
   <div class="budget-track-body">
     <div class="d-flex-row w-100-prcnt">
-      <div class="f-grow">
-        <p-dropdown *ngIf="planner" [(ngModel)]="item.type" [options]="typeOptions"></p-dropdown>
-        <p-checkbox *ngIf="planner" [binary]="true" label="Repeat every month" [(ngModel)]="item.repeat" [disabled]="!editable && !creator"></p-checkbox>
+      <!-- Item Repeat -->
+      <div *ngIf="planner" class="f-grow">
+        <p-checkbox [binary]="true" label="Repeat every month" [(ngModel)]="item.repeat"
+          [disabled]="!editable && !creator"></p-checkbox>
       </div>
+
+      <!-- Item Date -->
+      <div *ngIf="planner && !item.repeat" class="f-grow">
+        Planned Date: <p-calendar view="month" dateFormat="mm/yy" [(ngModel)]="item.date" [disabled]="!editable && !creator"></p-calendar>
+      </div>
+      
+      <!-- Item Amount -->
       <span *ngIf="!editable && !creator">{{item?.ammount}} DH</span>
     </div>
     <p-inputNumber *ngIf="editable || creator" [(ngModel)]="item.ammount" suffix="DH"></p-inputNumber>

@@ -47,5 +47,19 @@ namespace Amirez.AmipBackend.Services.BudgetTrack
         /// <param name="id"></param>
         /// <returns></returns>
         Task<BudgetTrackItemResponse> Update(Guid id, BudgetTrackUpdateQuery entity);
+
+        /// <summary>
+        /// Pay a budget item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<BudgetTrackItemResponse> Pay(Guid id);
+        
+        /// <summary>
+        /// Refund a budget item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<BudgetTrackItemResponse> Refund(Guid id);
     }
 }

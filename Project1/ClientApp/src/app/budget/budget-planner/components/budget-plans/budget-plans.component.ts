@@ -21,17 +21,7 @@ export class BudgetPlansComponent implements OnInit {
   }
 
   async savePlan(item) {
-    this.verifyDate(item);
     await this.budgetPlannerManagerService.saveBudgetPlan(this.pageObject, item);
-  }
-
-  /*
-  *  @description verify if item has date, if not add date
-  */
-  verifyDate(item) {
-    if (!item.id) {
-      item.date = new Date();
-    }
   }
 
 

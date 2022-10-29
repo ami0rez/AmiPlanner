@@ -97,7 +97,14 @@ body {
   opacity: 1;
 }
 
-
+.ml-8p{
+  margin-left: 8px;
+}
+/*------------------------------------------------------------------------------*/
+p-selectbutton .p-button{
+  padding: 3px 5px;
+}
+/*------------------------------------------------------------------------------*/
 /* Goal Content */
 .goal-content {
   display: flex;
@@ -1361,6 +1368,9 @@ p-tabpanel div.p-tabview-panel {
   position: relative;
   margin-bottom: 5px;
 }
+.budget-tracker-header button{
+  margin-left: 8px;
+}
 
 .budget-tracker-body .budget-header .budget-tag {
   position: absolute;
@@ -1426,6 +1436,28 @@ p-tabpanel div.p-tabview-panel {
   flex-direction: column;
   position: relative;
 }
+.budget-track-item.only-display {
+  height: 40px;
+  flex-direction: row;
+  align-items: center;
+}
+.budget-track-item.only-display .budget-category-title {
+  vertical-align: sub;
+  font-size: smaller;
+  flex-grow: 1;
+}
+.budget-track-item.only-display .budget-track-header {
+  flex-grow: 1;
+}
+.budget-track-item.only-display .budget-track-body {
+  flex-grow: 0;
+}
+.budget-track-item.state-done {
+  background: #006B3E11;
+  border-left: #006B3EAA solid thick;
+}
+/*  ------------- */
+
 
 .budget-track-item .budget-track-header {
   display: flex;
@@ -1443,6 +1475,10 @@ p-tabpanel div.p-tabview-panel {
   flex-grow: 1;
 }
 
+.budget-track-item .budget-type {
+  margin: 0 5px;
+  flex-grow: 1;
+}
 .budget-track-item .budget-track-body {
   flex-grow: 1;
   display: flex;
@@ -1460,6 +1496,7 @@ p-tabpanel div.p-tabview-panel {
   border-radius: 15px;
   cursor: pointer;
   z-index: 1000;
+  margin-left: 4px;
 }
 
 .budget-track-controls-icons.blue {
@@ -1514,3 +1551,4 @@ p-tabpanel div.p-tabview-panel {
   appearance: none;
   border-radius: 3px;
 }
+
