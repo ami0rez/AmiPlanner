@@ -1,4 +1,5 @@
 ﻿using Amirez.AmipBackend.Services.BudgetPlan;
+using Amirez.AmipBackend.Services.BudgetSpent;
 using Amirez.AmipBackend.Services.BudgetTrack;
 using Amirez.AmipBackend.Services.Folder;
 using Amirez.AmipBackend.Services.Goal;
@@ -14,6 +15,7 @@ using Amirez.Infrastructure.Repositories.Authentication.Token;
 using Amirez.Infrastructure.Repositories.Authentication.Utilisateur;
 using Amirez.Infrastructure.Repositories.Budget.Period;
 using Amirez.Infrastructure.Repositories.BudgetPlan;
+using Amirez.Infrastructure.Repositories.BudgetSpent;
 using Amirez.Infrastructure.Repositories.BudgetTrack;
 using Amirez.Infrastructure.Repositories.Folder;
 using Amirez.Infrastructure.Repositories.Global;
@@ -75,6 +77,10 @@ namespace Amirez.AmipBackend.Utils.Startup
 
             //Period
             services.AddTransient<IGlobalRepository, GlobalRepository>();
+
+            //BudgetSpent
+            services.AddTransient<IBudgetSpentService, BudgetSpentService>();
+            services.AddTransient<IBudgetSpentRepository, BudgetSpentRepository>();
         }
     }
 }

@@ -30,8 +30,8 @@ namespace Amirez.AmipBackend.Controllers.Budget.BudgetSpent
             return Ok(await _service.Delete(id));
         }
 
-        [HttpGet]
-        public virtual async Task<ActionResult<BudgetSpentItemResponse>> FindByParentId(Guid? parentId)
+        [HttpGet("{parentId}")]
+        public virtual async Task<ActionResult<BudgetSpentItemResponse>> FindByParentId(Guid parentId)
         {
             var entity = await _service.FindByParentId(parentId);
             return Ok(entity);

@@ -24,7 +24,7 @@ namespace Amirez.Infrastructure.Repositories.BudgetSpent
         public async Task<List<BudgetSpentDataModel>> FindIdsByParentId(Guid parentId)
         {
             return await _context.Set<BudgetSpentDataModel>()
-               .Where(e => e.Id == parentId)
+               .Where(e => e.ParentId == parentId)
                .AsNoTracking()
                .ToListAsync();
         }

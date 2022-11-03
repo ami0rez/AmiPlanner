@@ -29,4 +29,8 @@ export class BudgetSpentListComponent implements OnInit {
   handleSave(item: BudgetSpentItem) {
     this.onSave.emit(item);
   }
+
+  handelDelete(item: BudgetSpentItem) {
+    this.onDelete.emit(item);
+  }
 }

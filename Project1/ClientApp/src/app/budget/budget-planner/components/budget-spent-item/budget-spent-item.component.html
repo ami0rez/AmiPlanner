@@ -5,7 +5,7 @@
 
   <!-- Subject -->
   <div *ngIf="!editable && !creator" class="budget-spent-subject f-grow mv-4p">
-    Spent Suject
+    {{item.subject}}
   </div>
   <div *ngIf="editable || creator" class="budget-spent-subject f-grow mv-4p">
     <input pInputText class="spent-title" [(ngModel)]="item.subject" *ngIf="editable || creator" suffix="DH" />
@@ -13,7 +13,7 @@
 
   <!-- Amount -->
   <div *ngIf="!editable && !creator" class="budget-spent-amount">
-    2800 DH
+    {{item.amount}} DH
   </div>
   <div *ngIf="editable || creator" class="budget-spent-subject f-grow mv-4p">
     <p-inputNumber *ngIf="editable || creator" [(ngModel)]="item.amount" suffix="DH"></p-inputNumber>

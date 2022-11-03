@@ -2,9 +2,9 @@
   class="budget-track-item {{item.paid ? 'state-done': ''}}">
   <div class="budget-track-controls">
     <i *ngIf="!showSpendings && !editable" class="bi bi-list budget-track-controls-icons"
-      (click)="toggleSpendings()" pTooltip="Show Spendings"></i>
+      (click)="toggleSpendings(item)" pTooltip="Show Spendings"></i>
       <i *ngIf="showSpendings && !editable" class="bi bi-arrows-collapse budget-track-controls-icons"
-      (click)="toggleSpendings()" pTooltip="Hide Spendings"></i>
+      (click)="toggleSpendings(item)" pTooltip="Hide Spendings"></i>
     <i *ngIf="!planner && !editable && !creator && canPay && !item.paid"
       class="bi bi-credit-card-fill budget-track-controls-icons" (click)="pay()"></i>
     <i *ngIf="!planner && !editable && !creator && canPay && item.paid"
@@ -49,6 +49,6 @@
     </div>
   </div>
   <div *ngIf="showSpendings && !editable && !creator" class="budget-track-footer">
-    <app-budget-spent-list (onSave)="saveSpentItem($event)"></app-budget-spent-list>
+    <app-budget-spent-list (onSave)="saveSpentItem($event)" (onDelete)="deleteSpentItem($event)" [value]="item.spent"></app-budget-spent-list>
   </div>
 </div>

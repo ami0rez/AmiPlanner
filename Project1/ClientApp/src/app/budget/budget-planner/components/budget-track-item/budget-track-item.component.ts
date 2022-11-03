@@ -49,6 +49,8 @@ export class BudgetTrackItemComponent implements OnInit {
   onDelete: EventEmitter<BudgetTrackItem> = new EventEmitter<BudgetTrackItem>();
 
   @Output()
+  onLoadSpent: EventEmitter<BudgetTrackItem> = new EventEmitter<BudgetTrackItem>();
+  @Output()
   onSaveSpent: EventEmitter<BudgetSpentItem> = new EventEmitter<BudgetSpentItem>();
   @Output()
   onCancelSpent: EventEmitter<BudgetSpentItem> = new EventEmitter<BudgetSpentItem>();
@@ -93,14 +95,21 @@ export class BudgetTrackItemComponent implements OnInit {
     this.onSaveSpent.emit({ ...spentItem });
   }
 
+  deleteSpentItem(spentItem: BudgetSpentItem) {
+    this.onDeleteSpent.emit({ ...spentItem });
+  }
+
   cancel() {
     this.setEditableMode(false);
     this.item = { ...this.clonedItem }
     this.onCancel.emit({ ... this.item });
   }
 
-  toggleSpendings() {
+  async toggleSpendings(item: BudgetTrackItem) {
     this.showSpendings = !this.showSpendings;
+    if(!item.spent){
+      this.onLoadSpent.next(item);
+    }
   }
 
   remove() {

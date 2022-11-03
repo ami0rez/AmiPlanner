@@ -1,2 +1,2 @@
-<app-budget-spent-item *ngFor="let item of value" [item]="item" (onSave)="handleSave($event)"></app-budget-spent-item>
+<app-budget-spent-item *ngFor="let item of value" [item]="item" (onSave)="handleSave($event)"(onDelete)="handelDelete($event)"></app-budget-spent-item>
 <app-budget-spent-item [creator]="true" (onSave)="handleSave($event)"></app-budget-spent-item>

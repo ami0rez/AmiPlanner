@@ -1,4 +1,5 @@
 ﻿using Amirez.AmipBackend.Controllers.Budget.BudgetPlan.Models;
+using Amirez.AmipBackend.Controllers.Budget.BudgetSpent.Models;
 using Amirez.AmipBackend.Controllers.Budget.BudgetTrack.Models;
 using Amirez.AmipBackend.Controllers.Common.Models;
 using Amirez.AmipBackend.Controllers.Folder.Model;
@@ -13,7 +14,6 @@ using Amirez.Infrastructure.Data.Model.Budget;
 using Amirez.Infrastructure.Data.Model.Common;
 using Amirez.Infrastructure.Data.Model.Enumerations;
 using AutoMapper;
-using System;
 using System.Linq;
 
 namespace Amirez.AmipBackend.Utils.Mapping
@@ -109,6 +109,10 @@ namespace Amirez.AmipBackend.Utils.Mapping
             CreateMap<BudgetPlanCreateQuery, BudgetPlanDataModel>();
             CreateMap<BudgetPlanUpdateQuery, BudgetPlanDataModel>();
 
+            //Budget Spent
+            CreateMap<BudgetSpentDataModel, BudgetSpentListItemResponse>();
+            CreateMap<BudgetSpentCreateQuery, BudgetSpentDataModel>();
+            CreateMap<BudgetSpentUpdateQuery, BudgetSpentDataModel>();
             #endregion
         }
     }

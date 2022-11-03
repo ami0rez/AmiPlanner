@@ -6,6 +6,7 @@ import { BudgetPage } from '../../models/budget-page';
 import { BudgetTypes } from '../../models/enums/budget-type';
 import { periodManagerService } from '../../services/period-manager.service';
 import { BudgetSpentItem } from '../../models/budget-spent-item';
+import { BudgetSpentManagerService } from '../../services/budget-spent-manager.service';
 
 @Component({
   selector: 'app-budget-tracker',
@@ -17,7 +18,9 @@ export class BudgetTrackerComponent implements OnInit {
   @Input()
   pageObject: BudgetPage;
   constructor(private readonly budgetTrackManagerService: BudgetTrackManagerService,
-    private readonly periodManagerService: periodManagerService) { }
+    private readonly periodManagerService: periodManagerService,
+    private readonly budgetSpentManagerService: BudgetSpentManagerService
+    ) { }
 
   async ngOnInit() {}
 
@@ -26,9 +29,16 @@ export class BudgetTrackerComponent implements OnInit {
     this.verifyDate(item);
     await this.budgetTrackManagerService.saveBudgetItem(this.pageObject, item);
   }
+  async loadSpent(item: BudgetTrackItem) {
+    await this.budgetSpentManagerService.getItems(item);
+  }
 
-  async saveSpent(item: BudgetSpentItem) {
-    console.log(item);
+  async saveSpent(budgetItem:BudgetTrackItem, item: BudgetSpentItem) {
+    await this.budgetSpentManagerService.saveItem(budgetItem, item);
+  }
+
+  async deleteSpent(budgetItem:BudgetTrackItem, item: BudgetSpentItem) {
+    await this.budgetSpentManagerService.deleteItem(budgetItem, item);
   }
 
   async saveSpentNeed(item) {

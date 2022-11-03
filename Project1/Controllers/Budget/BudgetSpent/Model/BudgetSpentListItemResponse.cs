@@ -5,6 +5,7 @@ namespace Amirez.AmipBackend.Controllers.Budget.BudgetSpent.Models
 {
     public class BudgetSpentListItemResponse
     {
+        public Guid Id { get; set; }
         public string Subject { get; set; }
 
         public double Amount { get; set; }
