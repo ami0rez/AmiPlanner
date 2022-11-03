@@ -8,8 +8,14 @@
       <div>
         <button pButton type="button" label="Init" (click)="initPeriod()"></button>
         <button class="ml-8p" pButton type="button" label="Clear" (click)="clearPeriod()"></button>
-        <button *ngIf="!pageObject.data?.budgetTracker?.periodClosed" class="ml-8p" pButton type="button" label="Close" (click)="closePeriod()"></button>
-        <button *ngIf="pageObject.data?.budgetTracker?.periodClosed" class="ml-8p" pButton type="button" label="Open" (click)="openPeriod()"></button>
+        <button *ngIf="!pageObject.data?.budgetTracker?.periodClosed" class="ml-8p" pButton type="button" label="Close"
+          (click)="closePeriod()"></button>
+        <button *ngIf="pageObject.data?.budgetTracker?.periodClosed" class="ml-8p" pButton type="button" label="Open"
+          (click)="openPeriod()"></button>
+        <p-fileUpload #fileUpload mode="basic" name="demo[]" maxFileSize="1000000" customUpload="true"
+          (onSelect)="import($event, fileUpload)" [auto]="true">
+        </p-fileUpload>
+
       </div>
     </div>
   </div>
@@ -40,8 +46,8 @@
             Needs ({{pageObject.data?.budgetTracker?.totalSpentNeeds}} DH)
             <span class="budget-available">Available: {{pageObject.data?.budgetTracker?.availableSpentNeeds}} DH</span>
           </div>
-          <app-budget-track-item (onSave)="saveSpentNeed($event)" (onDelete)="deleteBudgetItem($event)"
-            (onPay)="payBudgetItem($event)" (onRefund)="refundBudgetItem($event)"
+          <app-budget-track-item (onSave)="saveSpentNeed($event)" (onSaveSpent)="saveSpent($event)"
+            (onDelete)="deleteBudgetItem($event)" (onPay)="payBudgetItem($event)" (onRefund)="refundBudgetItem($event)"
             *ngFor="let item of pageObject.data?.budgetTracker?.spentNeeds?? []" [options]="pageObject.categoryOptions"
             [item]="item" [canPay]="true"></app-budget-track-item>
           <app-budget-track-item *ngIf="!pageObject.data?.budgetTracker?.periodClosed" (onSave)="saveSpentNeed($event)"
@@ -56,7 +62,7 @@
             <span class="budget-available">Available: {{pageObject.data?.budgetTracker?.availableSpentWants}} DH</span>
           </div>
           <app-budget-track-item (onSave)="saveSpentWant($event)" (onDelete)="deleteBudgetItem($event)"
-            (onPay)="payBudgetItem($event)" (onRefund)="refundBudgetItem($event)"
+            (onSaveSpent)="saveSpent($event)" (onPay)="payBudgetItem($event)" (onRefund)="refundBudgetItem($event)"
             *ngFor="let item of pageObject.data?.budgetTracker?.spentWants?? []" [options]="pageObject.categoryOptions"
             [item]="item" [canPay]="true"></app-budget-track-item>
           <app-budget-track-item *ngIf="!pageObject.data?.budgetTracker?.periodClosed" (onSave)="saveSpentWant($event)"

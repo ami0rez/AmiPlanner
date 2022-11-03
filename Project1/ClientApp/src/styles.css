@@ -77,6 +77,10 @@ body {
   width: 100%;
 }
 
+.w-50-prcnt {
+  width: 50%;
+}
+
 .h-150 {
   height: 150px !important;
 }
@@ -99,6 +103,13 @@ body {
 
 .ml-8p{
   margin-left: 8px;
+}
+.mt-8p{
+  margin-top: 8px;
+}
+.mv-4p{
+  margin-left: 8px;
+  margin-right: 8px;
 }
 /*------------------------------------------------------------------------------*/
 p-selectbutton .p-button{
@@ -1263,11 +1274,24 @@ app-budget-planner {
   display: flex;
   flex-direction: column;
   padding: 5px;
+  position: relative;
+}
+
+.budget-module .dahsboard-toggle-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 100% 0% 34% 66% / 0% 100% 0% 100% ;
+  z-index: 2;
+  padding: 2px;
+  border: #00000033 solid thin;
 }
 
 .budget-module-dashboard {
   width: 100%;
-  height: 200px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   padding: 10px 0;
@@ -1275,7 +1299,6 @@ app-budget-planner {
   font-size: 16px;
   background: #fff;
   border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .budget-module-dashboard-filter {
@@ -1284,7 +1307,7 @@ app-budget-planner {
 
 .budget-module-dashboard-cards {
   width: 100%;
-  height: 150px;
+  min-height: 150px;
   display: flex;
   flex-direction: row;
 }
@@ -1292,11 +1315,45 @@ app-budget-planner {
 .budget-module-dashboard-cards .budget-card {
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  width: 20%;
-  height: 100%;
+  min-width: 20%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   margin: 0 10px;
+}
+
+
+
+.budget-card .staistics{
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  min-height: 60px;
+  padding-bottom: 2px;
+}
+
+.budget-card .staistics .title{
+  border-bottom: #00000033 solid thin;
+  text-align: center;
+  font-size: large;
+  background-color: #2673ab44;
+}
+
+.budget-card .staistics .property{
+  display: flex;
+  flex-direction: row;
+  padding: 0 5px;
+}
+
+.budget-card .staistics .property .key{
+  flex-grow: 1;
+}
+
+.budget-card .staistics .property .value{
+  font-weight: 500;
+}
+
+.budget-module-dashboard-cards .budget-card.transparent {
+  background: transparent;
+  box-shadow: none;
 }
 
 .budget-module-tracker {
@@ -1427,29 +1484,32 @@ p-tabpanel div.p-tabview-panel {
 
 /*  ------------- */
 .budget-track-item {
-  height: 80px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   margin: 5px 0;
   border-radius: 6px;
   padding: 3px 6px;
-  display: flex;
-  flex-direction: column;
   position: relative;
 }
-.budget-track-item.only-display {
+.budget-track-cotent {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+}
+
+.budget-track-item .budget-track-cotent.only-display {
   height: 40px;
   flex-direction: row;
   align-items: center;
 }
-.budget-track-item.only-display .budget-category-title {
+.budget-track-cotent.only-display .budget-category-title {
   vertical-align: sub;
   font-size: smaller;
   flex-grow: 1;
 }
-.budget-track-item.only-display .budget-track-header {
+.budget-track-cotent.only-display .budget-track-header {
   flex-grow: 1;
 }
-.budget-track-item.only-display .budget-track-body {
+.budget-track-cotent.only-display .budget-track-body {
   flex-grow: 0;
 }
 .budget-track-item.state-done {
@@ -1483,6 +1543,10 @@ p-tabpanel div.p-tabview-panel {
   flex-grow: 1;
   display: flex;
   align-items: center;
+}
+
+.budget-track-item .budget-track-footer {
+  width: 100%;
 }
 
 .budget-track-controls-icons {
@@ -1551,4 +1615,41 @@ p-tabpanel div.p-tabview-panel {
   appearance: none;
   border-radius: 3px;
 }
+
+/*budget-spent-list*/
+.budget-spent-item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: #00000011 thin solid;
+  padding: 4px 0 3px 0;
+}
+.budget-spent-item:hover{
+  background-color: #00000011;
+}
+.budget-spent-item .budget-spent-date{
+  font-weight: 300;
+  font-size: 0.85em;
+}
+.budget-spent-item .budget-spent-amount{
+  font-weight: 600;
+  font-size: 0.85em;
+}
+.budget-spent-item .budget-spent-subject{
+  font-weight: 500;
+  font-size: 0.85em;
+}
+.budget-spent-item .budget-spent-controls{
+  margin-left: 8px;
+ }
+.budget-spent-item .budget-spent-controls .contol-item{
+ cursor: pointer;
+ margin: 0 4px;
+}
+.budget-spent-subject .p-inputnumber-input{
+  width: 100px;
+  font-weight: 500;
+  font-size: 0.85em;
+}
+/*budget-spent-list*/
 

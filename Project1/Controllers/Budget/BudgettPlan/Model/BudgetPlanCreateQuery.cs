@@ -12,7 +12,7 @@ namespace Amirez.AmipBackend.Controllers.Budget.BudgetPlan.Models
 
         public double Ammount { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public Guid? CategoryId { get; set; }
 

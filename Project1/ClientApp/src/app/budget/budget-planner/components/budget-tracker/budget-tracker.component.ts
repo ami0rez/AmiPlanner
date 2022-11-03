@@ -1,10 +1,11 @@
 import { toUtcDate } from 'involys-common/common';
 import { BudgetTrackItem } from './../../models/budget-track-item';
 import { BudgetTrackManagerService } from './../../services/budget-tracker-manager.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BudgetPage } from '../../models/budget-page';
 import { BudgetTypes } from '../../models/enums/budget-type';
 import { periodManagerService } from '../../services/period-manager.service';
+import { BudgetSpentItem } from '../../models/budget-spent-item';
 
 @Component({
   selector: 'app-budget-tracker',
@@ -13,19 +14,21 @@ import { periodManagerService } from '../../services/period-manager.service';
 })
 export class BudgetTrackerComponent implements OnInit {
 
-  pageObject: BudgetPage = new BudgetPage();
+  @Input()
+  pageObject: BudgetPage;
   constructor(private readonly budgetTrackManagerService: BudgetTrackManagerService,
     private readonly periodManagerService: periodManagerService) { }
 
-  async ngOnInit() {
-    await this.budgetTrackManagerService.loadOptions(this.pageObject);
-    await this.budgetTrackManagerService.getTrackingItems(this.pageObject);
-  }
+  async ngOnInit() {}
 
   async saveIncom(item: BudgetTrackItem) {
     item.type = BudgetTypes.Incom;
     this.verifyDate(item);
     await this.budgetTrackManagerService.saveBudgetItem(this.pageObject, item);
+  }
+
+  async saveSpent(item: BudgetSpentItem) {
+    console.log(item);
   }
 
   async saveSpentNeed(item) {
@@ -55,6 +58,11 @@ export class BudgetTrackerComponent implements OnInit {
   async budgetTrackingDateChange() {
     await this.budgetTrackManagerService.getTrackingItems(this.pageObject);
   }
+
+  async import(event, fileUpload) {
+    await this.budgetTrackManagerService.import(event, fileUpload);
+  }
+
 
   /*
   *  @description verify if item has date, if not add date

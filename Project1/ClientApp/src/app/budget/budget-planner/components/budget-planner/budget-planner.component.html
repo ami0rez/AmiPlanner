@@ -1,29 +1,20 @@
 <div class="budget-module">
-  <div class="budget-module-dashboard" *ngIf="false">
-    <div class="budget-module-dashboard-filter">
-      <p-calendar view="month" dateFormat="mm/yy"></p-calendar>
+  <div>
+    <div (click)="toggleDashboard()" class="dahsboard-toggle-icon" [pTooltip]="pageObject.showPageDashboard ? 'Hide Dashboard' : 'Show dashboard'">
+      <img class="nav-menu-icon" src="../../../../assets/icons/dashboard-budget.png" />
     </div>
-    <div class="budget-module-dashboard-cards">
-      <div class="budget-card">
-      </div>
-      <div class="budget-card">
-      </div>
-      <div class="budget-card">
-      </div>
-      <div class="budget-card">
-      </div>
-      <div class="budget-card">
-      </div>
-    </div>
+  </div>
+  <div class="budget-module-dashboard" *ngIf="pageObject.showPageDashboard">
+    <app-budget-dashboard [pageObject]="pageObject"></app-budget-dashboard>
   </div>
   <div class="budget-module-tracker">
     <p-tabView class="budget-tabs">
-      <p-tabPanel header="Plans" [selected]="true">
-        <app-budget-plans></app-budget-plans>
+      <p-tabPanel header="Plans">
+        <app-budget-plans [pageObject]="pageObject"></app-budget-plans>
       </p-tabPanel>
-      <p-tabPanel header="Budget">
-          <app-budget-tracker></app-budget-tracker>
+      <p-tabPanel header="Budget" [selected]="true">
+        <app-budget-tracker [pageObject]="pageObject"></app-budget-tracker>
       </p-tabPanel>
-  </p-tabView>
+    </p-tabView>
   </div>
 </div>

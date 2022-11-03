@@ -116,9 +116,12 @@ namespace Amirez.AmipBackend.Services.BudgetPlan
             {
                 throw new ResponseException(ErrorConstants.InvalidAmout);
             }
-            if (!entity.Repeat && (entity.Date < DateTime.Today || entity.Date.Month <= DateTime.Today.Month))
+            if (entity.Date.HasValue)
             {
-                throw new ResponseException(ErrorConstants.PlanDateMustBeFutureMonths);
+                if (!entity.Repeat && entity.Date.Value.Month <= DateTime.Today.Month && entity.Date.Value.Year <= DateTime.Today.Year)
+                {
+                    throw new ResponseException(ErrorConstants.PlanDateMustBeFutureMonths);
+                }
             }
 
             var subjectFound = await _context.AnyAsync(plan => plan.Subject == entity.Subject);
@@ -127,11 +130,15 @@ namespace Amirez.AmipBackend.Services.BudgetPlan
                 throw new ResponseException(ErrorConstants.SubjectAlreadyUsed);
             }
 
-            var periodClosed = await _periodRepository.IsClosed(entity.Date);
-            if (subjectFound)
+            if (entity.Date.HasValue)
             {
-                throw new ResponseException(ErrorConstants.PeriodClosed);
+                var periodClosed = await _periodRepository.IsClosed(entity.Date.Value);
+                if (subjectFound)
+                {
+                    throw new ResponseException(ErrorConstants.PeriodClosed);
+                }
             }
+
         }
 
         /// <summary>

@@ -9,12 +9,19 @@ import {DropdownModule} from 'primeng/dropdown';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ButtonModule} from 'primeng/button';
 import {SelectButtonModule} from 'primeng/selectbutton';
+import {TooltipModule} from 'primeng/tooltip';
+import {ChartModule} from 'primeng/chart';
+import {FileUploadModule} from 'primeng/fileupload';
+
 
 import { BudgetPlannerComponent } from './budget-planner/components/budget-planner/budget-planner.component';
 import { BudgetPlansComponent } from './budget-planner/components/budget-plans/budget-plans.component';
 import { BudgetTrackItemComponent } from './budget-planner/components/budget-track-item/budget-track-item.component';
 import { BudgetTrackerComponent } from './budget-planner/components/budget-tracker/budget-tracker.component';
 import { BudgetRoutingModule } from './budget-planner/budget-routing.module';
+import { BudgetDashboardComponent } from './budget-planner/components/budget-dashboard/budget-dashboard.component';
+import { BudgetSpentListComponent } from './budget-planner/components/budget-spent-list/budget-spent-list.component';
+import { BudgetSpentItemComponent } from './budget-planner/components/budget-spent-item/budget-spent-item.component';
 
 
 
@@ -25,7 +32,10 @@ import { BudgetRoutingModule } from './budget-planner/budget-routing.module';
     BudgetPlannerComponent,
     BudgetTrackerComponent,
     BudgetTrackItemComponent,
-    BudgetPlansComponent
+    BudgetPlansComponent,
+    BudgetDashboardComponent,
+    BudgetSpentListComponent,
+    BudgetSpentItemComponent
   ],
   imports: [
     BudgetRoutingModule,
@@ -38,7 +48,10 @@ import { BudgetRoutingModule } from './budget-planner/budget-routing.module';
     DropdownModule,
     CheckboxModule,
     ButtonModule,
-    SelectButtonModule
+    SelectButtonModule,
+    TooltipModule,
+    ChartModule,
+    FileUploadModule
   ]
 })
 export class BudgetModule { }

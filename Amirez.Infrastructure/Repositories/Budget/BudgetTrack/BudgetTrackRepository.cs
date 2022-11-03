@@ -45,6 +45,18 @@ namespace Amirez.Infrastructure.Repositories.BudgetTrack
                .ToListAsync();
         }
 
+
+        /// <summary>
+        /// Find Budget Tracking Item
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public async Task<BudgetTrackDataModel> GetbyId(Guid id)
+        {
+            return await _context.Set<BudgetTrackDataModel>()
+               .FirstOrDefaultAsync(e => e.Id == id);
+        }
+
         /// <summary>
         /// Find Budget Tracking Ids by Date No Includes
         /// </summary>

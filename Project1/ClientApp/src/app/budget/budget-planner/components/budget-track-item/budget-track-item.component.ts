@@ -1,3 +1,4 @@
+import { BudgetSpentItem } from './../../models/budget-spent-item';
 import { ListItem } from './../../../../common/models/list-item';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { BudgetTrackItem } from '../../models/budget-track-item';
@@ -47,7 +48,17 @@ export class BudgetTrackItemComponent implements OnInit {
   @Output()
   onDelete: EventEmitter<BudgetTrackItem> = new EventEmitter<BudgetTrackItem>();
 
+  @Output()
+  onSaveSpent: EventEmitter<BudgetSpentItem> = new EventEmitter<BudgetSpentItem>();
+  @Output()
+  onCancelSpent: EventEmitter<BudgetSpentItem> = new EventEmitter<BudgetSpentItem>();
+  @Output()
+  onEditSpent: EventEmitter<BudgetSpentItem> = new EventEmitter<BudgetSpentItem>();
+  @Output()
+  onDeleteSpent: EventEmitter<BudgetSpentItem> = new EventEmitter<BudgetSpentItem>();
+
   clonedItem: BudgetTrackItem = new BudgetTrackItem();
+  showSpendings = false;
   constructor() { }
 
   ngOnInit(): void {
@@ -70,15 +81,26 @@ export class BudgetTrackItemComponent implements OnInit {
   }
 
   save() {
-    this.item.date = toUtcDate(this.item.date);
+    if (this.planner && !this.item.repeat) {
+      this.item.date = toUtcDate(this.item.date);
+    }
     this.onSave.emit({ ... this.item });
     this.item = new BudgetTrackItem();
+  }
+
+  saveSpentItem(spentItem: BudgetSpentItem) {
+    spentItem.parentId = this.item.id;
+    this.onSaveSpent.emit({ ...spentItem });
   }
 
   cancel() {
     this.setEditableMode(false);
     this.item = { ...this.clonedItem }
     this.onCancel.emit({ ... this.item });
+  }
+
+  toggleSpendings() {
+    this.showSpendings = !this.showSpendings;
   }
 
   remove() {

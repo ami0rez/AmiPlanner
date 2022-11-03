@@ -1,0 +1,62 @@
+<div class="budget-module-dashboard-filter">
+  <p-calendar view="month" dateFormat="mm/yy"></p-calendar>
+</div>
+<div class="budget-module-dashboard-cards">
+  <div class="budget-card transparent">
+    <div class="w-100-prcnt d-flex-row">
+      <div class="staistics w-50-prcnt">
+        <div class="title">
+          Incom
+        </div>
+        <div class="property"><span class="key">Totale:</span> <span
+            class="value">{{pageObject.data?.budgetTracker?.percentIncom}}</span></div>
+        <div class="property"><span class="key">Available:</span>
+          <span class="value">{{pageObject.data?.budgetTracker?.availableIncom}}</span></div>
+      </div>
+      <div class="staistics w-50-prcnt mv-4p">
+        <div class="title">
+          Savings
+        </div>
+        <div class="property"><span class="key">Estimated:</span>
+          <span class="value">{{pageObject.data?.budgetTracker?.percentSavings}} DH</span></div>
+        <div class="property"><span class="key">Saved:</span>
+          <span class="value">{{pageObject.data?.budgetTracker?.totalSavings}} DH</span></div>
+      </div>
+    </div>
+    <div class="w-100-prcnt d-flex-row mt-8p">
+      <div class="staistics w-50-prcnt">
+        <div class="title">
+          Needs
+        </div>
+        <div class="property"><span class="key">Estimated:</span>
+          <span class="value">{{pageObject.data?.budgetTracker?.percentSpentNeeds}} DH</span></div>
+        <div class="property"><span class="key">Spent:</span>
+          <span class="value">{{pageObject.data?.budgetTracker?.totalSpentNeeds}} DH</span></div>
+        <div class="property"><span class="key">Available:</span>
+          <span class="value">{{pageObject.data?.budgetTracker?.availableSpentNeeds}} DH</span></div>
+      </div>
+      <div class="staistics w-50-prcnt mv-4p">
+        <div class="title">
+          Wants
+        </div>
+        <div class="property"><span class="key">Estimated:</span>
+          <span class="value">{{pageObject.data?.budgetTracker?.percentSpentWants}} DH</span></div>
+        <div class="property"><span class="key">Spent:</span>
+          <span class="value">{{pageObject.data?.budgetTracker?.totalSpentWants}} DH</span></div>
+        <div class="property"><span class="key">Available:</span>
+          <span class="value">{{pageObject.data?.budgetTracker?.availableSpentWants}} DH</span></div>
+      </div>
+    </div>
+  </div>
+  <!-- Radar -->
+  <div class="budget-card">
+    <p-chart type="bar" [data]="basicData" [options]="horizontalOptions"></p-chart>
+  </div>
+  <!-- Radar -->
+  <div class="budget-card">
+    <p-chart type="bar" [data]="basicData" [options]="horizontalOptions"></p-chart>
+  </div>
+  <div class="budget-card">
+    <p-chart type="doughnut" [data]="data" [options]="chartOptions" [style]="{'width': '50%'}"></p-chart>
+  </div>
+</div>

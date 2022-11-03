@@ -1,5 +1,6 @@
 ﻿using Amirez.Infrastructure.Data.Model.Budget.Enumeration;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Amirez.Infrastructure.Data.Model.Budget
@@ -16,5 +17,6 @@ namespace Amirez.Infrastructure.Data.Model.Budget
         public Guid? CategoryId { get; set; }
         public BudgetCategoryDataModel Category { get; set; }
         public BudgetTypes Type { get; set; }
+        public IEnumerable<BudgetSpentDataModel> Spendings { get; set; }
     }
 }

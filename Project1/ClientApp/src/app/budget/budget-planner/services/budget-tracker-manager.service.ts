@@ -56,12 +56,24 @@ export class BudgetTrackManagerService {
   async updateData(pageObject: BudgetPage, data: BudgetTrackerResponse) {
     data.spentWants?.forEach(item => item.categoryLabel = pageObject.categoryOptions.find(opt => opt.value === item.categoryId)?.label);
     data.spentNeeds?.forEach(item => item.categoryLabel = pageObject.categoryOptions.find(opt => opt.value === item.categoryId)?.label);
-    pageObject.data.budgetTracker = data;
+    pageObject.data.budgetTracker = { ...pageObject.data.budgetTracker, ...data };
   }
 
 
   async updatePlansData(pageObject: BudgetPage, data: BudgetTrackItem[]) {
     data?.forEach(item => item.categoryLabel = pageObject.categoryOptions.find(opt => opt.value === item.categoryId)?.label);
     pageObject.data.budgetTracker.plans = data;
+  }
+  
+  async import(event, fileUpload) {
+    const formData = new FormData();
+    formData.append('file', event.currentFiles[0], event.currentFiles[0].name);
+    const result = await lastValueFrom(this.budgetTrack.import(formData));
+    if (result) {
+      //this.notificationService.showSuccess('Done uploading');
+    } else {
+      //this.notificationService.showError('Error Uploading');
+    }
+    fileUpload.clear();
   }
 }

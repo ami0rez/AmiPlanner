@@ -39,4 +39,8 @@ export class BudgetTrackService {
   deleteBudgetItem(itemId: string) {
     return this.http.delete<BudgetTrackerResponse>(`${this.budgetTrackingUrl}/${itemId}`);
   }
+
+  import(formData: FormData) {
+    return this.http.post<any>(`api/v1/Amip/Import`, formData);
+  }
 }

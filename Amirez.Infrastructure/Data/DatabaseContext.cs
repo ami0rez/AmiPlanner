@@ -29,6 +29,7 @@ namespace Amirez.Infrastructure.Data
         public DbSet<BudgetPlanDataModel> BudgetPlans { get; set; }
         public DbSet<BudgetCategoryDataModel> BudgetCategories { get; set; }
         public DbSet<PeriodDataModel> Periods { get; set; }
+        public DbSet<BudgetSpentDataModel> Spendings { get; set; }
 
         public DatabaseContext(DbContextOptions options) : base(options)
         {

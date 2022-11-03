@@ -1,6 +1,7 @@
+import { BudgetSpentItem } from "./budget-spent-item";
 import { BudgetTypes } from "./enums/budget-type";
 
-export class BudgetTrackItem{
+export class BudgetTrackItem {
   id: string;
   subject: string;
   repeat: string;
@@ -10,4 +11,5 @@ export class BudgetTrackItem{
   categoryId: BudgetTypes;
   categoryLabel: string;
   paid: boolean;
+  spent: BudgetSpentItem[];
 }

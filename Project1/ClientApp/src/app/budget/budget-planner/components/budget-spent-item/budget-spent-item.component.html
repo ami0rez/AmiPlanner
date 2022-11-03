@@ -1,0 +1,27 @@
+<div class="budget-spent-item">
+  <div class="budget-spent-date">
+    {{creator ? (today| date: datePattern) : (item.date| date: datePattern )}}
+  </div>
+
+  <!-- Subject -->
+  <div *ngIf="!editable && !creator" class="budget-spent-subject f-grow mv-4p">
+    Spent Suject
+  </div>
+  <div *ngIf="editable || creator" class="budget-spent-subject f-grow mv-4p">
+    <input pInputText class="spent-title" [(ngModel)]="item.subject" *ngIf="editable || creator" suffix="DH" />
+  </div>
+
+  <!-- Amount -->
+  <div *ngIf="!editable && !creator" class="budget-spent-amount">
+    2800 DH
+  </div>
+  <div *ngIf="editable || creator" class="budget-spent-subject f-grow mv-4p">
+    <p-inputNumber *ngIf="editable || creator" [(ngModel)]="item.amount" suffix="DH"></p-inputNumber>
+  </div>
+  <div class="budget-spent-controls">
+    <i *ngIf="!editable && !creator" class="bi bi-pen contol-item" (click)="edit()"></i>
+    <i *ngIf="!editable && !creator" class="bi bi-trash contol-item" (click)="remove()"></i>
+    <i *ngIf="editable || creator" class="bi bi-sd-card contol-item" (click)="save()"></i>
+    <i *ngIf="editable && !creator" class="bi bi-x contol-item red" (click)="cancel()"></i>
+  </div>
+</div>
