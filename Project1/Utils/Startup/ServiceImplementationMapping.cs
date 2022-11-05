@@ -81,6 +81,9 @@ namespace Amirez.AmipBackend.Utils.Startup
             //BudgetSpent
             services.AddTransient<IBudgetSpentService, BudgetSpentService>();
             services.AddTransient<IBudgetSpentRepository, BudgetSpentRepository>();
+
+            //Dashboard
+            services.AddTransient<IDashboardService, DashboardService>();
         }
     }
 }

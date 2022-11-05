@@ -40,5 +40,17 @@ namespace Amirez.Infrastructure.Repositories.BudgetSpent
                .Where(e => e.ParentId == parentId)
                .SumAsync(e => e.Amount);
         }
+
+        /// <summary>
+        /// Calculate Savings by Date
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public async Task<double> GetSpentAmount(DateTime date)
+        {
+            return await _context.Set<BudgetSpentDataModel>()
+               .Where(e => e.Date.Month == date.Month && e.Date.Year == date.Year && !e.Parent.Paid)
+               .SumAsync(e => e.Amount);
+        }
     }
 }

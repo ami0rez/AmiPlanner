@@ -1,4 +1,4 @@
-<div class="budget-module-dashboard-filter">
+<div class="budget-module-dashboard-filter" *ngIf="false">
   <p-calendar view="month" dateFormat="mm/yy"></p-calendar>
 </div>
 <div class="budget-module-dashboard-cards">
@@ -48,9 +48,32 @@
       </div>
     </div>
   </div>
-  <!-- Radar -->
-  <div class="budget-card">
-    <p-chart type="bar" [data]="basicData" [options]="horizontalOptions"></p-chart>
+  <!-- Available/ Paid -->
+  <div class="budget-card transparent">
+    <div class="w-100-prcnt d-flex-row mt-8p">
+      <div class="staistics w-50-prcnt">
+        <div class="title">
+          Payments
+        </div>
+        <div class="property"><span class="key">Paid:</span>
+          <span class="value">{{pageObject.data?.dashboard?.paymentPaidAmount}} DH</span></div>
+        <div class="property"><span class="key">Spents:</span>
+          <span class="value">{{pageObject.data?.dashboard?.paymentSpentsAmount}} DH</span></div>
+        <div class="property"><span class="key">Total:</span>
+          <span class="value">{{pageObject.data?.dashboard?.paymentTotalAmount}} DH</span></div>
+      </div>
+      <div class="staistics w-50-prcnt mv-4p">
+        <div class="title">
+          Available
+        </div>
+        <div class="property"><span class="key">End:</span>
+          <span class="value">{{pageObject.data?.dashboard?.availableEndAmount}} DH</span></div>
+        <div class="property"><span class="key">Unused:</span>
+          <span class="value">{{pageObject.data?.dashboard?.availableNotUsedAmount}} DH</span></div>
+        <div class="property"><span class="key">Total:</span>
+          <span class="value">{{pageObject.data?.dashboard?.availableAmount}} DH</span></div>
+      </div>
+    </div>
   </div>
   <!-- Radar -->
   <div class="budget-card">

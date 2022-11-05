@@ -10,5 +10,12 @@ namespace Amirez.Infrastructure.Repositories.BudgetSpent
     {
         Task<double> CalculateSpent(Guid parentId);
         Task<List<BudgetSpentDataModel>> FindIdsByParentId(Guid id);
+
+        /// <summary>
+        /// Get Spent Amount
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        Task<double> GetSpentAmount(DateTime date);
     }
 }

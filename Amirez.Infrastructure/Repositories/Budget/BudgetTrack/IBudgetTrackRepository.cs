@@ -59,10 +59,32 @@ namespace Amirez.Infrastructure.Repositories.BudgetTrack
         Task<double> CalculateIncom(DateTime date);
 
         /// <summary>
+        /// Calculate spent by Date
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        Task<double> CalculateSpent(DateTime date);
+
+        /// <summary>
         /// Find All Budget Categories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         Task<List<BudgetCategoryDataModel>> FindCategories();
+
+
+        /// <summary>
+        /// Get PaidAmount
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        Task<double> GetPaidAmount(DateTime date);
+
+        /// <summary>
+        /// Get Unpaid Amount
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        Task<double> GetUnpaidAmount(DateTime date);
     }
 }

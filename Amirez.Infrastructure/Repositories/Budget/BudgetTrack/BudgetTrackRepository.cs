@@ -117,6 +117,20 @@ namespace Amirez.Infrastructure.Repositories.BudgetTrack
                .SumAsync(e => e.Ammount);
         }
 
+
+
+        /// <summary>
+        /// Calculate spent by Date
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public async Task<double> CalculateSpent(DateTime date)
+        {
+            return await _context.Set<BudgetTrackDataModel>()
+               .Where(e => e.Date.Month == date.Month && e.Date.Year == date.Year && (e.Type == BudgetTypes.Need || e.Type == BudgetTypes.Want))
+               .SumAsync(e => e.Ammount);
+        }
+
         /// <summary>
         /// Calculate Savings by Date
         /// </summary>
@@ -139,6 +153,31 @@ namespace Amirez.Infrastructure.Repositories.BudgetTrack
             return await _context.Set<BudgetCategoryDataModel>()
                .AsNoTracking()
                .ToListAsync();
+        }
+
+        /// <summary>
+        /// Calculate Savings by Date
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public async Task<double> GetPaidAmount(DateTime date)
+        {
+            return await _context.Set<BudgetTrackDataModel>()
+               .Where(e => e.Date.Month == date.Month && e.Date.Year == date.Year && e.Paid)
+               .SumAsync(e => e.Ammount);
+        }
+
+        /// <summary>
+        /// Calculate Savings by Date
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public async Task<double> GetUnpaidAmount(DateTime date)
+        {
+            var incom = await CalculateIncom(date);
+            return incom - await _context.Set<BudgetTrackDataModel>()
+               .Where(e => e.Date.Month == date.Month && e.Date.Year == date.Year && e.Paid)
+               .SumAsync(e => e.Ammount);
         }
     }
 }

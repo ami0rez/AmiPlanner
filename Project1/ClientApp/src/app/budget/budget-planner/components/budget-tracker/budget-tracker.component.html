@@ -12,7 +12,7 @@
           (click)="closePeriod()"></button>
         <button *ngIf="pageObject.data?.budgetTracker?.periodClosed" class="ml-8p" pButton type="button" label="Open"
           (click)="openPeriod()"></button>
-        <p-fileUpload #fileUpload mode="basic" name="demo[]" maxFileSize="1000000" customUpload="true"
+        <p-fileUpload *ngIf="false" #fileUpload mode="basic" name="demo[]" maxFileSize="1000000" customUpload="true"
           (onSelect)="import($event, fileUpload)" [auto]="true">
         </p-fileUpload>
 

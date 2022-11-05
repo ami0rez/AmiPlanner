@@ -16,7 +16,7 @@ namespace Project1
     public class Startup
     {
         private const string DefaultCorsPolicy = "default";
-        bool UseSpaStaticFiles = false;
+        bool UseSpaStaticFiles = true;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;

@@ -7,6 +7,7 @@ import { BudgetTypes } from '../../models/enums/budget-type';
 import { periodManagerService } from '../../services/period-manager.service';
 import { BudgetSpentItem } from '../../models/budget-spent-item';
 import { BudgetSpentManagerService } from '../../services/budget-spent-manager.service';
+import { DashboardManagerService } from '../../services/dashboard-manager.service';
 
 @Component({
   selector: 'app-budget-tracker',
@@ -19,10 +20,11 @@ export class BudgetTrackerComponent implements OnInit {
   pageObject: BudgetPage;
   constructor(private readonly budgetTrackManagerService: BudgetTrackManagerService,
     private readonly periodManagerService: periodManagerService,
-    private readonly budgetSpentManagerService: BudgetSpentManagerService
-    ) { }
+    private readonly budgetSpentManagerService: BudgetSpentManagerService,
+    private readonly dashboardManagerService: DashboardManagerService
+  ) { }
 
-  async ngOnInit() {}
+  async ngOnInit() { }
 
   async saveIncom(item: BudgetTrackItem) {
     item.type = BudgetTypes.Incom;
@@ -33,12 +35,14 @@ export class BudgetTrackerComponent implements OnInit {
     await this.budgetSpentManagerService.getItems(item);
   }
 
-  async saveSpent(budgetItem:BudgetTrackItem, item: BudgetSpentItem) {
+  async saveSpent(budgetItem: BudgetTrackItem, item: BudgetSpentItem) {
     await this.budgetSpentManagerService.saveItem(budgetItem, item);
+    await this.dashboardManagerService.loadDashboard(this.pageObject);
   }
 
-  async deleteSpent(budgetItem:BudgetTrackItem, item: BudgetSpentItem) {
+  async deleteSpent(budgetItem: BudgetTrackItem, item: BudgetSpentItem) {
     await this.budgetSpentManagerService.deleteItem(budgetItem, item);
+    await this.dashboardManagerService.loadDashboard(this.pageObject);
   }
 
   async saveSpentNeed(item) {
@@ -67,6 +71,7 @@ export class BudgetTrackerComponent implements OnInit {
 
   async budgetTrackingDateChange() {
     await this.budgetTrackManagerService.getTrackingItems(this.pageObject);
+    await this.dashboardManagerService.loadDashboard(this.pageObject);
   }
 
   async import(event, fileUpload) {
@@ -85,10 +90,12 @@ export class BudgetTrackerComponent implements OnInit {
 
   async payBudgetItem(item) {
     await this.budgetTrackManagerService.payBudgetItem(this.pageObject, item);
+    await this.dashboardManagerService.loadDashboard(this.pageObject);
   }
 
   async refundBudgetItem(item) {
     await this.budgetTrackManagerService.refundBudgetItem(this.pageObject, item);
+    await this.dashboardManagerService.loadDashboard(this.pageObject);
   }
 
   async initPeriod() {
