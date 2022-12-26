@@ -24,7 +24,6 @@ import { ChangerMotDePasseComponent } from './changer-mot-de-passe/components/ch
   imports: [
     SecurityRoutingModule,
     CommonModule,
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     TableModule,

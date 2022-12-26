@@ -77,7 +77,6 @@ export class ProjectReaderComponent implements OnInit {
     }
   }
   handleOpenTask(task): void {
-    console.log(task);
     if (task.everyday || task.date) {
       this.taskManagerService.openDailyTask(this.pageObject, task.id);
     } else {

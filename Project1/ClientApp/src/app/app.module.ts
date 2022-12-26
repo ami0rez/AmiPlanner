@@ -12,6 +12,7 @@ import {SplitterModule} from 'primeng/splitter';
 import {ChartModule} from 'primeng/chart';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {EditorModule} from 'primeng/editor';
+import { QuillModule } from 'ngx-quill'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -97,7 +98,8 @@ import { CustomHttpInterceptor } from 'src/common/services/custom-http-intercept
     AvatarModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     MultiSelectModule,
-    TreeModule
+    TreeModule,
+    QuillModule
   ],
   providers: [
     MessageService,

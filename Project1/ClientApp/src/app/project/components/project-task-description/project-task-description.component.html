@@ -1,6 +1,13 @@
 <div [class]="'task-description state-' + getClassName()">
   <div class="task-header">
-    <input [disabled]="editDisabled || task.everyday"  class="task-header-title" type="text" pInputText [(ngModel)]="selectedTask.name" (change)="handleTaskUpdate()" />
+    <input
+      [disabled]="editDisabled || task.everyday"
+      class="task-header-title"
+      type="text"
+      pInputText
+      [(ngModel)]="selectedTask.name"
+      (change)="handleTaskUpdate($event)"
+    />
     <span class="task-header-icons">
       <!-- <AiOutlineClose size="1.3em" color="#00000099" onClick={} /> -->
       <i class="bi bi-x size-1-8" (click)="handleOnClose()"></i>
@@ -8,16 +15,29 @@
   </div>
   <div class="task-body">
     <div class="d-flex-row f-grow">
-      <div *ngIf="task?.historyVersions.length || task?.everyday" class="task-history">
+      <div
+        *ngIf="task?.historyVersions.length || task?.everyday"
+        class="task-history"
+      >
         <div class="task-history">
-          <div class="task-history-item" (click)="setDefaultSeelectedTask()">Today</div>
-          <div class="task-history-item" *ngFor="let historyTask of task?.historyVersions" (click)="setSelectedTask(historyTask)">{{historyTask.date | date}}</div>
+          <div class="task-history-item" (click)="setDefaultSeelectedTask()">
+            Today
+          </div>
+          <div
+            class="task-history-item"
+            *ngFor="let historyTask of task?.historyVersions"
+            (click)="setSelectedTask(historyTask)"
+          >
+            {{ historyTask.date | date }}
+          </div>
         </div>
       </div>
-      <p-editor 
-      [readonly]="editDisabled" 
-      class="task-body-description  f-grow" 
-      (onTextChange)="handleTaskUpdate()"
+      <p-editor
+        [modules]="modules"
+        [(ngModel)]="task.description"
+        [readonly]="editDisabled"
+        class="task-body-description f-grow"
+        (onTextChange)="handleTaskUpdate($event)"
       ></p-editor>
     </div>
     <!-- <div class="task-body-details">

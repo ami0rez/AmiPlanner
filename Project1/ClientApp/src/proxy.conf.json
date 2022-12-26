@@ -1,6 +1,6 @@
 {
     "/api/v1/Amip/*": {
-        "target": "http://localhost:5000",
+        "target": "http://amirez/:5000",
         "secure": false
     }
 }
